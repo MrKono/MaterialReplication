@@ -1,0 +1,38 @@
+# Material
+material.charged_matter=Charged Matter
+material.neutral_matter=Neutral Matter
+
+# Machine
+# Material Deconstructor
+materialreplication.machine.deconstructor.lv.name=Basic Material Deconstructor
+materialreplication.machine.deconstructor.mv.name=Advanced Material Deconstructor
+materialreplication.machine.deconstructor.hv.name=Advanced Material Deconstructor II
+materialreplication.machine.deconstructor.ev.name=Advanced Material Deconstructor III
+materialreplication.machine.deconstructor.iv.name=Elite Material Deconstructor
+materialreplication.machine.deconstructor.luv.name=Elite Material Deconstructor II
+materialreplication.machine.deconstructor.zpm.name=Elite Material Deconstructor III
+materialreplication.machine.deconstructor.uv.name=Ultimate Material Deconstructor
+materialreplication.machine.deconstructor.uhv.name=Epic Material Deconstructor
+materialreplication.machine.deconstructor.uev.name=Epic Material Deconstructor II
+materialreplication.machine.deconstructor.uiv.name=Epic Material Deconstructor III
+materialreplication.machine.deconstructor.uxv.name=Epic Material Deconstructor IV
+materialreplication.machine.deconstructor.opv.name=Legendary Material Deconstructor
+
+# Material Replicator
+materialreplication.machine.replicator.lv.name=Basic Material Replicator
+materialreplication.machine.replicator.mv.name=Advanced Material Replicator
+materialreplication.machine.replicator.hv.name=Advanced Material Replicator II
+materialreplication.machine.replicator.ev.name=Advanced Material Replicator III
+materialreplication.machine.replicator.iv.name=Elite Material Replicator
+materialreplication.machine.replicator.luv.name=Elite Material Replicator II
+materialreplication.machine.replicator.zpm.name=Elite Material Replicator III
+materialreplication.machine.replicator.uv.name=Ultimate Material Replicator
+materialreplication.machine.replicator.uhv.name=Epic Material Replicator
+materialreplication.machine.replicator.uev.name=Epic Material Replicator II
+materialreplication.machine.replicator.uiv.name=Epic Material Replicator III
+materialreplication.machine.replicator.uxv.name=Epic Material Replicator IV
+materialreplication.machine.replicator.opv.name=Legendary Material Replicator
+
+# Recipe map
+recipemap.deconstruction.name=Deconstruction
+recipemap.replication.name=Replication

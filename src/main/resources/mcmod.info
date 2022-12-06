@@ -1,14 +1,14 @@
 [
 {
-  "modid": "examplemod",
-  "name": "Example Mod",
-  "description": "Example placeholder mod.",
+  "modid": "materialreplication",
+  "name": "Material Replication",
+  "description": "An addon for GTCEu.",
   "version": "${version}",
   "mcversion": "${mcversion}",
   "url": "",
   "updateUrl": "",
-  "authorList": ["CleanroomMC"],
-  "credits": "Authors of this project",
+  "authorList": ["Kono"],
+  "credits": "",
   "logoFile": "",
   "screenshots": [],
   "dependencies": []

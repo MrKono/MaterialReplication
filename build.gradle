@@ -1,15 +1,17 @@
 buildscript {
     repositories {
-        maven { 
-            // url = 'https://maven.cleanroommc.com'
-            url = 'https://maven.minecraftforge.net'
+        maven {
+            url = 'https://files.minecraftforge.net/maven'
         }
-        maven { 
-            url = 'https://repo.spongepowered.org/maven' 
+        maven {
+            url = 'https://maven.cleanroommc.com'
+        }
+        maven {
+            url = 'https://repo.spongepowered.org/maven'
         }
     }
     dependencies {
-        classpath 'net.minecraftforge.gradle:ForgeGradle:2.3.4'
+        classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
         if (project.use_mixins.toBoolean()) {
             classpath 'org.spongepowered:mixingradle:0.6-SNAPSHOT'
         }
@@ -17,14 +19,16 @@ buildscript {
 }
 
 apply plugin: 'net.minecraftforge.gradle.forge'
+apply plugin: 'java-library'
+
 
 if (project.use_mixins.toBoolean()) {
     apply plugin: 'org.spongepowered.mixin'
 }
 
-version = project.mod_version
-group = project.maven_group
-archivesBaseName = project.archives_base_name
+version = "0.0.1"
+group ="kono.matter"
+archivesBaseName = "Material Replication"
 
 sourceCompatibility = targetCompatibility = '1.8'
 
@@ -36,7 +40,13 @@ configurations {
     embed
     implementation.extendsFrom(embed)
 }
+tasks.withType(Jar) {
+    compileJava.options.encoding = 'UTF-8'
+}
 
+tasks.withType(Jar) {
+    compileApiJava.options.encoding = 'UTF-8'
+}
 minecraft {
     version = '1.12.2-14.23.5.2847'
     runDir = 'run'
@@ -55,24 +65,48 @@ minecraft {
 }
 
 repositories {
-    maven { 
-        url = 'https://maven.cleanroommc.com' 
+    maven {
+        url = 'https://maven.cleanroommc.com'
     }
     maven {
         url = 'https://repo.spongepowered.org/maven'
     }
+
+    maven {
+        url 'https://cursemaven.com'
+    }
+    maven {
+        name = "CraftTweaker"
+        url = 'https://maven.blamejared.com/'
+    }
+    mavenCentral()
 }
 
 dependencies {
 
     if (project.use_assetmover.toBoolean()) {
-        compile 'com.cleanroommc:assetmover:2.0'
+        deobfCompile 'com.cleanroommc:assetmover:0.2'
     }
     if (project.use_mixins.toBoolean()) {
-        compile 'zone.rong:mixinbooter:7.0'
+        deobfCompile 'zone.rong:mixinbooter:4.2'
     }
-    
-}
+
+    implementation 'org.jetbrains:annotations:23.0.0'
+
+    compile 'CraftTweaker2:CraftTweaker2-MC1120-Main:1.12-4.1.20.677'
+    compile 'curse.maven:had-enough-items-557549:3862733'
+    deobfCompile 'curse.maven:codechicken-lib-1-8-242818:2779848'
+    deobfCompile 'curse.maven:the-one-probe-245211:2667280'
+    //deobfCompile 'curse.maven:gregtech-557242:4068926'
+    provided (files("libs/gregtech-1.12.2-2.4.4-beta.jar"))
+    //provided (files("libs/theoneprobe-1.12-1.4.28.jar"))
+    //implementation fileTree(dir: 'libs', include: '*.jar')
+    }
+
+    jar {
+    duplicatesStrategy = DuplicatesStrategy.INCLUDE
+    }
+
 
 sourceSets {
 

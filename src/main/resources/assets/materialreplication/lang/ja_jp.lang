@@ -1,0 +1,38 @@
+# Material
+material.charged_matter=荷電マター
+material.neutral_matter=中性マター
+
+# Machine
+# Material Deconstructor
+materialreplication.machine.deconstructor.lv.name=基本型物質分解機
+materialreplication.machine.deconstructor.mv.name=発展型物質分解機
+materialreplication.machine.deconstructor.hv.name=発展型物質分解機 II
+materialreplication.machine.deconstructor.ev.name=発展型物質分解機 III
+materialreplication.machine.deconstructor.iv.name=精鋭型物質分解機
+materialreplication.machine.deconstructor.luv.name=精鋭型物質分解機 II
+materialreplication.machine.deconstructor.zpm.name=精鋭型物質分解機 III
+materialreplication.machine.deconstructor.uv.name=究極型物質分解機
+materialreplication.machine.deconstructor.uhv.name=史上最高の物質分解機
+materialreplication.machine.deconstructor.uev.name=史上最高の物質分解機 II
+materialreplication.machine.deconstructor.uiv.name=史上最高の物質分解機 III
+materialreplication.machine.deconstructor.uxv.name=史上最高の物質分解機 IV
+materialreplication.machine.deconstructor.opv.name=伝説の物質分解機
+
+# Material Replicator
+materialreplication.machine.replicator.lv.name=Basic 物質複製機
+materialreplication.machine.replicator.mv.name=発展型物質複製機
+materialreplication.machine.replicator.hv.name=発展型物質複製機 II
+materialreplication.machine.replicator.ev.name=発展型物質複製機 III
+materialreplication.machine.replicator.iv.name=精鋭型物質複製機
+materialreplication.machine.replicator.luv.name=精鋭型物質複製機 II
+materialreplication.machine.replicator.zpm.name=精鋭型物質複製機 III
+materialreplication.machine.replicator.uv.name=究極型物質複製機
+materialreplication.machine.replicator.uhv.name=史上最高の物質複製機
+materialreplication.machine.replicator.uev.name=史上最高の物質複製機 II
+materialreplication.machine.replicator.uiv.name=史上最高の物質複製機 III
+materialreplication.machine.replicator.uxv.name=史上最高の物質複製機 IV
+materialreplication.machine.replicator.opv.name=伝説の物質複製機
+
+# Recipe map
+recipemap.deconstruction.name=分解
+recipemap.replication.name=複製
