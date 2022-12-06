@@ -10,8 +10,8 @@ It can be removed by adding a specific flag to the material using CrT.<br>
 - **no_replication** > Material with this flag cannot be processed by Replicator.
 
 ### Add material for deconstruction or replication
-By setting the internal formula to a material using CrT, a Deconstruction/Replication recipe is automatically registered.<br>
+By setting the internal formula to a material using CrT, Deconstruction/Replication recipes are automatically registered.<br>
 Materials must have **Dust** or **Fluid**
 
-_How to add the flags? How to set the the internal formula?_
+_How to add the flags? How to set the the internal formula?_<br>
 See [GTCEu wiki](https://github.com/GregTechCEu/GregTech/wiki/CraftTweaker-for--Materials#modifying-existing-materials)
