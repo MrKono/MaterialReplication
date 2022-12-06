@@ -1,4 +1,5 @@
 # Material
+material.primal_matter=プライマルマター
 material.charged_matter=荷電マター
 material.neutral_matter=中性マター
 
@@ -34,5 +35,5 @@ materialreplication.machine.replicator.uxv.name=史上最高の物質複製機 I
 materialreplication.machine.replicator.opv.name=伝説の物質複製機
 
 # Recipe map
-recipemap.deconstruction.name=分解
-recipemap.replication.name=複製
+recipemap.deconstruction.name=物質分解機
+recipemap.replication.name=物質複製機

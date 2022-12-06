@@ -1,0 +1,17 @@
+# Mod Setting
+## Machine Setting
+Duration of **Deconstructor** and **Replicator** are configurable.<br>
+Please see materialreplication.cfg in your config folder.
+
+## Material Setting
+### Remove material for deconstruction or replication
+It can be removed by adding a specific flag to the material using CrT.<br>
+- **no_deconstruction** > Material with this flag cannot be processed by Deconstructor.
+- **no_replication** > Material with this flag cannot be processed by Replicator.
+
+### Add material for deconstruction or replication
+By setting the internal formula to a material using CrT, a Deconstruction/Replication recipe is automatically registered.<br>
+Materials must have **Dust** or **Fluid**
+
+_How to add the flags? How to set the the internal formula?_
+See [GTCEu wiki](https://github.com/GregTechCEu/GregTech/wiki/CraftTweaker-for--Materials#modifying-existing-materials)

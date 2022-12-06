@@ -1,4 +1,5 @@
 # Material
+material.primal_matter=Primal Matter
 material.charged_matter=Charged Matter
 material.neutral_matter=Neutral Matter
 
@@ -34,5 +35,5 @@ materialreplication.machine.replicator.uxv.name=Epic Material Replicator IV
 materialreplication.machine.replicator.opv.name=Legendary Material Replicator
 
 # Recipe map
-recipemap.deconstruction.name=Deconstruction
-recipemap.replication.name=Replication
+recipemap.deconstruction.name=Material Deconstruction
+recipemap.replication.name=Material Replication
