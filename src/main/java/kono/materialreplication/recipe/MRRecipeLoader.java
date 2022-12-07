@@ -55,14 +55,25 @@ public class MRRecipeLoader {
 
             // Replication
             if (!materialDust.hasFlag(MRMaterialFlags.DISABLE_REPLICATION)) {
-                MRRecipeMaps.REPLICATION_RECIPES.recipeBuilder()
-                        .input(dust, materialDust)
-                        .fluidInputs(ChargedMatter.getFluid((int) materialDust.getProtons()))
-                        .fluidInputs(NeutralMatter.getFluid((int) materialDust.getNeutrons()))
-                        .output(dust, materialDust, 2)
-                        .duration(BaseTime_R * (int) materialDust.getMass())
-                        .EUt(Voltage_R)
-                        .buildAndRegister();
+                if (MRConfig.replication.ConsumeSample) {
+                    MRRecipeMaps.REPLICATION_RECIPES.recipeBuilder()
+                            .input(dust, materialDust)
+                            .fluidInputs(ChargedMatter.getFluid((int) materialDust.getProtons()))
+                            .fluidInputs(NeutralMatter.getFluid((int) materialDust.getNeutrons()))
+                            .output(dust, materialDust, 2)
+                            .duration(BaseTime_R * (int) materialDust.getMass())
+                            .EUt(Voltage_R)
+                            .buildAndRegister();
+                } else {
+                    MRRecipeMaps.REPLICATION_RECIPES.recipeBuilder()
+                            .notConsumable(dust, materialDust)
+                            .fluidInputs(ChargedMatter.getFluid((int) materialDust.getProtons()))
+                            .fluidInputs(NeutralMatter.getFluid((int) materialDust.getNeutrons()))
+                            .output(dust, materialDust, 1)
+                            .duration(BaseTime_R * (int) materialDust.getMass())
+                            .EUt(Voltage_R)
+                            .buildAndRegister();
+                }
             }
         }
 
@@ -79,14 +90,25 @@ public class MRRecipeLoader {
             }
             // Replication
             if (!materialFluid.hasFlag(MRMaterialFlags.DISABLE_REPLICATION)) {
-                MRRecipeMaps.REPLICATION_RECIPES.recipeBuilder()
-                        .fluidInputs(materialFluid.getFluid(1000))
-                        .fluidInputs(ChargedMatter.getFluid((int) materialFluid.getProtons()))
-                        .fluidInputs(NeutralMatter.getFluid((int) materialFluid.getNeutrons()))
-                        .fluidOutputs(materialFluid.getFluid(2000))
-                        .duration(BaseTime_R * (int) materialFluid.getMass())
-                        .EUt(Voltage_R)
-                        .buildAndRegister();
+                if (MRConfig.replication.ConsumeSample) {
+                    MRRecipeMaps.REPLICATION_RECIPES.recipeBuilder()
+                            .fluidInputs(materialFluid.getFluid(1000))
+                            .fluidInputs(ChargedMatter.getFluid((int) materialFluid.getProtons()))
+                            .fluidInputs(NeutralMatter.getFluid((int) materialFluid.getNeutrons()))
+                            .fluidOutputs(materialFluid.getFluid(2000))
+                            .duration(BaseTime_R * (int) materialFluid.getMass())
+                            .EUt(Voltage_R)
+                            .buildAndRegister();
+                } else {
+                    MRRecipeMaps.REPLICATION_RECIPES.recipeBuilder()
+                            .notConsumable(materialFluid.getFluid(), 1000)
+                            .fluidInputs(ChargedMatter.getFluid((int) materialFluid.getProtons()))
+                            .fluidInputs(NeutralMatter.getFluid((int) materialFluid.getNeutrons()))
+                            .fluidOutputs(materialFluid.getFluid(1000))
+                            .duration(BaseTime_R * (int) materialFluid.getMass())
+                            .EUt(Voltage_R)
+                            .buildAndRegister();
+                }
             }
         }
 

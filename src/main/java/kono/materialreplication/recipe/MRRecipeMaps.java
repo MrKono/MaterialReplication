@@ -12,7 +12,11 @@ import stanhebben.zenscript.annotations.ZenProperty;
 public class MRRecipeMaps {
     @ZenProperty
     public static final RecipeMap<SimpleRecipeBuilder> DECONSTRUCTION_RECIPES = new RecipeMap<>("deconstruction",
-            0, 1, 0, 1, 0, 1, 2, 2, new SimpleRecipeBuilder(), false)
+            0, 1, // ItemInput (min/max)
+            0, 1, // ItemOutput (min/max)
+            0, 1, // FluidInput (min/max)
+            2, 2, // FluidOutput (min/max)
+            new SimpleRecipeBuilder(), false)
             .setSound(GTSounds.ELECTROLYZER)
             .setSlotOverlay(false, false, GuiTextures.LIGHTNING_OVERLAY_1) // Item Input
             .setSlotOverlay(false, true, GuiTextures.LIGHTNING_OVERLAY_2) // Fluid Input
@@ -22,7 +26,11 @@ public class MRRecipeMaps {
 
     @ZenProperty
     public static final RecipeMap<SimpleRecipeBuilder> REPLICATION_RECIPES = new RecipeMap<>("replication",
-            0, 1, 0, 1, 0, 3, 0, 1, new SimpleRecipeBuilder(), false)
+            0, 1,
+            0, 1,
+            0, 3,
+            0, 1,
+            new SimpleRecipeBuilder(), false)
             .setSound(GTSounds.ELECTROLYZER)
             .setSlotOverlay(false, false, GuiTextures.DUST_OVERLAY) // Item Input
             .setSlotOverlay(false, true, false, GuiTextures.MOLECULAR_OVERLAY_3) // Fluid Input 1 & 2

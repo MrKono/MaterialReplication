@@ -31,5 +31,11 @@ public class MRConfig {
 
         @Config.Comment({"Replication Base Voltage in int", "Default : 30 (LV)"})
         public int ReplicationVoltage = 30;
+
+        @Config.Comment({"Does Replicator consume sample (input)?",
+                "true : Replicator consumes a sample, and output is 2 dust or 2,000 L of liquid",
+                "false : Replicator does not consume a sample, and output is 1 dust or 1,000 L of liquid",
+                "Default : true"})
+        public boolean ConsumeSample = true;
     }
 }

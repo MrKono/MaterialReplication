@@ -1,6 +1,10 @@
 # Mod Setting
 ## Machine Setting
-Duration of **Deconstructor** and **Replicator** are configurable.<br>
+Duration of Deconstructor/Replicator is too short/too long? <br>
+Voltage of Deconstructor/Replicator is too Low/too High? <br>
+Want to disable sample consumption in Replicator? <br>
+
+These can be changed in configuration file.<br>
 Please see materialreplication.cfg in your config folder.
 
 ## Material Setting
