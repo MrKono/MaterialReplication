@@ -9,15 +9,25 @@ import kono.materialreplication.materials.flags.MRMaterialFlags;
 import java.util.ArrayList;
 import java.util.List;
 
-import static gregtech.api.GTValues.LV;
-import static gregtech.api.GTValues.VA;
 import static gregtech.api.unification.ore.OrePrefix.dust;
-import static kono.materialreplication.materials.MRMaterials.NeutralMatter;
-import static kono.materialreplication.materials.MRMaterials.ChargedMatter;
+import static kono.materialreplication.materials.MRMaterials.*;
 
 public class MRRecipeLoader {
+
+    // cfgから分解の基本時間を取得
     private final static int BaseTime_D = MRConfig.deconstruction.DeconstructionBaseTime;
+
+    // cfgから分解の基本電圧を取得
+    private final static int Voltage_D = MRConfig.deconstruction.DeconstructionVoltage;
+
+    // cfgから複製の基本時間を取得
     private final static int BaseTime_R = MRConfig.replication.ReplicationBaseTime;
+
+    // cfgから複製の基本電圧を取得
+    private final static int Voltage_R = MRConfig.replication.ReplicationVoltage;
+
+
+
     public static void init() {
         List<Material> materialDusts = new ArrayList<>();
         List<Material> materialFluids = new ArrayList<>();
@@ -31,7 +41,7 @@ public class MRRecipeLoader {
             }
         }
 
-        for (Material materialDust : materialDusts) {
+        for (Material materialDust : materialDusts) { // dustがあるmaterial
             // Deconstruction
             if (!materialDust.hasFlag(MRMaterialFlags.DISABLE_DECONSTRUCTION)) {
                 MRRecipeMaps.DECONSTRUCTION_RECIPES.recipeBuilder()
@@ -39,7 +49,7 @@ public class MRRecipeLoader {
                         .fluidOutputs(ChargedMatter.getFluid((int) materialDust.getProtons()))
                         .fluidOutputs(NeutralMatter.getFluid((int) materialDust.getNeutrons()))
                         .duration(BaseTime_D * (int) materialDust.getMass())
-                        .EUt(VA[LV])
+                        .EUt(Voltage_D)
                         .buildAndRegister();
             }
 
@@ -51,12 +61,12 @@ public class MRRecipeLoader {
                         .fluidInputs(NeutralMatter.getFluid((int) materialDust.getNeutrons()))
                         .output(dust, materialDust, 2)
                         .duration(BaseTime_R * (int) materialDust.getMass())
-                        .EUt(VA[LV])
+                        .EUt(Voltage_R)
                         .buildAndRegister();
             }
         }
 
-        for (Material materialFluid : materialFluids) {
+        for (Material materialFluid : materialFluids) { //Fluidしかないmaterial
             // Deconstruction
             if (!materialFluid.hasFlag(MRMaterialFlags.DISABLE_DECONSTRUCTION)) {
                 MRRecipeMaps.DECONSTRUCTION_RECIPES.recipeBuilder()
@@ -64,7 +74,7 @@ public class MRRecipeLoader {
                         .fluidOutputs(ChargedMatter.getFluid((int) materialFluid.getProtons()))
                         .fluidOutputs(NeutralMatter.getFluid((int) materialFluid.getNeutrons()))
                         .duration(BaseTime_D * (int) materialFluid.getMass())
-                        .EUt(VA[LV])
+                        .EUt(Voltage_D)
                         .buildAndRegister();
             }
             // Replication
@@ -75,7 +85,7 @@ public class MRRecipeLoader {
                         .fluidInputs(NeutralMatter.getFluid((int) materialFluid.getNeutrons()))
                         .fluidOutputs(materialFluid.getFluid(2000))
                         .duration(BaseTime_R * (int) materialFluid.getMass())
-                        .EUt(32)
+                        .EUt(Voltage_R)
                         .buildAndRegister();
             }
         }
