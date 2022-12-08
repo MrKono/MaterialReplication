@@ -14,12 +14,12 @@ import org.apache.logging.log4j.Logger;
         acceptedMinecraftVersions = "[1.12, 1.12.2]",
         dependencies = GTValues.MOD_VERSION_DEP)
 
-public class Reference {
+public class MaterialReplication {
     @SidedProxy(modId = "materialreplication", clientSide = "kono.materialreplication.client.ClientProxy", serverSide = "kono.materialreplication.common.CommonProxy")
     public static CommonProxy proxy;
 
     @Mod.Instance
-    public static Reference instance;
+    public static MaterialReplication instance;
 
     public static Logger logger;
     @Mod.EventHandler

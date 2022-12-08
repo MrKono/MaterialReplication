@@ -5,6 +5,7 @@ import gregtech.api.unification.material.Material;
 public class MRMaterials {
 
     public static Material PrimalMatter;
+
     public static Material ChargedMatter;
     public static Material NeutralMatter;
 

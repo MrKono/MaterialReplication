@@ -9,21 +9,21 @@ import kono.materialreplication.materials.flags.MRMaterialFlags;
 import java.util.ArrayList;
 import java.util.List;
 
-import static gregtech.api.unification.ore.OrePrefix.dust;
+import static gregtech.api.unification.ore.OrePrefix.*;
 import static kono.materialreplication.materials.MRMaterials.*;
 
-public class MRRecipeLoader {
+public class MRMachineRecipeLoader {
 
-    // cfgから分解の基本時間を取得
+    // Get Deconstructin Base-time from cfg. cfgから分解の基本時間を取得
     private final static int BaseTime_D = MRConfig.deconstruction.DeconstructionBaseTime;
 
-    // cfgから分解の基本電圧を取得
+    // Get Deconstructin Base Voltage from cfg. cfgから分解の基本電圧を取得
     private final static int Voltage_D = MRConfig.deconstruction.DeconstructionVoltage;
 
-    // cfgから複製の基本時間を取得
+    // Get Replication Base-time from cfg. cfgから複製の基本時間を取得
     private final static int BaseTime_R = MRConfig.replication.ReplicationBaseTime;
 
-    // cfgから複製の基本電圧を取得
+    // Get Replication Base Voltage from cfg. cfgから複製の基本電圧を取得
     private final static int Voltage_R = MRConfig.replication.ReplicationVoltage;
 
 
@@ -32,22 +32,23 @@ public class MRRecipeLoader {
         List<Material> materialDusts = new ArrayList<>();
         List<Material> materialFluids = new ArrayList<>();
         for (Material material : GregTechAPI.MATERIAL_REGISTRY) {
-            if (!material.getChemicalFormula().isEmpty()) { // 化学式を持っているか
-                if (material.hasProperty(PropertyKey.DUST)) { // Propertyにdustがあるか
+            if (!material.getChemicalFormula().isEmpty()) { // Has Chemical Formula? 化学式を持っているか
+                if (material.hasProperty(PropertyKey.DUST)) { // Has Dust Property? Propertyにdustがあるか
                     materialDusts.add(material);
-                } else if (material.hasProperty(PropertyKey.FLUID)) { // ないならPropertyにFluidがあるか
+                } else if (material.hasProperty(PropertyKey.FLUID)) { // Has Fluid Property? ないならPropertyにFluidがあるか
                     materialFluids.add(material);
                 }
             }
         }
 
-        for (Material materialDust : materialDusts) { // dustがあるmaterial
+        for (Material materialDust : materialDusts) { // Has dust property material. dustがあるmaterial
             // Deconstruction
             if (!materialDust.hasFlag(MRMaterialFlags.DISABLE_DECONSTRUCTION)) {
                 MRRecipeMaps.DECONSTRUCTION_RECIPES.recipeBuilder()
                         .input(dust, materialDust)
                         .fluidOutputs(ChargedMatter.getFluid((int) materialDust.getProtons()))
                         .fluidOutputs(NeutralMatter.getFluid((int) materialDust.getNeutrons()))
+                        .chancedOutput(dustTiny, PrimalMatter, 5,5)
                         .duration(BaseTime_D * (int) materialDust.getMass())
                         .EUt(Voltage_D)
                         .buildAndRegister();
@@ -77,13 +78,14 @@ public class MRRecipeLoader {
             }
         }
 
-        for (Material materialFluid : materialFluids) { //Fluidしかないmaterial
+        for (Material materialFluid : materialFluids) { //Has Fluid property, not dust. dustはないがFluidはある
             // Deconstruction
             if (!materialFluid.hasFlag(MRMaterialFlags.DISABLE_DECONSTRUCTION)) {
                 MRRecipeMaps.DECONSTRUCTION_RECIPES.recipeBuilder()
                         .fluidInputs(materialFluid.getFluid(1000))
                         .fluidOutputs(ChargedMatter.getFluid((int) materialFluid.getProtons()))
                         .fluidOutputs(NeutralMatter.getFluid((int) materialFluid.getNeutrons()))
+                        .chancedOutput(dustTiny, PrimalMatter, 5,5)
                         .duration(BaseTime_D * (int) materialFluid.getMass())
                         .EUt(Voltage_D)
                         .buildAndRegister();

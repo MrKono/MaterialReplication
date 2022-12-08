@@ -5,8 +5,10 @@ import kono.materialreplication.machines.MRMetaTileEntities;
 import static gregtech.loaders.recipe.CraftingComponent.*;
 import static gregtech.loaders.recipe.MetaTileEntityLoader.registerMachineRecipe;
 
-public class MRMachineRecipe {
+public class MRRecipes {
     public static void init() {
+
+        //New machine recipes. 新規機械のレシピを登録
         registerMachineRecipe(MRMetaTileEntities.DECONSTRUCTOR,
                 "CSC", "FHF", "CQC",
                 'C',BETTER_CIRCUIT,

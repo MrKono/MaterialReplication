@@ -6,8 +6,10 @@ import gregtech.api.unification.material.info.MaterialIconSet;
 public class MRMaterial {
 
     public static void init() {
+
         MRMaterials.PrimalMatter = new Material.Builder(31000, "primal_matter")
-                .dust()
+                .dust().fluid()
+                .fluidTemp(10)
                 .color(0xc86edc)
                 .iconSet(MaterialIconSet.NETHERSTAR).build();
 
@@ -22,6 +24,5 @@ public class MRMaterial {
                 .fluidTemp(1)
                 .color(0xc80a14)
                 .build();
-
     }
 }

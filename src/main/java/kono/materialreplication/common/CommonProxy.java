@@ -5,8 +5,9 @@ import gregtech.api.GregTechAPI;
 import kono.materialreplication.machines.MRMetaTileEntities;
 import kono.materialreplication.materials.MRMaterials;
 import kono.materialreplication.materials.flags.MRMaterialFlagAddition;
-import kono.materialreplication.recipe.MRMachineRecipe;
-import kono.materialreplication.recipe.MRRecipeLoader;
+import kono.materialreplication.recipe.MRMaterialRecipeLoader;
+import kono.materialreplication.recipe.MRRecipes;
+import kono.materialreplication.recipe.MRMachineRecipeLoader;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
@@ -52,10 +53,15 @@ public class CommonProxy {
         MRMaterialFlagAddition.init();
     }
 
+    @SubscribeEvent(priority = EventPriority.LOW)
+    public static void registerRecipesRemoval(RegistryEvent.Register<IRecipe> event) {
+        MRMaterialRecipeLoader.init();
+    }
+
     @SubscribeEvent()
     public static void registerRecipes(RegistryEvent.Register<IRecipe> event){
-        MRRecipeLoader.init();
-        MRMachineRecipe.init();
+        MRMachineRecipeLoader.init();
+        MRRecipes.init();
     }
 }
 
