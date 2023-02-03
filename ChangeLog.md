@@ -1,4 +1,8 @@
 # ChangeLog (更新履歴)
+### v 0.0.3
+**_EN_** & **_JP_**<br>
+GTCEu 2.4.4 -> 2.5.0
+
 ### v 0.0.2
 **_EN_**<br>
 Add config to change Deconstructor / Replicator Base Voltage.<br>
