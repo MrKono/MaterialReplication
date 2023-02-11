@@ -1,4 +1,20 @@
 # ChangeLog (更新履歴)
+### v 0.0.4
+**_EN_**<br>
+**Update**<br>
+GTCEu 2.5.0 -> 2.5.2<br>
+
+**Fix**<br>
+Replicator uses Neutral Matter instead of Charged Matter if material's proton is other than 0.<br>
+
+**_JP_**<br>
+**更新**<br>
+GTCEu 2.5.0 -> 2.5.2<br>
+
+**修正**<br>
+複製機が複製する素材の陽子数が0以外の場合に荷電マターの代わりに中性マターを使用していた。<br>
+
+
 ### v 0.0.3
 **_EN_** & **_JP_**<br>
 GTCEu 2.4.4 -> 2.5.0

@@ -72,7 +72,7 @@ public class MRMachineRecipeLoader {
                     builder.buildAndRegister();
                 } else if (materialDust.getNeutrons() == 0) {
                     RecipeBuilder<SimpleRecipeBuilder> builder = MRRecipeMaps.REPLICATION_RECIPES.recipeBuilder()
-                            .fluidInputs(NeutralMatter.getFluid((int) materialDust.getProtons()))
+                            .fluidInputs(ChargedMatter.getFluid((int) materialDust.getProtons()))
                             .output(dust, materialDust, 2)
                             .duration(BaseTime_R * (int) materialDust.getMass())
                             .EUt(Voltage_R);
@@ -84,7 +84,7 @@ public class MRMachineRecipeLoader {
                     builder.buildAndRegister();
                 } else {
                     RecipeBuilder<SimpleRecipeBuilder> builder = MRRecipeMaps.REPLICATION_RECIPES.recipeBuilder()
-                            .fluidInputs(NeutralMatter.getFluid((int) materialDust.getProtons()))
+                            .fluidInputs(ChargedMatter.getFluid((int) materialDust.getProtons()))
                             .fluidInputs(NeutralMatter.getFluid((int) materialDust.getNeutrons()))
                             .output(dust, materialDust, 2)
                             .duration(BaseTime_R * (int) materialDust.getMass())
@@ -128,7 +128,7 @@ public class MRMachineRecipeLoader {
                     builder.buildAndRegister();
                 } else if (materialFluid.getNeutrons() == 0) {
                     RecipeBuilder <SimpleRecipeBuilder> builder = MRRecipeMaps.REPLICATION_RECIPES.recipeBuilder()
-                            .fluidInputs(NeutralMatter.getFluid((int) materialFluid.getProtons()))
+                            .fluidInputs(ChargedMatter.getFluid((int) materialFluid.getProtons()))
                             .fluidOutputs(materialFluid.getFluid(2000))
                             .duration(BaseTime_R * (int) materialFluid.getMass())
                             .EUt(Voltage_R);
@@ -140,7 +140,7 @@ public class MRMachineRecipeLoader {
                     builder.buildAndRegister();
                 } else {
                     RecipeBuilder <SimpleRecipeBuilder> builder = MRRecipeMaps.REPLICATION_RECIPES.recipeBuilder()
-                            .fluidInputs(NeutralMatter.getFluid((int) materialFluid.getProtons()))
+                            .fluidInputs(ChargedMatter.getFluid((int) materialFluid.getProtons()))
                             .fluidInputs(NeutralMatter.getFluid((int) materialFluid.getNeutrons()))
                             .fluidOutputs(materialFluid.getFluid(2000))
                             .duration(BaseTime_R * (int) materialFluid.getMass())
