@@ -16,8 +16,8 @@ public class MRMaterialRecipeLoader {
     public static void init() {
         // Remove 削除
         // WorkBench Recipes 作業台レシピ
-        ModHandler.removeRecipeByName("gregtech:small_dust_assembling_primal_matter");
-        ModHandler.removeRecipeByName("gregtech:tiny_dust_assembling_primal_matter");
+        ModHandler.removeRecipeByName("gregtech:small_dust_assembling_primal_matter"); //tiny x9 -> dust x1
+        ModHandler.removeRecipeByName("gregtech:tiny_dust_assembling_primal_matter"); //small x9 -> dust x1
 
         // Machine Recipes 機械レシピ
         GTRecipeHandler.removeRecipesByInputs(RecipeMaps.PACKER_RECIPES,
