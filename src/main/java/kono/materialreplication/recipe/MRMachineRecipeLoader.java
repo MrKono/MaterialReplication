@@ -61,38 +61,41 @@ public class MRMachineRecipeLoader {
                 if (materialDust.getProtons() == 0) {
                     RecipeBuilder<SimpleRecipeBuilder> builder = MRRecipeMaps.REPLICATION_RECIPES.recipeBuilder()
                             .fluidInputs(NeutralMatter.getFluid((int) materialDust.getNeutrons()))
-                            .output(dust, materialDust, 2)
                             .duration(BaseTime_R * (int) materialDust.getMass())
                             .EUt(Voltage_R);
                     if (MRConfig.replication.ConsumeSample) {
-                        builder.input(dust, materialDust);
+                        builder.input(dust, materialDust)
+                                .output(dust, materialDust, 2);
                     } else {
-                        builder.notConsumable(dust, materialDust);
+                        builder.notConsumable(dust, materialDust)
+                                .output(dust, materialDust, 1);
                     }
                     builder.buildAndRegister();
                 } else if (materialDust.getNeutrons() == 0) {
                     RecipeBuilder<SimpleRecipeBuilder> builder = MRRecipeMaps.REPLICATION_RECIPES.recipeBuilder()
                             .fluidInputs(ChargedMatter.getFluid((int) materialDust.getProtons()))
-                            .output(dust, materialDust, 2)
                             .duration(BaseTime_R * (int) materialDust.getMass())
                             .EUt(Voltage_R);
                     if (MRConfig.replication.ConsumeSample) {
-                        builder.input(dust, materialDust);
+                        builder.input(dust, materialDust)
+                                .output(dust, materialDust, 2);
                     } else {
-                        builder.notConsumable(dust, materialDust);
+                        builder.notConsumable(dust, materialDust)
+                                .output(dust, materialDust, 1);
                     }
                     builder.buildAndRegister();
                 } else {
                     RecipeBuilder<SimpleRecipeBuilder> builder = MRRecipeMaps.REPLICATION_RECIPES.recipeBuilder()
                             .fluidInputs(ChargedMatter.getFluid((int) materialDust.getProtons()))
                             .fluidInputs(NeutralMatter.getFluid((int) materialDust.getNeutrons()))
-                            .output(dust, materialDust, 2)
                             .duration(BaseTime_R * (int) materialDust.getMass())
                             .EUt(Voltage_R);
                     if (MRConfig.replication.ConsumeSample) {
-                        builder.input(dust, materialDust);
+                        builder.input(dust, materialDust)
+                                .output(dust, materialDust, 2);
                     } else {
-                        builder.notConsumable(dust, materialDust);
+                        builder.notConsumable(dust, materialDust)
+                                .output(dust, materialDust, 1);
                     }
                     builder.buildAndRegister();
                 }
