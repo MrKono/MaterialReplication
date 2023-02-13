@@ -22,7 +22,7 @@ public class MRRecipeMaps {
             .setSlotOverlay(false, true, GuiTextures.LIGHTNING_OVERLAY_2) // Fluid Input
             .setSlotOverlay(true, true, false, GuiTextures.MOLECULAR_OVERLAY_3) // Fluid Output1
             .setSlotOverlay(true, true, true, GuiTextures.MOLECULAR_OVERLAY_4) // Fluid Output2
-            .setProgressBar(GuiTextures.PROGRESS_BAR_EXTRACT, ProgressWidget.MoveType.HORIZONTAL);
+            .setProgressBar(GuiTextures.PROGRESS_BAR_MASS_FAB, ProgressWidget.MoveType.HORIZONTAL);
 
     @ZenProperty
     public static final RecipeMap<SimpleRecipeBuilder> REPLICATION_RECIPES = new RecipeMap<>("replication",
