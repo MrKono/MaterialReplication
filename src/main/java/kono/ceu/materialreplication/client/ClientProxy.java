@@ -1,6 +1,6 @@
-package kono.materialreplication.client;
+package kono.ceu.materialreplication.client;
 
-import kono.materialreplication.common.CommonProxy;
+import kono.ceu.materialreplication.common.CommonProxy;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;

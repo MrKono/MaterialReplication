@@ -1,4 +1,4 @@
-package kono.materialreplication.recipe;
+package kono.ceu.materialreplication.api.recipes;
 
 import gregtech.api.gui.GuiTextures;
 import gregtech.api.gui.widgets.ProgressWidget;

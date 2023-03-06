@@ -1,13 +1,13 @@
-package kono.materialreplication.common;
+package kono.ceu.materialreplication.common;
 
 
 import gregtech.api.GregTechAPI;
-import kono.materialreplication.machines.MRMetaTileEntities;
-import kono.materialreplication.materials.MRMaterials;
-import kono.materialreplication.materials.flags.MRMaterialFlagAddition;
-import kono.materialreplication.recipe.MRMaterialRecipeLoader;
-import kono.materialreplication.recipe.MRRecipes;
-import kono.materialreplication.recipe.MRMachineRecipeLoader;
+import kono.ceu.materialreplication.common.machines.MRMetaTileEntities;
+import kono.ceu.materialreplication.api.unification.materials.MRMaterials;
+import kono.ceu.materialreplication.api.unification.materials.flags.MRMaterialFlagAddition;
+import kono.ceu.materialreplication.loaders.recipe.MRMaterialRecipeLoader;
+import kono.ceu.materialreplication.loaders.recipe.MRRecipes;
+import kono.ceu.materialreplication.loaders.recipe.MRMachineRecipeLoader;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;

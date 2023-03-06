@@ -1,4 +1,4 @@
-package kono.materialreplication;
+package kono.ceu.materialreplication;
 
 
 import net.minecraftforge.common.config.Config;

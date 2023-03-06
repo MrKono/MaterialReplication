@@ -1,4 +1,4 @@
-package kono.materialreplication.materials;
+package kono.ceu.materialreplication.api.unification.materials;
 
 import gregtech.api.unification.material.Material;
 import gregtech.api.unification.material.info.MaterialIconSet;

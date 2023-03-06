@@ -1,6 +1,6 @@
-package kono.materialreplication.recipe;
+package kono.ceu.materialreplication.loaders.recipe;
 
-import kono.materialreplication.machines.MRMetaTileEntities;
+import kono.ceu.materialreplication.common.machines.MRMetaTileEntities;
 
 import static gregtech.loaders.recipe.CraftingComponent.*;
 import static gregtech.loaders.recipe.MetaTileEntityLoader.registerMachineRecipe;

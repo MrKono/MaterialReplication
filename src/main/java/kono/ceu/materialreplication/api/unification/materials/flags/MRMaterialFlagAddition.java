@@ -1,8 +1,8 @@
-package kono.materialreplication.materials.flags;
+package kono.ceu.materialreplication.api.unification.materials.flags;
 
 import static gregtech.api.unification.material.Materials.Concrete;
-import static kono.materialreplication.materials.flags.MRMaterialFlags.DISABLE_DECONSTRUCTION;
-import static kono.materialreplication.materials.flags.MRMaterialFlags.DISABLE_REPLICATION;
+import static kono.ceu.materialreplication.api.unification.materials.flags.MRMaterialFlags.DISABLE_DECONSTRUCTION;
+import static kono.ceu.materialreplication.api.unification.materials.flags.MRMaterialFlags.DISABLE_REPLICATION;
 
 public class MRMaterialFlagAddition {
     public static void init() {

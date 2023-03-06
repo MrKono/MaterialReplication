@@ -1,4 +1,4 @@
-package kono.materialreplication.client;
+package kono.ceu.materialreplication.client;
 
 import gregtech.client.renderer.texture.cube.OrientedOverlayRenderer;
 import net.minecraftforge.fml.common.Mod;

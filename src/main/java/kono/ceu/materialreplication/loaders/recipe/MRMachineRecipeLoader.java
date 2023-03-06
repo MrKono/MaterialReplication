@@ -1,18 +1,19 @@
-package kono.materialreplication.recipe;
+package kono.ceu.materialreplication.loaders.recipe;
 
 import gregtech.api.GregTechAPI;
 import gregtech.api.recipes.RecipeBuilder;
 import gregtech.api.recipes.builders.SimpleRecipeBuilder;
 import gregtech.api.unification.material.Material;
 import gregtech.api.unification.material.properties.PropertyKey;
-import kono.materialreplication.MRConfig;
-import kono.materialreplication.materials.flags.MRMaterialFlags;
+import kono.ceu.materialreplication.MRConfig;
+import kono.ceu.materialreplication.api.recipes.MRRecipeMaps;
+import kono.ceu.materialreplication.api.unification.materials.MRMaterials;
+import kono.ceu.materialreplication.api.unification.materials.flags.MRMaterialFlags;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static gregtech.api.unification.ore.OrePrefix.*;
-import static kono.materialreplication.materials.MRMaterials.*;
 
 public class MRMachineRecipeLoader {
 
@@ -48,9 +49,9 @@ public class MRMachineRecipeLoader {
             if (!materialDust.hasFlag(MRMaterialFlags.DISABLE_DECONSTRUCTION)) {
                 MRRecipeMaps.DECONSTRUCTION_RECIPES.recipeBuilder()
                         .input(dust, materialDust)
-                        .fluidOutputs(ChargedMatter.getFluid((int) materialDust.getProtons()))
-                        .fluidOutputs(NeutralMatter.getFluid((int) materialDust.getNeutrons()))
-                        .chancedOutput(dustTiny, PrimalMatter, 5,5)
+                        .fluidOutputs(MRMaterials.ChargedMatter.getFluid((int) materialDust.getProtons()))
+                        .fluidOutputs(MRMaterials.NeutralMatter.getFluid((int) materialDust.getNeutrons()))
+                        .chancedOutput(dustTiny, MRMaterials.PrimalMatter, 5,5)
                         .duration(BaseTime_D * (int) materialDust.getMass())
                         .EUt(Voltage_D)
                         .buildAndRegister();
@@ -60,7 +61,7 @@ public class MRMachineRecipeLoader {
             if (!materialDust.hasFlag(MRMaterialFlags.DISABLE_REPLICATION)) {
                 if (materialDust.getProtons() == 0) {
                     RecipeBuilder<SimpleRecipeBuilder> builder = MRRecipeMaps.REPLICATION_RECIPES.recipeBuilder()
-                            .fluidInputs(NeutralMatter.getFluid((int) materialDust.getNeutrons()))
+                            .fluidInputs(MRMaterials.NeutralMatter.getFluid((int) materialDust.getNeutrons()))
                             .duration(BaseTime_R * (int) materialDust.getMass())
                             .EUt(Voltage_R);
                     if (MRConfig.replication.ConsumeSample) {
@@ -73,7 +74,7 @@ public class MRMachineRecipeLoader {
                     builder.buildAndRegister();
                 } else if (materialDust.getNeutrons() == 0) {
                     RecipeBuilder<SimpleRecipeBuilder> builder = MRRecipeMaps.REPLICATION_RECIPES.recipeBuilder()
-                            .fluidInputs(ChargedMatter.getFluid((int) materialDust.getProtons()))
+                            .fluidInputs(MRMaterials.ChargedMatter.getFluid((int) materialDust.getProtons()))
                             .duration(BaseTime_R * (int) materialDust.getMass())
                             .EUt(Voltage_R);
                     if (MRConfig.replication.ConsumeSample) {
@@ -86,8 +87,8 @@ public class MRMachineRecipeLoader {
                     builder.buildAndRegister();
                 } else {
                     RecipeBuilder<SimpleRecipeBuilder> builder = MRRecipeMaps.REPLICATION_RECIPES.recipeBuilder()
-                            .fluidInputs(ChargedMatter.getFluid((int) materialDust.getProtons()))
-                            .fluidInputs(NeutralMatter.getFluid((int) materialDust.getNeutrons()))
+                            .fluidInputs(MRMaterials.ChargedMatter.getFluid((int) materialDust.getProtons()))
+                            .fluidInputs(MRMaterials.NeutralMatter.getFluid((int) materialDust.getNeutrons()))
                             .duration(BaseTime_R * (int) materialDust.getMass())
                             .EUt(Voltage_R);
                     if (MRConfig.replication.ConsumeSample) {
@@ -108,9 +109,9 @@ public class MRMachineRecipeLoader {
             if (!materialFluid.hasFlag(MRMaterialFlags.DISABLE_DECONSTRUCTION)) {
                 MRRecipeMaps.DECONSTRUCTION_RECIPES.recipeBuilder()
                         .fluidInputs(materialFluid.getFluid(1000))
-                        .fluidOutputs(ChargedMatter.getFluid((int) materialFluid.getProtons()))
-                        .fluidOutputs(NeutralMatter.getFluid((int) materialFluid.getNeutrons()))
-                        .chancedOutput(dustTiny, PrimalMatter, 5,5)
+                        .fluidOutputs(MRMaterials.ChargedMatter.getFluid((int) materialFluid.getProtons()))
+                        .fluidOutputs(MRMaterials.NeutralMatter.getFluid((int) materialFluid.getNeutrons()))
+                        .chancedOutput(dustTiny, MRMaterials.PrimalMatter, 5,5)
                         .duration(BaseTime_D * (int) materialFluid.getMass())
                         .EUt(Voltage_D)
                         .buildAndRegister();
@@ -119,7 +120,7 @@ public class MRMachineRecipeLoader {
             if (!materialFluid.hasFlag(MRMaterialFlags.DISABLE_REPLICATION)) {
                 if (materialFluid.getProtons() == 0) {
                     RecipeBuilder <SimpleRecipeBuilder> builder = MRRecipeMaps.REPLICATION_RECIPES.recipeBuilder()
-                            .fluidInputs(NeutralMatter.getFluid((int) materialFluid.getNeutrons()))
+                            .fluidInputs(MRMaterials.NeutralMatter.getFluid((int) materialFluid.getNeutrons()))
                             .duration(BaseTime_R * (int) materialFluid.getMass())
                             .EUt(Voltage_R);
                     if (MRConfig.replication.ConsumeSample) {
@@ -132,7 +133,7 @@ public class MRMachineRecipeLoader {
                     builder.buildAndRegister();
                 } else if (materialFluid.getNeutrons() == 0) {
                     RecipeBuilder <SimpleRecipeBuilder> builder = MRRecipeMaps.REPLICATION_RECIPES.recipeBuilder()
-                            .fluidInputs(ChargedMatter.getFluid((int) materialFluid.getProtons()))
+                            .fluidInputs(MRMaterials.ChargedMatter.getFluid((int) materialFluid.getProtons()))
                             .duration(BaseTime_R * (int) materialFluid.getMass())
                             .EUt(Voltage_R);
                     if (MRConfig.replication.ConsumeSample) {
@@ -145,8 +146,8 @@ public class MRMachineRecipeLoader {
                     builder.buildAndRegister();
                 } else {
                     RecipeBuilder <SimpleRecipeBuilder> builder = MRRecipeMaps.REPLICATION_RECIPES.recipeBuilder()
-                            .fluidInputs(ChargedMatter.getFluid((int) materialFluid.getProtons()))
-                            .fluidInputs(NeutralMatter.getFluid((int) materialFluid.getNeutrons()))
+                            .fluidInputs(MRMaterials.ChargedMatter.getFluid((int) materialFluid.getProtons()))
+                            .fluidInputs(MRMaterials.NeutralMatter.getFluid((int) materialFluid.getNeutrons()))
                             .duration(BaseTime_R * (int) materialFluid.getMass())
                             .EUt(Voltage_R);
                     if (MRConfig.replication.ConsumeSample) {

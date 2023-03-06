@@ -1,11 +1,11 @@
-package kono.materialreplication.machines;
+package kono.ceu.materialreplication.common.machines;
 
 import gregtech.api.GTValues;
 import gregtech.api.metatileentity.SimpleMachineMetaTileEntity;
 import gregtech.api.util.GTUtility;
 import gregtech.common.metatileentities.MetaTileEntities;
-import kono.materialreplication.client.MRTextures;
-import kono.materialreplication.recipe.MRRecipeMaps;
+import kono.ceu.materialreplication.client.MRTextures;
+import kono.ceu.materialreplication.api.recipes.MRRecipeMaps;
 import net.minecraft.util.ResourceLocation;
 public class MRMetaTileEntities {
     //20000 - 20014 : Material deconstructor
