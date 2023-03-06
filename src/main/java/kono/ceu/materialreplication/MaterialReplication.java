@@ -15,7 +15,7 @@ import org.apache.logging.log4j.Logger;
         dependencies = GTValues.MOD_VERSION_DEP)
 
 public class MaterialReplication {
-    @SidedProxy(modId = "materialreplication", clientSide = "kono.materialreplication.client.ClientProxy", serverSide = "kono.materialreplication.common.CommonProxy")
+    @SidedProxy(modId = "materialreplication", clientSide = "kono.ceu.materialreplication.client.ClientProxy", serverSide = "kono.ceu.materialreplication.common.CommonProxy")
     public static CommonProxy proxy;
 
     @Mod.Instance
