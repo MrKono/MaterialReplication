@@ -1,4 +1,13 @@
 # ChangeLog (更新履歴)
+### v 0.0.5
+**_EN_**<br>
+**Update**<br>
+GTCEu 2.5.2 -> 2.5.3 <br>
+
+**_JP_**<br>
+**更新**<br>
+GTCEu 2.5.2 -> 2.5.3 <br>
+
 ### v 0.0.4
 **_EN_**<br>
 **Update**<br>

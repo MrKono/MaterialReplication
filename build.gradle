@@ -26,8 +26,8 @@ if (project.use_mixins.toBoolean()) {
     apply plugin: 'org.spongepowered.mixin'
 }
 
-version = "0.0.4"
-group ="kono.matter"
+version = "0.0.5"
+group ="kono.ceu.materialreplication"
 archivesBaseName = "MaterialReplication"
 
 sourceCompatibility = targetCompatibility = '1.8'
