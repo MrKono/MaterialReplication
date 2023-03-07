@@ -17,7 +17,7 @@ public class MRRecipeMaps {
             0, 1, // FluidInput (min/max)
             2, 2, // FluidOutput (min/max)
             new SimpleRecipeBuilder(), false)
-            .setSound(GTSoundEvents.SCIENCE)
+            .setSound(GTSoundEvents.CHEMICAL_REACTOR)
             .setSlotOverlay(false, false, GuiTextures.LIGHTNING_OVERLAY_1) // Item Input
             .setSlotOverlay(false, true, GuiTextures.LIGHTNING_OVERLAY_2) // Fluid Input
             .setSlotOverlay(true, true, false, GuiTextures.MOLECULAR_OVERLAY_3) // Fluid Output1
