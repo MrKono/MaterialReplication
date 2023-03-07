@@ -1,4 +1,13 @@
 # ChangeLog (更新履歴)
+### v 0.0.6
+**_EN_**<br>
+**Fix**<br>
+Machine Sound<br>
+
+**_JP_**<br>
+**修正**<br>
+機械の動作音 <br>
+
 ### v 0.0.5
 **_EN_**<br>
 **Update**<br>
