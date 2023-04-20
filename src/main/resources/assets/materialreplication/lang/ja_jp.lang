@@ -1,3 +1,14 @@
+# Item
+metaitem.usb_stick.name=USBメモリ
+
+# Item Tooltip
+behavior.usb.no_data=素材データの保管に
+behavior.usb.replicate=物質複製機で用いる素材のデータが格納されている
+behavior.usb.replicate_data1=複製対象: §a%s
+behavior.usb.replicate_data2=複製時の要求マター量
+behavior.usb.replicate_data3=§4%s§7 : %s L
+behavior.usb.replicate_data4=§3%s§7 : %s L
+
 # Material
 material.primal_matter=プライマルマター
 material.charged_matter=荷電マター
@@ -20,7 +31,7 @@ materialreplication.machine.deconstructor.uxv.name=史上最高の物質分解�
 materialreplication.machine.deconstructor.opv.name=伝説の物質分解機
 
 # Material Replicator
-materialreplication.machine.replicator.lv.name=Basic 物質複製機
+materialreplication.machine.replicator.lv.name=基本型物質複製機
 materialreplication.machine.replicator.mv.name=発展型物質複製機
 materialreplication.machine.replicator.hv.name=発展型物質複製機 II
 materialreplication.machine.replicator.ev.name=発展型物質複製機 III
@@ -37,3 +48,5 @@ materialreplication.machine.replicator.opv.name=伝説の物質複製機
 # Recipe map
 recipemap.deconstruction.name=物質分解機
 recipemap.replication.name=物質複製機
+recipemap.replication.property1=素材をスキャンしたUSBメモリが必要
+recipemap.replication.property2=

@@ -1,3 +1,14 @@
+# Item
+metaitem.usb_stick.name=USB Stick
+
+# Item Tooltip
+behavior.usb.no_data=Saving for Material Data
+behavior.usb.replicate=Contain Material Data tobe used in Material Replicator
+behavior.usb.replicate_data1=Replication Material: §a%s
+behavior.usb.replicate_data2=Amount of Matter required when replication
+behavior.usb.replicate_data3=§4%s§7 : %s L
+behavior.usb.replicate_data4=§3%s§7 : %s L
+
 # Material
 material.primal_matter=Primal Matter
 material.charged_matter=Charged Matter
@@ -37,3 +48,5 @@ materialreplication.machine.replicator.opv.name=Legendary Material Replicator
 # Recipe map
 recipemap.deconstruction.name=Material Deconstruction
 recipemap.replication.name=Material Replication
+recipemap.replication.property1=Required a USB Stick with
+recipemap.replication.property2= a scan of the material

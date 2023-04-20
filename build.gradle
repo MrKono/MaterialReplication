@@ -27,7 +27,7 @@ if (project.use_mixins.toBoolean()) {
 }
 
 
-version = "0.0.7"
+version = "0.0.8a"
 
 group ="kono.ceu.materialreplication"
 archivesBaseName = "MaterialReplication"

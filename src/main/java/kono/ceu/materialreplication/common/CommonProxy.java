@@ -6,7 +6,7 @@ import kono.ceu.materialreplication.common.items.MRMetaItems;
 import kono.ceu.materialreplication.common.machines.MRMetaTileEntities;
 import kono.ceu.materialreplication.api.unification.materials.MRMaterials;
 import kono.ceu.materialreplication.api.unification.materials.flags.MRMaterialFlagAddition;
-import kono.ceu.materialreplication.loaders.recipe.MRMaterialRecipeLoader;
+import kono.ceu.materialreplication.loaders.recipe.MRMiscRecipeLoader;
 import kono.ceu.materialreplication.loaders.recipe.MRRecipes;
 import kono.ceu.materialreplication.loaders.recipe.MRMachineRecipeLoader;
 import net.minecraft.block.Block;
@@ -57,7 +57,7 @@ public class CommonProxy {
 
     @SubscribeEvent(priority = EventPriority.LOW)
     public static void registerRecipesRemoval(RegistryEvent.Register<IRecipe> event) {
-        MRMaterialRecipeLoader.init();
+        MRMiscRecipeLoader.init();
     }
 
     @SubscribeEvent()

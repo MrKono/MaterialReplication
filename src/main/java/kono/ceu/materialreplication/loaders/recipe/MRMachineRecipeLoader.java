@@ -2,34 +2,39 @@ package kono.ceu.materialreplication.loaders.recipe;
 
 import gregtech.api.GregTechAPI;
 import gregtech.api.recipes.RecipeBuilder;
-import gregtech.api.recipes.builders.SimpleRecipeBuilder;
+import gregtech.api.recipes.ingredients.GTRecipeItemInput;
+import gregtech.api.recipes.ingredients.nbtmatch.NBTCondition;
+import gregtech.api.recipes.ingredients.nbtmatch.NBTTagType;
 import gregtech.api.unification.material.Material;
 import gregtech.api.unification.material.properties.PropertyKey;
 import kono.ceu.materialreplication.MRConfig;
 import kono.ceu.materialreplication.api.recipes.MRRecipeMaps;
+import kono.ceu.materialreplication.api.recipes.builders.ReplicatorRecipeBuilder;
+import kono.ceu.materialreplication.api.recipes.ingredients.nbtmatch.MRNBTMatcher;
+import kono.ceu.materialreplication.api.recipes.machines.IReplicatorRecipeMap;
 import kono.ceu.materialreplication.api.unification.materials.MRMaterials;
 import kono.ceu.materialreplication.api.unification.materials.flags.MRMaterialFlags;
+import kono.ceu.materialreplication.common.items.MRMetaItems;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static gregtech.api.unification.ore.OrePrefix.*;
+import static gregtech.api.unification.ore.OrePrefix.dust;
+import static gregtech.api.unification.ore.OrePrefix.dustTiny;
 
 public class MRMachineRecipeLoader {
 
     // Get Deconstruction Base-time from cfg. cfgから分解の基本時間を取得
-    private final static int BaseTime_D = MRConfig.deconstruction.DeconstructionBaseTime;
+    public static int BaseTime_D = MRConfig.deconstruction.DeconstructionBaseTime;
 
     // Get Deconstruction Base Voltage from cfg. cfgから分解の基本電圧を取得
-    private final static int Voltage_D = MRConfig.deconstruction.DeconstructionVoltage;
+    public static int Voltage_D = MRConfig.deconstruction.DeconstructionVoltage;
 
     // Get Replication Base-time from cfg. cfgから複製の基本時間を取得
-    private final static int BaseTime_R = MRConfig.replication.ReplicationBaseTime;
+    public static int BaseTime_R = MRConfig.replication.ReplicationBaseTime;
 
     // Get Replication Base Voltage from cfg. cfgから複製の基本電圧を取得
-    private final static int Voltage_R = MRConfig.replication.ReplicationVoltage;
-
-
+    public static int Voltage_R = MRConfig.replication.ReplicationVoltage;
 
     public static void init() {
         List<Material> materialDusts = new ArrayList<>();
@@ -59,50 +64,27 @@ public class MRMachineRecipeLoader {
 
             // Replication
             if (!materialDust.hasFlag(MRMaterialFlags.DISABLE_REPLICATION)) {
+                RecipeBuilder<ReplicatorRecipeBuilder> builder = MRRecipeMaps.REPLICATION_RECIPES.recipeBuilder();
                 if (materialDust.getProtons() == 0) {
-                    RecipeBuilder<SimpleRecipeBuilder> builder = MRRecipeMaps.REPLICATION_RECIPES.recipeBuilder()
-                            .fluidInputs(MRMaterials.NeutralMatter.getFluid((int) materialDust.getNeutrons()))
-                            .duration(BaseTime_R * (int) materialDust.getMass())
-                            .EUt(Voltage_R);
-                    if (MRConfig.replication.ConsumeSample) {
-                        builder.input(dust, materialDust)
-                                .output(dust, materialDust, 2);
-                    } else {
-                        builder.notConsumable(dust, materialDust)
-                                .output(dust, materialDust, 1);
-                    }
-                    builder.buildAndRegister();
+                    builder.fluidInputs(MRMaterials.NeutralMatter.getFluid((int) materialDust.getNeutrons()));
                 } else if (materialDust.getNeutrons() == 0) {
-                    RecipeBuilder<SimpleRecipeBuilder> builder = MRRecipeMaps.REPLICATION_RECIPES.recipeBuilder()
-                            .fluidInputs(MRMaterials.ChargedMatter.getFluid((int) materialDust.getProtons()))
-                            .duration(BaseTime_R * (int) materialDust.getMass())
-                            .EUt(Voltage_R);
-                    if (MRConfig.replication.ConsumeSample) {
-                        builder.input(dust, materialDust)
-                                .output(dust, materialDust, 2);
-                    } else {
-                        builder.notConsumable(dust, materialDust)
-                                .output(dust, materialDust, 1);
-                    }
-                    builder.buildAndRegister();
+                    builder.fluidInputs(MRMaterials.ChargedMatter.getFluid((int) materialDust.getProtons()));
                 } else {
-                    RecipeBuilder<SimpleRecipeBuilder> builder = MRRecipeMaps.REPLICATION_RECIPES.recipeBuilder()
-                            .fluidInputs(MRMaterials.ChargedMatter.getFluid((int) materialDust.getProtons()))
-                            .fluidInputs(MRMaterials.NeutralMatter.getFluid((int) materialDust.getNeutrons()))
-                            .duration(BaseTime_R * (int) materialDust.getMass())
-                            .EUt(Voltage_R);
-                    if (MRConfig.replication.ConsumeSample) {
-                        builder.input(dust, materialDust)
-                                .output(dust, materialDust, 2);
-                    } else {
-                        builder.notConsumable(dust, materialDust)
-                                .output(dust, materialDust, 1);
+                    builder.fluidInputs(MRMaterials.ChargedMatter.getFluid((int) materialDust.getProtons()))
+                            .fluidInputs(MRMaterials.NeutralMatter.getFluid((int) materialDust.getNeutrons()));
                     }
-                    builder.buildAndRegister();
+                builder.duration(BaseTime_R * (int) materialDust.getMass())
+                        .input(GTRecipeItemInput.getOrCreate(MRMetaItems.USB_STICK.getStackForm())
+                                .setNBTMatchingCondition(MRNBTMatcher.RECURSIVE_EQUAL_TO,
+                                        NBTCondition.create(NBTTagType.COMPOUND, IReplicatorRecipeMap.REPLICATE_NBT_TAG,
+                                                NBTCondition.create(NBTTagType.STRING, IReplicatorRecipeMap.REPLICATE_MATERIAL, materialDust.toString())))
+                                .setNonConsumable())
+                        .replicate(materialDust)
+                        .EUt(Voltage_R)
+                        .output(dust, materialDust)
+                        .buildAndRegister();
                 }
             }
-
-        }
 
         for (Material materialFluid : materialFluids) { //Has Fluid property, not dust. dustはないがFluidはある
             // Deconstruction
@@ -118,49 +100,27 @@ public class MRMachineRecipeLoader {
             }
             // Replication
             if (!materialFluid.hasFlag(MRMaterialFlags.DISABLE_REPLICATION)) {
+                RecipeBuilder <ReplicatorRecipeBuilder> builder = MRRecipeMaps.REPLICATION_RECIPES.recipeBuilder();
                 if (materialFluid.getProtons() == 0) {
-                    RecipeBuilder <SimpleRecipeBuilder> builder = MRRecipeMaps.REPLICATION_RECIPES.recipeBuilder()
-                            .fluidInputs(MRMaterials.NeutralMatter.getFluid((int) materialFluid.getNeutrons()))
-                            .duration(BaseTime_R * (int) materialFluid.getMass())
-                            .EUt(Voltage_R);
-                    if (MRConfig.replication.ConsumeSample) {
-                        builder.fluidInputs(materialFluid.getFluid(1000))
-                                .fluidOutputs(materialFluid.getFluid(2000));
-                    } else {
-                        builder.notConsumable(materialFluid.getFluid(), 1000)
-                                .fluidOutputs(materialFluid.getFluid(1000));
-                    }
-                    builder.buildAndRegister();
+                    builder.fluidInputs(MRMaterials.NeutralMatter.getFluid((int) materialFluid.getNeutrons()));
                 } else if (materialFluid.getNeutrons() == 0) {
-                    RecipeBuilder <SimpleRecipeBuilder> builder = MRRecipeMaps.REPLICATION_RECIPES.recipeBuilder()
-                            .fluidInputs(MRMaterials.ChargedMatter.getFluid((int) materialFluid.getProtons()))
-                            .duration(BaseTime_R * (int) materialFluid.getMass())
-                            .EUt(Voltage_R);
-                    if (MRConfig.replication.ConsumeSample) {
-                        builder.fluidInputs(materialFluid.getFluid(1000))
-                                .fluidOutputs(materialFluid.getFluid(2000));
-                    } else {
-                        builder.notConsumable(materialFluid.getFluid(), 1000)
-                                .fluidOutputs(materialFluid.getFluid(1000));
-                    }
-                    builder.buildAndRegister();
+                    builder.fluidInputs(MRMaterials.ChargedMatter.getFluid((int) materialFluid.getProtons()));
                 } else {
-                    RecipeBuilder <SimpleRecipeBuilder> builder = MRRecipeMaps.REPLICATION_RECIPES.recipeBuilder()
-                            .fluidInputs(MRMaterials.ChargedMatter.getFluid((int) materialFluid.getProtons()))
-                            .fluidInputs(MRMaterials.NeutralMatter.getFluid((int) materialFluid.getNeutrons()))
-                            .duration(BaseTime_R * (int) materialFluid.getMass())
-                            .EUt(Voltage_R);
-                    if (MRConfig.replication.ConsumeSample) {
-                        builder.fluidInputs(materialFluid.getFluid(1000))
-                                .fluidOutputs(materialFluid.getFluid(2000));
-                    } else {
-                        builder.notConsumable(materialFluid.getFluid(), 1000)
-                                .fluidOutputs(materialFluid.getFluid(1000));
-                    }
-                    builder.buildAndRegister();
+                    builder.fluidInputs(MRMaterials.ChargedMatter.getFluid((int) materialFluid.getProtons()))
+                            .fluidInputs(MRMaterials.NeutralMatter.getFluid((int) materialFluid.getNeutrons()));
                 }
+                builder.input(GTRecipeItemInput.getOrCreate(MRMetaItems.USB_STICK.getStackForm())
+                        .setNBTMatchingCondition(MRNBTMatcher.RECURSIVE_EQUAL_TO,
+                                NBTCondition.create(NBTTagType.COMPOUND, IReplicatorRecipeMap.REPLICATE_NBT_TAG,
+                                        NBTCondition.create(NBTTagType.STRING, IReplicatorRecipeMap.REPLICATE_MATERIAL, materialFluid.toString())))
+                        .setNonConsumable())
+                        .fluidOutputs(materialFluid.getFluid(1000))
+                        .replicate(materialFluid)
+                        .duration(BaseTime_R * (int) materialFluid.getMass())
+                        .EUt(Voltage_R)
+                        .buildAndRegister();
             }
         }
-
     }
+
 }
