@@ -15,6 +15,8 @@ import static gregtech.api.unification.material.Materials.Electrum;
 import static gregtech.api.unification.material.Materials.Polyethylene;
 import static gregtech.api.unification.ore.OrePrefix.*;
 import static gregtech.common.items.MetaItems.*;
+import static kono.ceu.materialreplication.api.MRValues.BaseTime_R;
+import static kono.ceu.materialreplication.api.MRValues.Voltage_R;
 import static kono.ceu.materialreplication.common.items.MRMetaItems.USB_STICK;
 
 public class MRMiscRecipeLoader {
@@ -24,6 +26,7 @@ public class MRMiscRecipeLoader {
     }
 
     public static void materialRecipe(){
+        //PrimalMatter
         // Remove 削除
         // WorkBench Recipes 作業台レシピ
         ModHandler.removeRecipeByName("gregtech:small_dust_assembling_primal_matter"); //tiny x9 -> dust x1
@@ -69,6 +72,19 @@ public class MRMiscRecipeLoader {
                 .fluidOutputs(MRMaterials.ChargedMatter.getFluid(1))
                 .fluidOutputs(MRMaterials.NeutralMatter.getFluid(1))
                 .duration(12000).EUt(16).buildAndRegister();
+
+        // MatterAmplifier
+        CHEMICAL_RECIPES.recipeBuilder()
+                .fluidInputs(MRMaterials.MatterAmplifier.getFluid(500))
+                .fluidInputs(MRMaterials.ChargedMatter.getFluid(500))
+                .fluidOutputs(MRMaterials.ChargedMatter.getFluid(1000))
+                .duration(BaseTime_R).EUt(Voltage_R).buildAndRegister();
+
+        CHEMICAL_RECIPES.recipeBuilder()
+                .fluidInputs(MRMaterials.MatterAmplifier.getFluid(500))
+                .fluidInputs(MRMaterials.NeutralMatter.getFluid(500))
+                .fluidOutputs(MRMaterials.NeutralMatter.getFluid(1000))
+                .duration(BaseTime_R).EUt(Voltage_R).buildAndRegister();
     }
 
     public static void miscRecipe() {

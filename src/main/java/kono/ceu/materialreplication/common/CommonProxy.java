@@ -2,6 +2,7 @@ package kono.ceu.materialreplication.common;
 
 
 import gregtech.api.GregTechAPI;
+import kono.ceu.materialreplication.api.MRValues;
 import kono.ceu.materialreplication.common.items.MRMetaItems;
 import kono.ceu.materialreplication.common.machines.MRMetaTileEntities;
 import kono.ceu.materialreplication.api.unification.materials.MRMaterials;
@@ -24,7 +25,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import java.util.function.Function;
 
 
-@Mod.EventBusSubscriber(modid = "materialreplication")
+@Mod.EventBusSubscriber(modid = MRValues.MODID)
 public class CommonProxy {
     public void preInit(FMLPreInitializationEvent e) {
         MRMetaItems.init();

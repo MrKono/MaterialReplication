@@ -1,6 +1,7 @@
 package kono.ceu.materialreplication;
 
-import gregtech.api.GTValues;
+import gregtech.GTInternalTags;
+import kono.ceu.materialreplication.api.MRValues;
 import kono.ceu.materialreplication.common.CommonProxy;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
@@ -9,13 +10,13 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import org.apache.logging.log4j.Logger;
 
-@Mod(modid= "materialreplication",
-        name = "Material Replication",
+@Mod(modid= MRValues.MODID,
+        name = MRValues.MODNAME,
         acceptedMinecraftVersions = "[1.12, 1.12.2]",
-        dependencies = GTValues.MOD_VERSION_DEP)
+        dependencies = GTInternalTags.DEP_VERSION_STRING)
 
 public class MaterialReplication {
-    @SidedProxy(modId = "materialreplication", clientSide = "kono.ceu.materialreplication.client.ClientProxy", serverSide = "kono.ceu.materialreplication.common.CommonProxy")
+    @SidedProxy(modId = MRValues.MODID, clientSide = "kono.ceu.materialreplication.client.ClientProxy", serverSide = "kono.ceu.materialreplication.common.CommonProxy")
     public static CommonProxy proxy;
 
     @Mod.Instance
