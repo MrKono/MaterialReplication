@@ -9,6 +9,7 @@ import gregtech.api.unification.material.Material;
 import gregtech.api.unification.material.properties.PropertyKey;
 import gregtech.api.unification.ore.OrePrefix;
 import gregtech.core.sound.GTSoundEvents;
+import kono.ceu.materialreplication.api.gui.MRGuiTextures;
 import kono.ceu.materialreplication.api.recipes.builders.ReplicatorRecipeBuilder;
 import kono.ceu.materialreplication.api.recipes.machines.IReplicatorRecipeMap;
 import kono.ceu.materialreplication.api.recipes.machines.RecipeMapReplicator;
@@ -29,7 +30,7 @@ public class MRRecipeMaps {
             2, 2, // FluidOutput (min/max)
             new SimpleRecipeBuilder(), false)
             .setSound(GTSoundEvents.CENTRIFUGE)
-            .setSlotOverlay(false, false, GuiTextures.LIGHTNING_OVERLAY_1) // Item Input
+            .setSlotOverlay(false, false, GuiTextures.DUST_OVERLAY) // Item Input
             .setSlotOverlay(false, true, GuiTextures.LIGHTNING_OVERLAY_2) // Fluid Input
             .setSlotOverlay(true, true, false, GuiTextures.MOLECULAR_OVERLAY_3) // Fluid Output1
             .setSlotOverlay(true, true, true, GuiTextures.MOLECULAR_OVERLAY_4) // Fluid Output2
@@ -38,7 +39,7 @@ public class MRRecipeMaps {
             1, 1, 2, 1, new ReplicatorRecipeBuilder(), false)
             .setSound(GTSoundEvents.REPLICATOR)
             .setSlotOverlay(false, false, GuiTextures.DATA_ORB_OVERLAY)
-            //.setSlotOverlay(false, false, MRGuiTextures.USB_OVERLAY) // Item Input
+            .setSlotOverlay(false, false, MRGuiTextures.USB_OVERLAY) // Item Input
             .setSlotOverlay(false, true, false, GuiTextures.ATOMIC_OVERLAY_1) // Fluid Input 1
             .setSlotOverlay(false, true, true, GuiTextures.ATOMIC_OVERLAY_2) // Fluid Input 2
             .setSlotOverlay(true, false, GuiTextures.DUST_OVERLAY) // Item Output

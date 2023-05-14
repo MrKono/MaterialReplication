@@ -100,7 +100,7 @@ dependencies {
     //compile "curse.maven:endercore-231868:2972849"
     deobfCompile 'curse.maven:codechicken-lib-1-8-242818:2779848'
     deobfCompile 'curse.maven:the-one-probe-245211:2667280'
-    //deobfCompile 'curse.maven:gregtech-ce-unofficial-557242:4390983'
+    //deobfCompile 'curse.maven:gregtech-ce-unofficial-557242:4527757'
     //provided (files("libs/gregtech-1.12.2-2.5.0-beta.jar"))
     //provided (files("libs/theoneprobe-1.12-1.4.28.jar"))
     implementation fileTree(dir: 'libs', include: '*.jar')

@@ -4,13 +4,12 @@ import gregtech.api.GregTechAPI;
 import gregtech.api.recipes.RecipeBuilder;
 import gregtech.api.recipes.ingredients.GTRecipeItemInput;
 import gregtech.api.recipes.ingredients.nbtmatch.NBTCondition;
+import gregtech.api.recipes.ingredients.nbtmatch.NBTMatcher;
 import gregtech.api.recipes.ingredients.nbtmatch.NBTTagType;
 import gregtech.api.unification.material.Material;
 import gregtech.api.unification.material.properties.PropertyKey;
-import kono.ceu.materialreplication.MRConfig;
 import kono.ceu.materialreplication.api.recipes.MRRecipeMaps;
 import kono.ceu.materialreplication.api.recipes.builders.ReplicatorRecipeBuilder;
-import kono.ceu.materialreplication.api.recipes.ingredients.nbtmatch.MRNBTMatcher;
 import kono.ceu.materialreplication.api.recipes.machines.IReplicatorRecipeMap;
 import kono.ceu.materialreplication.api.unification.materials.MRMaterials;
 import kono.ceu.materialreplication.api.unification.materials.flags.MRMaterialFlags;
@@ -21,20 +20,9 @@ import java.util.List;
 
 import static gregtech.api.unification.ore.OrePrefix.dust;
 import static gregtech.api.unification.ore.OrePrefix.dustTiny;
+import static kono.ceu.materialreplication.api.MRValues.*;
 
 public class MRMachineRecipeLoader {
-
-    // Get Deconstruction Base-time from cfg. cfgから分解の基本時間を取得
-    public static int BaseTime_D = MRConfig.deconstruction.DeconstructionBaseTime;
-
-    // Get Deconstruction Base Voltage from cfg. cfgから分解の基本電圧を取得
-    public static int Voltage_D = MRConfig.deconstruction.DeconstructionVoltage;
-
-    // Get Replication Base-time from cfg. cfgから複製の基本時間を取得
-    public static int BaseTime_R = MRConfig.replication.ReplicationBaseTime;
-
-    // Get Replication Base Voltage from cfg. cfgから複製の基本電圧を取得
-    public static int Voltage_R = MRConfig.replication.ReplicationVoltage;
 
     public static void init() {
         List<Material> materialDusts = new ArrayList<>();
@@ -75,7 +63,7 @@ public class MRMachineRecipeLoader {
                     }
                 builder.duration(BaseTime_R * (int) materialDust.getMass())
                         .input(GTRecipeItemInput.getOrCreate(MRMetaItems.USB_STICK.getStackForm())
-                                .setNBTMatchingCondition(MRNBTMatcher.RECURSIVE_EQUAL_TO,
+                                .setNBTMatchingCondition(NBTMatcher.RECURSIVE_EQUAL_TO,
                                         NBTCondition.create(NBTTagType.COMPOUND, IReplicatorRecipeMap.REPLICATE_NBT_TAG,
                                                 NBTCondition.create(NBTTagType.STRING, IReplicatorRecipeMap.REPLICATE_MATERIAL, materialDust.toString())))
                                 .setNonConsumable())
@@ -110,7 +98,7 @@ public class MRMachineRecipeLoader {
                             .fluidInputs(MRMaterials.NeutralMatter.getFluid((int) materialFluid.getNeutrons()));
                 }
                 builder.input(GTRecipeItemInput.getOrCreate(MRMetaItems.USB_STICK.getStackForm())
-                        .setNBTMatchingCondition(MRNBTMatcher.RECURSIVE_EQUAL_TO,
+                        .setNBTMatchingCondition(NBTMatcher.RECURSIVE_EQUAL_TO,
                                 NBTCondition.create(NBTTagType.COMPOUND, IReplicatorRecipeMap.REPLICATE_NBT_TAG,
                                         NBTCondition.create(NBTTagType.STRING, IReplicatorRecipeMap.REPLICATE_MATERIAL, materialFluid.toString())))
                         .setNonConsumable())

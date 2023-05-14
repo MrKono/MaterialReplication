@@ -8,7 +8,6 @@ import gregtech.api.unification.material.Material;
 import gregtech.api.util.EnumValidationResult;
 import gregtech.api.util.GTLog;
 import gregtech.api.util.ValidationResult;
-import kono.ceu.materialreplication.MRConfig;
 import kono.ceu.materialreplication.api.recipes.machines.IReplicatorRecipeMap;
 import kono.ceu.materialreplication.api.recipes.properties.ReplicateProperty;
 import net.minecraft.nbt.NBTTagCompound;
@@ -16,12 +15,15 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import javax.annotation.Nonnull;
 
+import static kono.ceu.materialreplication.api.MRValues.BaseTime_S;
+import static kono.ceu.materialreplication.api.MRValues.Voltage_S;
+
 public class ReplicatorRecipeBuilder extends RecipeBuilder<ReplicatorRecipeBuilder>  {
 
     private String materialName = null;
     private Material replicationMaterial = GregTechAPI.MaterialRegistry.get(materialName);
-    private int Duration = MRConfig.replication.ScanTime; // Default : 1200 tick
-    private int Voltage = MRConfig.replication.ScanVoltage; // Default : 30 EU/t
+    private int Duration = BaseTime_S; // Default : 1200 tick
+    private int Voltage = Voltage_S; // Default : 30 EU/t
     private boolean scanRecipe = true;
     public ReplicatorRecipeBuilder() {}
 
