@@ -18,13 +18,21 @@ import kono.ceu.materialreplication.common.items.MRMetaItems;
 import java.util.ArrayList;
 import java.util.List;
 
+import static gregtech.api.GTValues.*;
+import static gregtech.api.recipes.RecipeMaps.*;
 import static gregtech.api.unification.ore.OrePrefix.dust;
 import static gregtech.api.unification.ore.OrePrefix.dustTiny;
 import static kono.ceu.materialreplication.api.MRValues.*;
+import static kono.ceu.materialreplication.common.items.MRMetaItems.SCRAP;
+import static kono.ceu.materialreplication.common.items.MRMetaItems.SCRAP_BOX;
 
 public class MRMachineRecipeLoader {
-
     public static void init() {
+        recipeMatter();
+        recipeScrap();
+    }
+
+    public static void recipeMatter() {
         List<Material> materialDusts = new ArrayList<>();
         List<Material> materialFluids = new ArrayList<>();
         for (Material material : GregTechAPI.MATERIAL_REGISTRY) {
@@ -37,7 +45,8 @@ public class MRMachineRecipeLoader {
             }
         }
 
-        for (Material materialDust : materialDusts) { // Has dust property material. dustがあるmaterial
+        for (Material materialDust : materialDusts) {
+            // Has dust property material. dustがあるmaterial
             // Deconstruction
             if (!materialDust.hasFlag(MRMaterialFlags.DISABLE_DECONSTRUCTION)) {
                 MRRecipeMaps.DECONSTRUCTION_RECIPES.recipeBuilder()
@@ -74,7 +83,8 @@ public class MRMachineRecipeLoader {
                 }
             }
 
-        for (Material materialFluid : materialFluids) { //Has Fluid property, not dust. dustはないがFluidはある
+        for (Material materialFluid : materialFluids) {
+            //Has Fluid property, not dust. dustはないがFluidはある
             // Deconstruction
             if (!materialFluid.hasFlag(MRMaterialFlags.DISABLE_DECONSTRUCTION)) {
                 MRRecipeMaps.DECONSTRUCTION_RECIPES.recipeBuilder()
@@ -109,6 +119,43 @@ public class MRMachineRecipeLoader {
                         .buildAndRegister();
             }
         }
+
+        // Primal -> Charged & Neutral
+        CENTRIFUGE_RECIPES.recipeBuilder()
+                .fluidInputs(MRMaterials.PrimalMatter.getFluid(1))
+                .fluidOutputs(MRMaterials.ChargedMatter.getFluid(1))
+                .fluidOutputs(MRMaterials.NeutralMatter.getFluid(1))
+                .duration(12000).EUt(16).buildAndRegister();
+
+        // MatterAmplifier
+        CHEMICAL_RECIPES.recipeBuilder()
+                .fluidInputs(MRMaterials.MatterAmplifier.getFluid(500))
+                .fluidInputs(MRMaterials.ChargedMatter.getFluid(500))
+                .fluidOutputs(MRMaterials.ChargedMatter.getFluid(1000))
+                .duration(BaseTime_R).EUt(Voltage_R).buildAndRegister();
+
+        CHEMICAL_RECIPES.recipeBuilder()
+                .fluidInputs(MRMaterials.MatterAmplifier.getFluid(500))
+                .fluidInputs(MRMaterials.NeutralMatter.getFluid(500))
+                .fluidOutputs(MRMaterials.NeutralMatter.getFluid(1000))
+                .duration(BaseTime_R).EUt(Voltage_R).buildAndRegister();
+    }
+
+    public static void recipeScrap() {
+        COMPRESSOR_RECIPES.recipeBuilder()
+                .input(SCRAP, 9)
+                .output(SCRAP_BOX)
+                .duration(1200).EUt(VA[HV]).buildAndRegister();
+
+        EXTRACTOR_RECIPES.recipeBuilder()
+                .input(SCRAP)
+                .fluidOutputs(MRMaterials.MatterAmplifier.getFluid(1))
+                .duration(BaseTime_D).EUt(VA[LV]).buildAndRegister();
+
+        EXTRACTOR_RECIPES.recipeBuilder()
+                .input(SCRAP_BOX)
+                .fluidOutputs(MRMaterials.MatterAmplifier.getFluid(10))
+                .duration(BaseTime_D / 4).EUt(VA[EV]).buildAndRegister();
     }
 
 }

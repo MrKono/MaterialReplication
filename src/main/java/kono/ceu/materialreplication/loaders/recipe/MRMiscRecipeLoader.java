@@ -6,17 +6,17 @@ import gregtech.api.recipes.ModHandler;
 import gregtech.api.recipes.RecipeMaps;
 import gregtech.api.recipes.ingredients.IntCircuitIngredient;
 import gregtech.api.unification.OreDictUnifier;
+import kono.ceu.materialreplication.MRConfig;
+import kono.ceu.materialreplication.api.MRValues;
 import kono.ceu.materialreplication.api.unification.materials.MRMaterials;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fml.common.Loader;
 
 import static gregtech.api.GTValues.*;
 import static gregtech.api.recipes.RecipeMaps.*;
-import static gregtech.api.unification.material.Materials.Electrum;
-import static gregtech.api.unification.material.Materials.Polyethylene;
+import static gregtech.api.unification.material.Materials.*;
 import static gregtech.api.unification.ore.OrePrefix.*;
 import static gregtech.common.items.MetaItems.*;
-import static kono.ceu.materialreplication.api.MRValues.BaseTime_R;
-import static kono.ceu.materialreplication.api.MRValues.Voltage_R;
 import static kono.ceu.materialreplication.common.items.MRMetaItems.USB_STICK;
 
 public class MRMiscRecipeLoader {
@@ -27,12 +27,9 @@ public class MRMiscRecipeLoader {
 
     public static void materialRecipe(){
         //PrimalMatter
-        // Remove 削除
-        // WorkBench Recipes 作業台レシピ
         ModHandler.removeRecipeByName("gregtech:small_dust_assembling_primal_matter"); //tiny x9 -> dust x1
-        ModHandler.removeRecipeByName("gregtech:tiny_dust_assembling_primal_matter"); //small x9 -> dust x1
+        ModHandler.removeRecipeByName("gregtech:tiny_dust_assembling_primal_matter"); //small x4 -> dust x1
 
-        // Machine Recipes 機械レシピ
         GTRecipeHandler.removeRecipesByInputs(RecipeMaps.PACKER_RECIPES,
                 new ItemStack[]{
                         OreDictUnifier.get(dustSmall, MRMaterials.PrimalMatter, 4),
@@ -50,8 +47,6 @@ public class MRMiscRecipeLoader {
                         OreDictUnifier.get(dust, MRMaterials.PrimalMatter)
                 });
 
-        // Add 追加
-        // Machine Recipes 機械レシピ
         EXTRACTOR_RECIPES.recipeBuilder()
                 .input(dustTiny, MRMaterials.PrimalMatter)
                 .fluidOutputs(MRMaterials.PrimalMatter.getFluid(1))
@@ -67,24 +62,14 @@ public class MRMiscRecipeLoader {
                 .output(dust, MRMaterials.PrimalMatter)
                 .duration(1200).EUt(VA[HV]).buildAndRegister();
 
-        CENTRIFUGE_RECIPES.recipeBuilder()
-                .fluidInputs(MRMaterials.PrimalMatter.getFluid(1))
-                .fluidOutputs(MRMaterials.ChargedMatter.getFluid(1))
-                .fluidOutputs(MRMaterials.NeutralMatter.getFluid(1))
-                .duration(12000).EUt(16).buildAndRegister();
-
-        // MatterAmplifier
-        CHEMICAL_RECIPES.recipeBuilder()
-                .fluidInputs(MRMaterials.MatterAmplifier.getFluid(500))
-                .fluidInputs(MRMaterials.ChargedMatter.getFluid(500))
-                .fluidOutputs(MRMaterials.ChargedMatter.getFluid(1000))
-                .duration(BaseTime_R).EUt(Voltage_R).buildAndRegister();
-
-        CHEMICAL_RECIPES.recipeBuilder()
-                .fluidInputs(MRMaterials.MatterAmplifier.getFluid(500))
-                .fluidInputs(MRMaterials.NeutralMatter.getFluid(500))
-                .fluidOutputs(MRMaterials.NeutralMatter.getFluid(1000))
-                .duration(BaseTime_R).EUt(Voltage_R).buildAndRegister();
+        //UUMatter
+        if (MRConfig.recipe.addUUMatterRecipe || (Loader.isModLoaded(MRValues.MODID_GRGF) && Loader.isModLoaded(MRValues.MODID_FFM))) {
+            MIXER_RECIPES.recipeBuilder()
+                    .fluidInputs(MRMaterials.ChargedMatter.getFluid(50))
+                    .fluidInputs(MRMaterials.NeutralMatter.getFluid(50))
+                    .fluidOutputs(UUMatter.getFluid(50))
+                    .duration(1200).EUt(VA[HV]).buildAndRegister();
+        }
     }
 
     public static void miscRecipe() {

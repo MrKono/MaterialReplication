@@ -1,5 +1,8 @@
 # Item
 metaitem.usb_stick.name=USB Stick
+metaitem.scrap.name=Scrap
+metaitem.scrap_box.name=Scrap Box
+metaitem.scrap_box.tooltip=§8§oScrap §o§lBox§r§8§o...? No, it's a §o§lBlock§r§8.
 
 # Item Tooltip
 behavior.usb.no_data=Saving for Material Data
@@ -13,6 +16,7 @@ behavior.usb.replicate_data4=§3%s§7 : %s L
 material.primal_matter=Primal Matter
 material.charged_matter=Charged Matter
 material.neutral_matter=Neutral Matter
+material.matter_amplifier=Matter Amplifier
 
 # Machine
 # Material Deconstructor
@@ -44,6 +48,34 @@ materialreplication.machine.replicator.uev.name=Epic Material Replicator II
 materialreplication.machine.replicator.uiv.name=Epic Material Replicator III
 materialreplication.machine.replicator.uxv.name=Epic Material Replicator IV
 materialreplication.machine.replicator.opv.name=Legendary Material Replicator
+
+# Scrap Maker
+materialreplication.machine.scrapmaker.lv.name=Basic Scrap Maker
+materialreplication.machine.scrapmaker.lv.tooltip=Electric trash can
+materialreplication.machine.scrapmaker.mv.name=Advanced Scrap Maker
+materialreplication.machine.scrapmaker.mv.tooltip=Electric trash can
+materialreplication.machine.scrapmaker.hv.name=Advanced Scrap Maker II
+materialreplication.machine.scrapmaker.hv.tooltip=Electric trash can
+materialreplication.machine.scrapmaker.ev.name=Advanced Scrap Maker III
+materialreplication.machine.scrapmaker.ev.tooltip=Electric trash can
+materialreplication.machine.scrapmaker.iv.name=Elite Scrap Maker
+materialreplication.machine.scrapmaker.iv.tooltip=Electric trash can
+materialreplication.machine.scrapmaker.luv.name=Elite Scrap Maker II
+materialreplication.machine.scrapmaker.luv.tooltip=Electric trash can
+materialreplication.machine.scrapmaker.zpm.name=Elite Scrap Maker III
+materialreplication.machine.scrapmaker.zpm.tooltip=Electric trash can
+materialreplication.machine.scrapmaker.uv.name=Ultimate Scrap Maker
+materialreplication.machine.scrapmaker.uv.tooltip=Electric trash can
+materialreplication.machine.scrapmaker.uhv.name=Epic Scrap Maker
+materialreplication.machine.scrapmaker.uhv.tooltip=Electric trash can
+materialreplication.machine.scrapmaker.uev.name=Epic Scrap Maker II
+materialreplication.machine.scrapmaker.uev.tooltip=Electric trash can
+materialreplication.machine.scrapmaker.uiv.name=Epic Scrap Maker III
+materialreplication.machine.scrapmaker.uiv.tooltip=Electric trash can
+materialreplication.machine.scrapmaker.uxv.name=Epic Scrap Maker IV
+materialreplication.machine.scrapmaker.uxv.tooltip=Electric trash can
+materialreplication.machine.scrapmaker.opv.name=Legendary Scrap Maker
+materialreplication.machine.scrapmaker.opv.tooltip=Electric trash can
 
 # Recipe map
 recipemap.deconstruction.name=Material Deconstruction

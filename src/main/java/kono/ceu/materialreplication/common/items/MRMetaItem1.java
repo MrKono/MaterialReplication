@@ -14,5 +14,7 @@ public class MRMetaItem1 extends StandardMetaItem {
     @Override
     public void registerSubItems() {
         USB_STICK = addItem(0, "usb_stick").addComponents(new ReplicationBehaviors());
+        SCRAP = addItem(1, "scrap");
+        SCRAP_BOX = addItem(2, "scrap_box");
     }
 }

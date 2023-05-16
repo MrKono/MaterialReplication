@@ -13,6 +13,7 @@ import kono.ceu.materialreplication.api.gui.MRGuiTextures;
 import kono.ceu.materialreplication.api.recipes.builders.ReplicatorRecipeBuilder;
 import kono.ceu.materialreplication.api.recipes.machines.IReplicatorRecipeMap;
 import kono.ceu.materialreplication.api.recipes.machines.RecipeMapReplicator;
+import kono.ceu.materialreplication.api.recipes.machines.RecipeMapScrapper;
 import kono.ceu.materialreplication.api.unification.materials.flags.MRMaterialFlags;
 import kono.ceu.materialreplication.common.items.MRMetaItems;
 import net.minecraft.item.ItemStack;
@@ -23,11 +24,9 @@ import java.util.List;
 
 public class MRRecipeMaps {
 
+    //Deconstractor
     public static final RecipeMap<SimpleRecipeBuilder> DECONSTRUCTION_RECIPES = new RecipeMap<>("deconstruction",
-            0, 1, // ItemInput (min/max)
-            0, 1, // ItemOutput (min/max)
-            0, 1, // FluidInput (min/max)
-            2, 2, // FluidOutput (min/max)
+             1, 1, 1,2, // Max(itemIn, itemOut, fluidIn, fluidOut)
             new SimpleRecipeBuilder(), false)
             .setSound(GTSoundEvents.CENTRIFUGE)
             .setSlotOverlay(false, false, GuiTextures.DUST_OVERLAY) // Item Input
@@ -35,6 +34,8 @@ public class MRRecipeMaps {
             .setSlotOverlay(true, true, false, GuiTextures.MOLECULAR_OVERLAY_3) // Fluid Output1
             .setSlotOverlay(true, true, true, GuiTextures.MOLECULAR_OVERLAY_4) // Fluid Output2
             .setProgressBar(GuiTextures.PROGRESS_BAR_MASS_FAB, ProgressWidget.MoveType.HORIZONTAL);
+
+    //Replicator
     public static final RecipeMap<ReplicatorRecipeBuilder> REPLICATION_RECIPES = new RecipeMapReplicator("replication",
             1, 1, 2, 1, new ReplicatorRecipeBuilder(), false)
             .setSound(GTSoundEvents.REPLICATOR)
@@ -96,4 +97,13 @@ public class MRRecipeMaps {
                     }
                 }
             });
+
+    //Scrapper
+    public static final RecipeMap<SimpleRecipeBuilder> SCRAPPER_RECIPES = new RecipeMapScrapper("scrapper",
+            1,1,1,0,
+            new SimpleRecipeBuilder(), false)
+            .setSound(GTSoundEvents.MACERATOR)
+            .setSlotOverlay(true, false, GuiTextures.DUST_OVERLAY)
+            .setSlotOverlay(false, true, GuiTextures.LIGHTNING_OVERLAY_2) // Fluid Input
+            .setProgressBar(GuiTextures.PROGRESS_BAR_RECYCLER, ProgressWidget.MoveType.HORIZONTAL);
 }
