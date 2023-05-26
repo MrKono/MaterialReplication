@@ -2,11 +2,11 @@ package kono.ceu.materialreplication;
 
 
 import kono.ceu.materialreplication.api.MRValues;
-import net.minecraft.item.Item;
 import net.minecraftforge.common.config.Config;
 
 @Config(modid = MRValues.MODID)
 public class MRConfig {
+    /*
     private static class ItemKey
     {
         private Item item;
@@ -35,7 +35,12 @@ public class MRConfig {
         {
             return item.getRegistryName() + "@" + metadata;
         }
-    }
+    }*/
+
+    @Config.Comment("Config option for Blacklist")
+    @Config.Name("Blacklist Options")
+    @Config.RequiresMcRestart
+    public static BlackListOptions blacklist = new  BlackListOptions();
 
     @Config.Comment("Config option for Deconstruction")
     @Config.Name("Deconstruction Settings")
@@ -57,6 +62,23 @@ public class MRConfig {
     @Config.RequiresMcRestart
     public static RecipeOptions recipe = new RecipeOptions();
 
+
+    public static class BlackListOptions {
+        // TODO Make Blacklist from Config
+        @Config.Comment("Material Blacklist for Deconstruction and Replication")
+        public String[] blacklistForMatter = new String[0];
+
+        @Config.Comment("Material Blacklist for Deconstruction")
+        public String[] blacklistForDeconstruction = new String[0];
+
+        @Config.Comment("Material Blacklist for Replication")
+        public String[] blacklistForReplication = new String[0];
+
+        @Config.Comment("Item Blacklist for ScrapMaker")
+        public String[] blacklistForScrap = new String[0];
+
+    }
+
     public static class DeconstructionOptions {
         @Config.Comment({"Deconstruction Base time in tick (int).","Default : 600 tick (30 Sec.)",
                 "Duration : BaseTime * material's Average mass"})
@@ -64,13 +86,6 @@ public class MRConfig {
 
         @Config.Comment({"Deconstruction Base Voltage in int.", "Default : 30 (LV)"})
         public int DeconstructionVoltage = 30;
-
-        /*
-        @Config.Comment("Material Blacklist for Deconstruction")
-        public String[] blacklistForDeconstruction ={
-                "iron","steel","tin"
-        };
-         */
     }
 
     public static class ReplicationOptions {
@@ -89,14 +104,6 @@ public class MRConfig {
     }
 
     public static  class ScrapOptions {
-        /*
-        @Config.Comment("test")
-        public String[] blacklist = new String[] {
-                "minecraft:cobblestone",
-                "minecraft:sand",
-                "minecraft:stone:*"
-        };
-         */
         @Config.Comment({"Output chance of Scrap for Scrap Maker (Int).", "10000 is a 100% chance, 0 is a 0% chance.", "Default : 1 (0.01 %"})
         @Config.RangeInt(min = 0, max = 10000)
         public int ScrapChance = 1;
@@ -118,7 +125,5 @@ public class MRConfig {
         @Config.Comment({"Whether to add the UUMatter recipe.", "If you install Gregification and Forestry, this will be ignored.",
         "Default : false"})
         public boolean addUUMatterRecipe = false;
-
-
     }
 }
