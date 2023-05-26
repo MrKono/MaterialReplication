@@ -1,22 +1,25 @@
 # Item
 metaitem.usb_stick.name=USBメモリ
 metaitem.scrap.name=スクラップ
+metaitem.scrap.tooltip=スクラップ製造機から入手できる
 metaitem.scrap_box.name=スクラップボックス
 metaitem.scrap_box.tooltip=§8§oスクラップ§o§lボックス§r§8§o...? いいや、§o§lブロック§r§8§oだろう。
 
 # Item Tooltip
-behavior.usb.no_data=素材データの保管に
-behavior.usb.replicate=物質複製機で用いる素材のデータが格納されている
-behavior.usb.replicate_data1=複製対象: §a%s
-behavior.usb.replicate_data2=複製時の要求マター量
-behavior.usb.replicate_data3=§4%s§7 : %s L
-behavior.usb.replicate_data4=§3%s§7 : %s L
+behaviour.usb.no_data=素材データの保管に
+behaviour.usb.replicate=物質複製機で用いる素材のデータが格納されている
+behaviour.usb.replicate_data1=複製対象: §a%s
+behaviour.usb.replicate_data2=複製時の要求マター量
+behaviour.usb.replicate_data3=§4%s§7 : %s L
+behaviour.usb.replicate_data4=§3%s§7 : %s L
+behaviour.scrap.information2.1=入手確率 : 
+behaviour.scrap.information2.2= %s%% +%s%%/tier
 
 # Material
 material.primal_matter=プライマルマター
 material.charged_matter=荷電マター
 material.neutral_matter=中性マター
-material.matter_amplifier=マター増幅液
+material.matter_amplifier=マター増幅剤
 
 # Machine
 # Material Deconstructor
@@ -51,31 +54,23 @@ materialreplication.machine.replicator.opv.name=伝説の物質複製機
 
 # Scrap Maker
 materialreplication.machine.scrapmaker.lv.name=基本型スクラップ製造機
-materialreplication.machine.scrapmaker.lv.tooltip=電気式ゴミ箱
 materialreplication.machine.scrapmaker.mv.name=発展型スクラップ製造機
-materialreplication.machine.scrapmaker.mv.tooltip=電気式ゴミ箱
 materialreplication.machine.scrapmaker.hv.name=発展型スクラップ製造機 II
-materialreplication.machine.scrapmaker.hv.tooltip=電気式ゴミ箱
 materialreplication.machine.scrapmaker.ev.name=発展型スクラップ製造機 III
-materialreplication.machine.scrapmaker.ev.tooltip=電気式ゴミ箱
 materialreplication.machine.scrapmaker.iv.name=精鋭型スクラップ製造機
-materialreplication.machine.scrapmaker.iv.tooltip=電気式ゴミ箱
 materialreplication.machine.scrapmaker.luv.name=精鋭型スクラップ製造機 II
-materialreplication.machine.scrapmaker.luv.tooltip=電気式ゴミ箱
 materialreplication.machine.scrapmaker.zpm.name=精鋭型スクラップ製造機 III
-materialreplication.machine.scrapmaker.zpm.tooltip=電気式ゴミ箱
 materialreplication.machine.scrapmaker.uv.name=究極型スクラップ製造機
-materialreplication.machine.scrapmaker.uv.tooltip=電気式ゴミ箱
 materialreplication.machine.scrapmaker.uhv.name=史上最高のスクラップ製造機
-materialreplication.machine.scrapmaker.uhv.tooltip=電気式ゴミ箱
 materialreplication.machine.scrapmaker.uev.name=史上最高のスクラップ製造機 II
-materialreplication.machine.scrapmaker.uev.tooltip=電気式ゴミ箱
 materialreplication.machine.scrapmaker.uiv.name=史上最高のスクラップ製造機 III
-materialreplication.machine.scrapmaker.uiv.tooltip=電気式ゴミ箱
 materialreplication.machine.scrapmaker.uxv.name=史上最高のスクラップ製造機 IV
-materialreplication.machine.scrapmaker.uxv.tooltip=電気式ゴミ箱
 materialreplication.machine.scrapmaker.opv.name=伝説のスクラップ製造機
-materialreplication.machine.scrapmaker.opv.tooltip=電気式ゴミ箱
+materialreplication.machine.scrapmaker.warning1=全てをスクラップに
+materialreplication.machine.scrapmaker.warning2.1=警告 :
+materialreplication.machine.scrapmaker.warning2.2= §l全てのアイテムと液体を処理します
+materialreplication.machine.scrapmaker.warning3.1=生産確率 :
+materialreplication.machine.scrapmaker.warning3.2= %s%% +%s%%/tier
 
 # Recipe map
 recipemap.deconstruction.name=物質分解機

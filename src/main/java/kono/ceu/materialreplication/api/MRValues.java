@@ -12,5 +12,9 @@ public class MRValues {
             BaseTime_S = MRConfig.replication.ScanTime,
             Voltage_D = MRConfig.deconstruction.DeconstructionVoltage,
             Voltage_R = MRConfig.replication.ReplicationVoltage,
-            Voltage_S = MRConfig.replication.ScanVoltage;
+            Voltage_S = MRConfig.replication.ScanVoltage,
+            ScrapChance = MRConfig.scrap.ScrapChance,
+            ScrapChanceBoost = MRConfig.scrap.ScrapChanceBoost,
+            AmplifierChance = MRConfig.scrap.AmplifierChance,
+            AmplifierChanceBoost = MRConfig.scrap.AmplifierChanceBoost;
 }

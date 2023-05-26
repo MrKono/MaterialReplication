@@ -31,7 +31,6 @@ public class ReplicateProperty extends RecipeProperty<String> {
 
     @Override
     public void drawInfo(@Nonnull Minecraft minecraft, int x, int y, int color, Object value) {
-
         minecraft.fontRenderer.drawString(BLINKING_ORANGE_FAST + I18n.format("recipemap.replication.property1"), x, y, color);
         minecraft.fontRenderer.drawString(BLINKING_ORANGE_FAST + I18n.format("recipemap.replication.property2"), x, y + 10, color);
     }

@@ -26,7 +26,7 @@ public class MRMaterial {
                 .build();
 
         MRMaterials.MatterAmplifier = new Material.Builder(3003, "matter_amplifier")
-                .fluid()
+                .dust().fluid()
                 .fluidTemp(300)
                 .color(0xda70d6)
                 .build();

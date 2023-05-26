@@ -13,7 +13,7 @@ import kono.ceu.materialreplication.api.gui.MRGuiTextures;
 import kono.ceu.materialreplication.api.recipes.builders.ReplicatorRecipeBuilder;
 import kono.ceu.materialreplication.api.recipes.machines.IReplicatorRecipeMap;
 import kono.ceu.materialreplication.api.recipes.machines.RecipeMapReplicator;
-import kono.ceu.materialreplication.api.recipes.machines.RecipeMapScrapper;
+import kono.ceu.materialreplication.api.recipes.machines.RecipeMapScrapMaker;
 import kono.ceu.materialreplication.api.unification.materials.flags.MRMaterialFlags;
 import kono.ceu.materialreplication.common.items.MRMetaItems;
 import net.minecraft.item.ItemStack;
@@ -99,7 +99,7 @@ public class MRRecipeMaps {
             });
 
     //Scrapper
-    public static final RecipeMap<SimpleRecipeBuilder> SCRAPPER_RECIPES = new RecipeMapScrapper("scrapper",
+    public static final RecipeMap<SimpleRecipeBuilder> SCRAPMAKER_RECIPES = new RecipeMapScrapMaker("scrapper",
             1,1,1,0,
             new SimpleRecipeBuilder(), false)
             .setSound(GTSoundEvents.MACERATOR)

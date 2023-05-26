@@ -27,7 +27,7 @@ import static kono.ceu.materialreplication.common.items.MRMetaItems.SCRAP;
 import static kono.ceu.materialreplication.common.items.MRMetaItems.SCRAP_BOX;
 
 public class MRMachineRecipeLoader {
-    public static void init() {
+    public static void register() {
         recipeMatter();
         recipeScrap();
     }
@@ -35,7 +35,7 @@ public class MRMachineRecipeLoader {
     public static void recipeMatter() {
         List<Material> materialDusts = new ArrayList<>();
         List<Material> materialFluids = new ArrayList<>();
-        for (Material material : GregTechAPI.MATERIAL_REGISTRY) {
+       for (Material material : GregTechAPI.MATERIAL_REGISTRY) {
             if (!material.getChemicalFormula().isEmpty()) { // Has Chemical Formula? 化学式を持っているか
                 if (material.hasProperty(PropertyKey.DUST)) { // Has Dust Property? Propertyにdustがあるか
                     materialDusts.add(material);
@@ -147,13 +147,23 @@ public class MRMachineRecipeLoader {
                 .output(SCRAP_BOX)
                 .duration(1200).EUt(VA[HV]).buildAndRegister();
 
-        EXTRACTOR_RECIPES.recipeBuilder()
+        SIFTER_RECIPES.recipeBuilder()
                 .input(SCRAP)
-                .fluidOutputs(MRMaterials.MatterAmplifier.getFluid(1))
-                .duration(BaseTime_D).EUt(VA[LV]).buildAndRegister();
+                .chancedOutput(dustTiny, MRMaterials.MatterAmplifier, AmplifierChance, AmplifierChanceBoost)
+                .duration(256).EUt(VA[LV]).buildAndRegister();
+
+        SIFTER_RECIPES.recipeBuilder()
+                .input(SCRAP_BOX)
+                .chancedOutput(dustTiny, MRMaterials.MatterAmplifier, 2, AmplifierChance, AmplifierChanceBoost)
+                .chancedOutput(dustTiny, MRMaterials.MatterAmplifier, 2, AmplifierChance, AmplifierChanceBoost)
+                .chancedOutput(dustTiny, MRMaterials.MatterAmplifier, 2, AmplifierChance, AmplifierChanceBoost)
+                .chancedOutput(dustTiny, MRMaterials.MatterAmplifier, 1, AmplifierChance, AmplifierChanceBoost)
+                .chancedOutput(dustTiny, MRMaterials.MatterAmplifier, 1, AmplifierChance, AmplifierChanceBoost)
+                .chancedOutput(dustTiny, MRMaterials.MatterAmplifier, 1, AmplifierChance, AmplifierChanceBoost)
+                .duration(256).EUt(VA[LV]).buildAndRegister();
 
         EXTRACTOR_RECIPES.recipeBuilder()
-                .input(SCRAP_BOX)
+                .input(dust, MRMaterials.MatterAmplifier)
                 .fluidOutputs(MRMaterials.MatterAmplifier.getFluid(10))
                 .duration(BaseTime_D / 4).EUt(VA[EV]).buildAndRegister();
     }

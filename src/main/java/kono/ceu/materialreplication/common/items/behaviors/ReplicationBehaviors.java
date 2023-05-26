@@ -30,19 +30,19 @@ public class ReplicationBehaviors implements IItemBehaviour {
             String Charged = I18n.format(ChargedMatter.getUnlocalizedName());
             String Neutral = I18n.format(NeutralMatter.getUnlocalizedName());
 
-            lines.add(I18n.format("behavior.usb.replicate"));
-            lines.add(I18n.format("behavior.usb.replicate_data1", materialName));
+            lines.add(I18n.format("behaviour.usb.replicate"));
+            lines.add(I18n.format("behaviour.usb.replicate_data1", materialName));
             if (TooltipHelper.isShiftDown()){
-                lines.add(BLINKING_GRAY_FAST + I18n.format("behavior.usb.replicate_data2"));
+                lines.add(BLINKING_GRAY_FAST + I18n.format("behaviour.usb.replicate_data2"));
                 if (materialStack.getNeutrons() > 0) {
-                    lines.add(I18n.format("behavior.usb.replicate_data3", Neutral, materialStack.getNeutrons()));
+                    lines.add(I18n.format("behaviour.usb.replicate_data3", Neutral, materialStack.getNeutrons()));
                 }
                 if (materialStack.getProtons() > 0) {
-                    lines.add(I18n.format("behavior.usb.replicate_data4", Charged, materialStack.getProtons()));
+                    lines.add(I18n.format("behaviour.usb.replicate_data4", Charged, materialStack.getProtons()));
                 }
             }
         } else {
-            lines.add(I18n.format("behavior.usb.no_data"));
+            lines.add(I18n.format("behaviour.usb.no_data"));
         }
     }
 }

@@ -9,7 +9,6 @@ import gregtech.api.unification.OreDictUnifier;
 import kono.ceu.materialreplication.MRConfig;
 import kono.ceu.materialreplication.api.MRValues;
 import kono.ceu.materialreplication.api.unification.materials.MRMaterials;
-import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.Loader;
 
 import static gregtech.api.GTValues.*;
@@ -17,35 +16,32 @@ import static gregtech.api.recipes.RecipeMaps.*;
 import static gregtech.api.unification.material.Materials.*;
 import static gregtech.api.unification.ore.OrePrefix.*;
 import static gregtech.common.items.MetaItems.*;
+import static kono.ceu.materialreplication.api.unification.materials.MRMaterials.MatterAmplifier;
+import static kono.ceu.materialreplication.api.unification.materials.MRMaterials.PrimalMatter;
 import static kono.ceu.materialreplication.common.items.MRMetaItems.USB_STICK;
 
 public class MRMiscRecipeLoader {
-    public static void init() {
-        materialRecipe();
-        miscRecipe();
-    }
 
-    public static void materialRecipe(){
+    public static void removeMaterialRecipe() {
         //PrimalMatter
         ModHandler.removeRecipeByName("gregtech:small_dust_assembling_primal_matter"); //tiny x9 -> dust x1
         ModHandler.removeRecipeByName("gregtech:tiny_dust_assembling_primal_matter"); //small x4 -> dust x1
 
         GTRecipeHandler.removeRecipesByInputs(RecipeMaps.PACKER_RECIPES,
-                new ItemStack[]{
-                        OreDictUnifier.get(dustSmall, MRMaterials.PrimalMatter, 4),
-                        IntCircuitIngredient.getIntegratedCircuit(1)
-                });
+                OreDictUnifier.get(dustTiny, MatterAmplifier, 9),
+                IntCircuitIngredient.getIntegratedCircuit(1));
 
         GTRecipeHandler.removeRecipesByInputs(RecipeMaps.PACKER_RECIPES,
-                new ItemStack[]{
-                        OreDictUnifier.get(dustTiny, MRMaterials.PrimalMatter, 9),
-                        IntCircuitIngredient.getIntegratedCircuit(1)
-                });
+                OreDictUnifier.get(dustTiny, PrimalMatter, 9),
+                IntCircuitIngredient.getIntegratedCircuit(1));
 
         GTRecipeHandler.removeRecipesByInputs(RecipeMaps.EXTRACTOR_RECIPES,
-                new ItemStack[]{
-                        OreDictUnifier.get(dust, MRMaterials.PrimalMatter)
-                });
+                OreDictUnifier.get(dust, PrimalMatter));
+        GTRecipeHandler.removeRecipesByInputs(RecipeMaps.EXTRACTOR_RECIPES,
+                OreDictUnifier.get(dust, MatterAmplifier));
+    }
+
+    public static void addMaterialRecipe(){
 
         EXTRACTOR_RECIPES.recipeBuilder()
                 .input(dustTiny, MRMaterials.PrimalMatter)
