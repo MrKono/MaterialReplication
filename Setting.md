@@ -1,8 +1,8 @@
 # Mod Setting
 ## Machine Setting
-Duration of Deconstructor / Replicator is too short/too long? <br>
-Voltage of Deconstructor / Replicator is too Low/too High? <br>
-Want to disable sample consumption in Replicator? <br>
+Duration of Deconstructor / Replicator / Scan is too short/too long? <br>
+Voltage of Deconstructor / Replicator / Scan is too Low/too High? <br>
+Chance of getting Scrap / Matter Amplifier is too Low? <br>
 
 These can be changed in configuration file.<br>
 Please see materialreplication.cfg in your config folder.

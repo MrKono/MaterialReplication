@@ -10,6 +10,8 @@ public final class MRMetaItems {
     }
 
     public static MetaItem<?>.MetaValueItem USB_STICK;
+    public static MetaItem<?>.MetaValueItem SCRAP;
+    public static MetaItem<?>.MetaValueItem SCRAP_BOX;
 
     public static void init() {
         MRMetaItem1 metaItem1 = new MRMetaItem1();

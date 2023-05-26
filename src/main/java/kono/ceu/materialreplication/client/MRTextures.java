@@ -8,8 +8,12 @@ import static gregtech.client.renderer.texture.cube.OrientedOverlayRenderer.Over
 
 @Mod.EventBusSubscriber(modid =  "materialreplication", value = Side.CLIENT)
 public class MRTextures {
-    public static OrientedOverlayRenderer DECONSTRUCTOR_OVERRAY = new OrientedOverlayRenderer("deconstructor", FRONT);
-    public static OrientedOverlayRenderer REPLICATOR_OVERRAY = new OrientedOverlayRenderer("replicator", FRONT);
+    //CEu
+    public static OrientedOverlayRenderer SCRAPPER_OVERLAY = new OrientedOverlayRenderer ("machines/recycler");
+
+    //Original
+    public static OrientedOverlayRenderer DECONSTRUCTOR_OVERLAY = new OrientedOverlayRenderer("machines/deconstructor", FRONT);
+    public static OrientedOverlayRenderer REPLICATOR_OVERLAY = new OrientedOverlayRenderer("machines/replicator", FRONT);
     public static void preInit() {
     }
 }

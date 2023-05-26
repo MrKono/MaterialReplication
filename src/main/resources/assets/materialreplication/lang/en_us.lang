@@ -1,7 +1,22 @@
+# Item
+metaitem.usb_stick.name=USB Stick
+metaitem.scrap.name=Scrap
+metaitem.scrap.tooltip=Get it from Scrap Maker
+metaitem.scrap_box.name=Scrap Box
+metaitem.scrap_box.tooltip=§8§oScrap §o§lBox§r§8§o...? No, it's a §o§lBlock§r§8.
+
+# behaviour
+behaviour.usb.no_data=Saving for Material Data
+behaviour.usb.replicate=Contain Material Data tobe used in Material Replicator
+behaviour.usb.replicate_data1=Replication Material: §a%s
+behaviour.usb.replicate_data2=Amount of Matter required when replication
+behaviour.usb.replicate_data3=§4%s§7 : %s L
+behaviour.usb.replicate_data4=§3%s§7 : %s L
 # Material
 material.primal_matter=Primal Matter
 material.charged_matter=Charged Matter
 material.neutral_matter=Neutral Matter
+material.matter_amplifier=Matter Amplifier
 
 # Machine
 # Material Deconstructor
@@ -34,6 +49,28 @@ materialreplication.machine.replicator.uiv.name=Epic Material Replicator III
 materialreplication.machine.replicator.uxv.name=Epic Material Replicator IV
 materialreplication.machine.replicator.opv.name=Legendary Material Replicator
 
+# Scrap Maker
+materialreplication.machine.scrapmaker.lv.name=Basic Scrap Maker
+materialreplication.machine.scrapmaker.mv.name=Advanced Scrap Maker
+materialreplication.machine.scrapmaker.hv.name=Advanced Scrap Maker II
+materialreplication.machine.scrapmaker.ev.name=Advanced Scrap Maker III
+materialreplication.machine.scrapmaker.iv.name=Elite Scrap Maker
+materialreplication.machine.scrapmaker.luv.name=Elite Scrap Maker II
+materialreplication.machine.scrapmaker.zpm.name=Elite Scrap Maker III
+materialreplication.machine.scrapmaker.uv.name=Ultimate Scrap Maker
+materialreplication.machine.scrapmaker.uhv.name=Epic Scrap Maker
+materialreplication.machine.scrapmaker.uev.name=Epic Scrap Maker II
+materialreplication.machine.scrapmaker.uiv.name=Epic Scrap Maker III
+materialreplication.machine.scrapmaker.uxv.name=Epic Scrap Maker IV
+materialreplication.machine.scrapmaker.opv.name=Legendary Scrap Maker
+materialreplication.machine.scrapmaker.warning1=Anything to be Scrap
+materialreplication.machine.scrapmaker.warning2.1=WARNING :
+materialreplication.machine.scrapmaker.warning2.2= §lAccepts ALL ITEMS and ALL LIQUID
+materialreplication.machine.scrapmaker.warning3.1=Produce rate :
+materialreplication.machine.scrapmaker.warning3.2= %s%% +%s%%/tier
+
 # Recipe map
 recipemap.deconstruction.name=Material Deconstruction
 recipemap.replication.name=Material Replication
+recipemap.replication.property1=Required a USB Stick with
+recipemap.replication.property2= a scan of the material

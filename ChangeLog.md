@@ -1,4 +1,31 @@
 # ChangeLog (更新履歴)
+### v 1.0.0
+**_EN_**<br>
+**Please regenerate config file**<br>
+**Update**<br>
+GTCEu 2.6.0 -> 2.6.2 <br>
+
+**Add** <br>
+- Scrap Maker
+  - Produce scrap from **ANY** items and liquid
+- Scan System
+  - Required material data for replicating　(like GT5u)
+- UUMatter Recipe
+  - Add UUMatter Recipe (toggled by config. Default : false)
+
+**_JP_**<br>
+**configファイルを再生成してください**<br>
+**更新**<br>
+GTCEu 2.6.0 -> 2.6.2 <br>
+
+**追加** <br>
+- スクラップ製造機
+  - **全ての**アイテム及び液体からスクラップを生産する
+- スキャンシステム
+  - (GT5uのように) 複製に素材データが要求される 
+- UUMatterのレシピ
+  - UUMatterのレシピを追加する (cfgで切り替え可能。デフォルトでは追加されない)
+
 ### v 0.0.7
 **_EN_**<br>
 **Update**<br>

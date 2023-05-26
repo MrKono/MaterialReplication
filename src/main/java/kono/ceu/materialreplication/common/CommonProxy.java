@@ -2,13 +2,12 @@ package kono.ceu.materialreplication.common;
 
 
 import gregtech.api.GregTechAPI;
-import kono.ceu.materialreplication.common.items.MRMetaItems;
-import kono.ceu.materialreplication.common.machines.MRMetaTileEntities;
+import kono.ceu.materialreplication.api.MRValues;
 import kono.ceu.materialreplication.api.unification.materials.MRMaterials;
 import kono.ceu.materialreplication.api.unification.materials.flags.MRMaterialFlagAddition;
-import kono.ceu.materialreplication.loaders.recipe.MRMaterialRecipeLoader;
+import kono.ceu.materialreplication.common.items.MRMetaItems;
+import kono.ceu.materialreplication.common.machines.MRMetaTileEntities;
 import kono.ceu.materialreplication.loaders.recipe.MRRecipes;
-import kono.ceu.materialreplication.loaders.recipe.MRMachineRecipeLoader;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
@@ -24,7 +23,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import java.util.function.Function;
 
 
-@Mod.EventBusSubscriber(modid = "materialreplication")
+@Mod.EventBusSubscriber(modid = MRValues.MODID)
 public class CommonProxy {
     public void preInit(FMLPreInitializationEvent e) {
         MRMetaItems.init();
@@ -53,17 +52,17 @@ public class CommonProxy {
     public static void registerMaterials(GregTechAPI.MaterialEvent event) {
         MRMaterials.init();
         MRMaterialFlagAddition.init();
+        MRMaterials.orePrefix();
     }
 
     @SubscribeEvent(priority = EventPriority.LOW)
     public static void registerRecipesRemoval(RegistryEvent.Register<IRecipe> event) {
-        MRMaterialRecipeLoader.init();
+        MRRecipes.removeRecipe();
     }
 
     @SubscribeEvent()
     public static void registerRecipes(RegistryEvent.Register<IRecipe> event){
-        MRMachineRecipeLoader.init();
-        MRRecipes.init();
+        MRRecipes.addRecipe();
     }
 }
 
