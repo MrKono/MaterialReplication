@@ -11,23 +11,29 @@ public class MRMaterialFlagAddition {
     public static void init() {
         // Deconstruction & Replication Blacklist
         for (String both : MRConfig.blacklist.blacklistForMatter) {
-            Material blacklistNatter = GregTechAPI.MaterialRegistry.get(both);
-            if (blacklistNatter == null) continue;
-            blacklistNatter.addFlags(DISABLE_DECONSTRUCTION, DISABLE_REPLICATION);
+            if (!both.isEmpty()) {
+                Material blacklistNatter = GregTechAPI.MaterialRegistry.get(both);
+                if (blacklistNatter == null) continue;
+                blacklistNatter.addFlags(DISABLE_DECONSTRUCTION, DISABLE_REPLICATION);
+            }
         }
 
         // Deconstruction Blacklist
         for (String deconstruction : MRConfig.blacklist.blacklistForDeconstruction) {
-           Material blacklistDeconstruct = GregTechAPI.MaterialRegistry.get(deconstruction);
-           if (blacklistDeconstruct == null) continue;
-           blacklistDeconstruct.addFlags(DISABLE_DECONSTRUCTION);
+            if (!deconstruction.isEmpty()) {
+                Material blacklistDeconstruct = GregTechAPI.MaterialRegistry.get(deconstruction);
+                if (blacklistDeconstruct == null) continue;
+                blacklistDeconstruct.addFlags(DISABLE_DECONSTRUCTION);
+            }
         }
 
         // Replication Blacklist
         for (String replication : MRConfig.blacklist.blacklistForReplication) {
-            Material blacklistReplicate = GregTechAPI.MaterialRegistry.get(replication);
-            if (replication == null) continue;
-            blacklistReplicate.addFlags(DISABLE_REPLICATION);
+            if (!replication.isEmpty()) {
+                Material blacklistReplicate = GregTechAPI.MaterialRegistry.get(replication);
+                if (replication == null) continue;
+                blacklistReplicate.addFlags(DISABLE_REPLICATION);
+            }
         }
     }
 }
