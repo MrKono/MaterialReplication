@@ -9,4 +9,6 @@ public class MRMaterialFlags {
 
     // 複製できないようにするFlag
     public static final MaterialFlag DISABLE_REPLICATION = new MaterialFlag.Builder("no_replication").build();
+
+
 }
