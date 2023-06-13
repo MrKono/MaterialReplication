@@ -34,7 +34,7 @@ public class MRConfig {
 
     public static class MaterialOption {
         // TODO Make Blacklist from Config
-        @Config.Comment({"Can deconstruct/replicate material which does not have chemical formula"})
+        @Config.Comment({"Add material to Deconstruct/Replicate whitelist which does not have chemical formula"})
         public String[] WhitelistMaterial = new String[] {
                 "glowstone"
         };

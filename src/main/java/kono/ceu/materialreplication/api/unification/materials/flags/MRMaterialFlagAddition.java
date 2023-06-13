@@ -9,12 +9,14 @@ import static kono.ceu.materialreplication.api.unification.materials.flags.MRMat
 
 public class MRMaterialFlagAddition {
     public static void init() {
+
+        // Does not have chemical formula
         for (Material material : GregTechAPI.MATERIAL_REGISTRY) {
             for (String white : MRConfig.materialOption.WhitelistMaterial) {
                 Material whitelist = GregTechAPI.MaterialRegistry.get(white);
                 if (material.getChemicalFormula().isEmpty()) {
                     if (material != whitelist) {
-                        material.addFlags(DISABLE_REPLICATION, DISABLE_REPLICATION);
+                        material.addFlags(DISABLE_REPLICATION, DISABLE_DECONSTRUCTION);
                     }
                 }
             }
