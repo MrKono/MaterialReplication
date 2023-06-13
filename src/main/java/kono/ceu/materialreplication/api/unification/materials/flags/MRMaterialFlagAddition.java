@@ -42,7 +42,7 @@ public class MRMaterialFlagAddition {
         for (String replication : MRConfig.materialOption.blacklistForReplication) {
             if (!replication.isEmpty()) {
                 Material blacklistReplicate = GregTechAPI.MaterialRegistry.get(replication);
-                if (replication == null ) continue;
+                if (blacklistReplicate == null ) continue;
                 blacklistReplicate.addFlags(DISABLE_REPLICATION);
             }
         }
