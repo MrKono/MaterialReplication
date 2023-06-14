@@ -41,7 +41,7 @@ public class MRConfig {
 
         @Config.Comment({"Material Blacklist for Deconstruction and Replication",
                 "This setting is valid only for materials with chemical formulas or materials specified in \"WhitelistMaterial\"",
-                "Default: concrete, stone, "})
+                "Default:"})
         public String[] blacklistForMatter = new String[]{
         };
 
@@ -51,7 +51,7 @@ public class MRConfig {
         public String[] blacklistForDeconstruction = new String[]{
                 "granite", "andesite", "diorite", "clay", "brick", "obsidian", "flint", "ice", "charcoal", "gunpowder", "sugar",
                 "granite_black","granite_red", "marble", "basalt", "quicklime", "redrock", "ash", "concrete",
-                "rare_earth", "dark_ash", "water", "distilled_water", "steam"
+                "dark_ash", "water", "distilled_water", "steam"
         };
 
         @Config.Comment({"Material Blacklist for Replication",
