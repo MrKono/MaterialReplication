@@ -51,7 +51,6 @@ public class CommonProxy {
     @SubscribeEvent(priority = EventPriority.HIGH)
     public static void registerMaterials(GregTechAPI.MaterialEvent event) {
         MRMaterials.init();
-        MRMaterialFlagAddition.init();
         MRMaterials.orePrefix();
     }
 
@@ -60,7 +59,12 @@ public class CommonProxy {
         MRRecipes.removeRecipe();
     }
 
-    @SubscribeEvent()
+    @SubscribeEvent(priority = EventPriority.LOW)
+    public static void registerMaterialFlags(GregTechAPI.MaterialEvent event) {
+        MRMaterialFlagAddition.init();
+    }
+
+    @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void registerRecipes(RegistryEvent.Register<IRecipe> event){
         MRRecipes.addRecipe();
     }

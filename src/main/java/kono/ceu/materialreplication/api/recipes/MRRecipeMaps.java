@@ -65,7 +65,7 @@ public class MRRecipeMaps {
                 List<Material> materialDusts = new ArrayList<>();
                 List<Material> materialFluids = new ArrayList<>();
                 // 対象を仕分け
-                if (!replicateMaterial.getChemicalFormula().isEmpty()) { // Has Chemical Formula? 化学式を持っているか
+                if (!replicateMaterial.hasFlag(MRMaterialFlags.DISABLE_REPLICATION)) {
                     if (replicateMaterial.hasProperty(PropertyKey.DUST)) { // Has Dust Property? Propertyにdustがあるか
                         materialDusts.add(replicateMaterial);
                     } else if (replicateMaterial.hasProperty(PropertyKey.FLUID)) { // Has Fluid Property? ないならPropertyにFluidがあるか
@@ -75,26 +75,23 @@ public class MRRecipeMaps {
 
                 //スキャンレシピ (Assemblerで代用)
                 for (Material materialDust : materialDusts) {
-                    if (!materialDust.hasFlag(MRMaterialFlags.DISABLE_REPLICATION)) {
-                        RecipeMaps.ASSEMBLER_RECIPES.recipeBuilder()
-                                .input(MRMetaItems.USB_STICK)
-                                .input(OrePrefix.dust, materialDust)
-                                .outputs(usb)
-                                .EUt(builder.getVoltage())
-                                .duration(builder.getDuration())
-                                .buildAndRegister();
-                    }
+                    RecipeMaps.ASSEMBLER_RECIPES.recipeBuilder()
+                            .input(MRMetaItems.USB_STICK)
+                            .input(OrePrefix.dust, materialDust)
+                            .outputs(usb)
+                            .EUt(builder.getVoltage())
+                            .duration(builder.getDuration())
+                            .buildAndRegister();
+
                 }
                 for (Material materialFluid : materialFluids) {
-                    if (!materialFluid.hasFlag(MRMaterialFlags.DISABLE_REPLICATION)) {
-                        RecipeMaps.ASSEMBLER_RECIPES.recipeBuilder()
-                                .input(MRMetaItems.USB_STICK)
-                                .fluidInputs(materialFluid.getFluid(1000))
-                                .outputs(usb)
-                                .EUt(builder.getVoltage())
-                                .duration(builder.getDuration())
-                                .buildAndRegister();
-                    }
+                    RecipeMaps.ASSEMBLER_RECIPES.recipeBuilder()
+                            .input(MRMetaItems.USB_STICK)
+                            .fluidInputs(materialFluid.getFluid(1000))
+                            .outputs(usb)
+                            .EUt(builder.getVoltage())
+                            .duration(builder.getDuration())
+                            .buildAndRegister();
                 }
             });
 

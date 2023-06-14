@@ -36,14 +36,12 @@ public class MRMachineRecipeLoader {
         List<Material> materialDusts = new ArrayList<>();
         List<Material> materialFluids = new ArrayList<>();
        for (Material material : GregTechAPI.MATERIAL_REGISTRY) {
-            if (!material.getChemicalFormula().isEmpty()) { // Has Chemical Formula? 化学式を持っているか
-                if (material.hasProperty(PropertyKey.DUST)) { // Has Dust Property? Propertyにdustがあるか
-                    materialDusts.add(material);
-                } else if (material.hasProperty(PropertyKey.FLUID)) { // Has Fluid Property? ないならPropertyにFluidがあるか
-                    materialFluids.add(material);
-                }
-            }
-        }
+           if (material.hasProperty(PropertyKey.DUST)) { // Has Dust Property? Propertyにdustがあるか
+               materialDusts.add(material);
+           } else if (material.hasProperty(PropertyKey.FLUID)) { // Has Fluid Property? ないならPropertyにFluidがあるか
+               materialFluids.add(material);
+           }
+       }
 
         for (Material materialDust : materialDusts) {
             // Has dust property material. dustがあるmaterial
@@ -84,7 +82,6 @@ public class MRMachineRecipeLoader {
             }
 
         for (Material materialFluid : materialFluids) {
-            //Has Fluid property, not dust. dustはないがFluidはある
             // Deconstruction
             if (!materialFluid.hasFlag(MRMaterialFlags.DISABLE_DECONSTRUCTION)) {
                 MRRecipeMaps.DECONSTRUCTION_RECIPES.recipeBuilder()
@@ -119,7 +116,6 @@ public class MRMachineRecipeLoader {
                         .buildAndRegister();
             }
         }
-
         // Primal -> Charged & Neutral
         CENTRIFUGE_RECIPES.recipeBuilder()
                 .fluidInputs(MRMaterials.PrimalMatter.getFluid(1))

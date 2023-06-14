@@ -6,41 +6,11 @@ import net.minecraftforge.common.config.Config;
 
 @Config(modid = MRValues.MODID)
 public class MRConfig {
-    /*
-    private static class ItemKey
-    {
-        private Item item;
-        private int metadata;
 
-        @Override
-        public int hashCode()
-        {
-            return item.hashCode() * 31 + metadata;
-        }
-
-        @Override
-        public boolean equals(Object obj)
-        {
-            if (obj instanceof ItemKey)
-            {
-                ItemKey key = (ItemKey) obj;
-                return item == key.item && metadata == key.metadata;
-            }
-
-            return false;
-        }
-
-        @Override
-        public String toString()
-        {
-            return item.getRegistryName() + "@" + metadata;
-        }
-    }*/
-
-    @Config.Comment("Config option for Blacklist")
-    @Config.Name("Blacklist Options")
+    @Config.Comment("Config option of materials for Deconstruction/Replication")
+    @Config.Name("Material Options")
     @Config.RequiresMcRestart
-    public static BlackListOptions blacklist = new  BlackListOptions();
+    public static MaterialOption materialOption = new MaterialOption();
 
     @Config.Comment("Config option for Deconstruction")
     @Config.Name("Deconstruction Settings")
@@ -62,21 +32,33 @@ public class MRConfig {
     @Config.RequiresMcRestart
     public static RecipeOptions recipe = new RecipeOptions();
 
-
-    public static class BlackListOptions {
+    public static class MaterialOption {
         // TODO Make Blacklist from Config
-        @Config.Comment("Material Blacklist for Deconstruction and Replication")
-        public String[] blacklistForMatter = new String[0];
+        @Config.Comment({"Add material to Deconstruct/Replicate whitelist which does not have chemical formula"})
+        public String[] WhitelistMaterial = new String[] {
+                "glowstone"
+        };
 
-        @Config.Comment("Material Blacklist for Deconstruction")
-        public String[] blacklistForDeconstruction = new String[0];
+        @Config.Comment({"Material Blacklist for Deconstruction and Replication",
+                "This setting is valid only for materials with chemical formulas or materials specified in \"WhitelistMaterial\"",
+                "Default:"})
+        public String[] blacklistForMatter = new String[]{
+        };
 
-        @Config.Comment("Material Blacklist for Replication")
-        public String[] blacklistForReplication = new String[0];
+        @Config.Comment({"Material Blacklist for Deconstruction",
+                "This setting is valid only for materials with chemical formulas or materials specified in \"WhitelistMaterial\"",
+                "Default: "})
+        public String[] blacklistForDeconstruction = new String[]{
+                "granite", "andesite", "diorite", "clay", "brick", "obsidian", "flint", "ice", "charcoal", "gunpowder", "sugar",
+                "granite_black","granite_red", "marble", "basalt", "quicklime", "redrock", "ash", "concrete",
+                "dark_ash", "water", "distilled_water", "steam"
+        };
 
-        @Config.Comment("Item Blacklist for ScrapMaker")
-        public String[] blacklistForScrap = new String[0];
-
+        @Config.Comment({"Material Blacklist for Replication",
+                "This setting is valid only for materials with chemical formulas or materials specified in \"WhitelistMaterial\"",
+                "Default: "})
+        public String[] blacklistForReplication = new String[]{
+        };
     }
 
     public static class DeconstructionOptions {
@@ -123,7 +105,7 @@ public class MRConfig {
 
     public static class RecipeOptions {
         @Config.Comment({"Whether to add the UUMatter recipe.", "If you install Gregification and Forestry, this will be ignored.",
-        "Default : false"})
+                "Default : false"})
         public boolean addUUMatterRecipe = false;
     }
 }
