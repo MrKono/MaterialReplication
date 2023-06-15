@@ -1,4 +1,12 @@
 # ChangeLog (更新履歴)
+## v 1.0.2
+**_EN_** <br>
+**hotfix**
+- Fix Scrap Maker tooltip<br>
+
+**_JP_** <br>
+**hotfix**
+- スクラップ製造機のtooltipを修正
 ## v 1.0.1
 **_EN_**<br>
 **Please regenerate config file**<br>

@@ -1,5 +1,6 @@
 package kono.ceu.materialreplication.common.machines;
 
+import gregtech.api.GTValues;
 import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.metatileentity.SimpleMachineMetaTileEntity;
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
@@ -35,6 +36,8 @@ public class MetaTileEntityScrapMaker extends SimpleMachineMetaTileEntity {
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, @Nullable World player, List<String> tooltip, boolean advanced) {
         tooltip.add(I18n.format("materialreplication.machine.scrapmaker.warning1"));
+        tooltip.add(I18n.format("gregtech.universal.tooltip.max_voltage_in", energyContainer.getInputVoltage(), GTValues.VNF[getTier()]));
+        tooltip.add(I18n.format("gregtech.universal.tooltip.energy_storage_capacity", energyContainer.getEnergyCapacity()));
         tooltip.add(I18n.format("materialreplication.machine.scrapmaker.warning2.1") +
                 TooltipHelper.BLINKING_RED + I18n.format("materialreplication.machine.scrapmaker.warning2.2"));
         if (TooltipHelper.isShiftDown()){
