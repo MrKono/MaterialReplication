@@ -25,7 +25,7 @@ public class ReplicationBehaviors implements IItemBehaviour {
         NBTTagCompound replicateMaterialNBT = itemStack.getSubCompound(IReplicatorRecipeMap.REPLICATE_NBT_TAG);
         if (replicateMaterialNBT != null) {
             String string = replicateMaterialNBT.getString(IReplicatorRecipeMap.REPLICATE_MATERIAL);
-            Material materialStack = GregTechAPI.MaterialRegistry.get(string);
+            Material materialStack = GregTechAPI.materialManager.getMaterial(string);
             String materialName = I18n.format(materialStack.getUnlocalizedName());
             String Charged = I18n.format(ChargedMatter.getUnlocalizedName());
             String Neutral = I18n.format(NeutralMatter.getUnlocalizedName());

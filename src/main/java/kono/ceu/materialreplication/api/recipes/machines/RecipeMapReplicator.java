@@ -22,7 +22,7 @@ public class RecipeMapReplicator extends RecipeMap<ReplicatorRecipeBuilder> impl
     }
 
     @Override
-    public void addRecipe(ValidationResult<Recipe> validationResult) {
+    public boolean addRecipe(ValidationResult<Recipe> validationResult) {
         super.addRecipe(validationResult);
         if (validationResult.getType() == EnumValidationResult.INVALID) {
             Recipe recipe = validationResult.getResult();
@@ -31,6 +31,7 @@ public class RecipeMapReplicator extends RecipeMap<ReplicatorRecipeBuilder> impl
                 if (!replicateID.isEmpty()) addUSBEntry(replicateID, recipe);
             }
         }
+        return false;
     }
 
     @Override

@@ -1,7 +1,7 @@
 package kono.ceu.materialreplication.common;
 
 
-import gregtech.api.GregTechAPI;
+import gregtech.api.unification.material.event.MaterialEvent;
 import kono.ceu.materialreplication.api.MRValues;
 import kono.ceu.materialreplication.api.unification.materials.MRMaterials;
 import kono.ceu.materialreplication.api.unification.materials.flags.MRMaterialFlagAddition;
@@ -49,7 +49,7 @@ public class CommonProxy {
         return itemBlock;
     }
     @SubscribeEvent(priority = EventPriority.HIGH)
-    public static void registerMaterials(GregTechAPI.MaterialEvent event) {
+    public static void registerMaterials(MaterialEvent event) {
         MRMaterials.init();
         MRMaterials.orePrefix();
     }
@@ -60,7 +60,7 @@ public class CommonProxy {
     }
 
     @SubscribeEvent(priority = EventPriority.LOW)
-    public static void registerMaterialFlags(GregTechAPI.MaterialEvent event) {
+    public static void registerMaterialFlags(MaterialEvent event) {
         MRMaterialFlagAddition.init();
     }
 

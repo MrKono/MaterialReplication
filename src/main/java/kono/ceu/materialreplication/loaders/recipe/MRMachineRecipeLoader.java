@@ -35,7 +35,7 @@ public class MRMachineRecipeLoader {
     public static void recipeMatter() {
         List<Material> materialDusts = new ArrayList<>();
         List<Material> materialFluids = new ArrayList<>();
-       for (Material material : GregTechAPI.MATERIAL_REGISTRY) {
+       for (Material material : GregTechAPI.materialManager.getRegisteredMaterials()) {
            if (material.hasProperty(PropertyKey.DUST)) { // Has Dust Property? Propertyにdustがあるか
                materialDusts.add(material);
            } else if (material.hasProperty(PropertyKey.FLUID)) { // Has Fluid Property? ないならPropertyにFluidがあるか

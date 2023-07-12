@@ -47,10 +47,9 @@ public class MRRecipeMaps {
             .setSlotOverlay(true, true, GuiTextures.VIAL_OVERLAY_1) // Fluid Output
             .setProgressBar(GuiTextures.PROGRESS_BAR_REPLICATOR, ProgressWidget.MoveType.HORIZONTAL)
             .onRecipeBuild(recipeBuilder -> {
-                ReplicatorRecipeBuilder builder = (ReplicatorRecipeBuilder) recipeBuilder;
-                if (!builder.scanRecipe()) return;
+                if (!recipeBuilder.scanRecipe()) return;
 
-                String replicateId = builder.getReplicateID();
+                String replicateId = recipeBuilder.getReplicateID();
                 if (replicateId.isEmpty()) return;
 
                 NBTTagCompound compound = new NBTTagCompound();
@@ -60,7 +59,7 @@ public class MRRecipeMaps {
                 ItemStack usb = MRMetaItems.USB_STICK.getStackForm();
                 usb.setTagCompound(compound);
 
-                Material replicateMaterial = builder.getReplicationMaterial();
+                Material replicateMaterial = recipeBuilder.getReplicationMaterial();
 
                 List<Material> materialDusts = new ArrayList<>();
                 List<Material> materialFluids = new ArrayList<>();
@@ -73,24 +72,23 @@ public class MRRecipeMaps {
                     }
                 }
 
-                //スキャンレシピ (Assemblerで代用)
                 for (Material materialDust : materialDusts) {
-                    RecipeMaps.ASSEMBLER_RECIPES.recipeBuilder()
+                    RecipeMaps.SCANNER_RECIPES.recipeBuilder()
                             .input(MRMetaItems.USB_STICK)
                             .input(OrePrefix.dust, materialDust)
                             .outputs(usb)
-                            .EUt(builder.getVoltage())
-                            .duration(builder.getDuration())
+                            .EUt(recipeBuilder.getVoltage())
+                            .duration(recipeBuilder.getDuration())
                             .buildAndRegister();
 
                 }
                 for (Material materialFluid : materialFluids) {
-                    RecipeMaps.ASSEMBLER_RECIPES.recipeBuilder()
+                    RecipeMaps.SCANNER_RECIPES.recipeBuilder()
                             .input(MRMetaItems.USB_STICK)
                             .fluidInputs(materialFluid.getFluid(1000))
                             .outputs(usb)
-                            .EUt(builder.getVoltage())
-                            .duration(builder.getDuration())
+                            .EUt(recipeBuilder.getVoltage())
+                            .duration(recipeBuilder.getDuration())
                             .buildAndRegister();
                 }
             });
