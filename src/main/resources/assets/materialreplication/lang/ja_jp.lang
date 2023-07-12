@@ -12,8 +12,6 @@ behaviour.usb.replicate_data1=複製対象: §a%s
 behaviour.usb.replicate_data2=複製時の要求マター量
 behaviour.usb.replicate_data3=§4%s§7 : %s L
 behaviour.usb.replicate_data4=§3%s§7 : %s L
-behaviour.scrap.information2.1=入手確率 : 
-behaviour.scrap.information2.2= %s%% +%s%%/tier
 
 # Material
 gregtech.material.primal_matter=プライマルマター
