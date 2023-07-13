@@ -1,10 +1,7 @@
 package kono.ceu.materialreplication.common;
 
 
-import gregtech.api.unification.material.event.MaterialEvent;
 import kono.ceu.materialreplication.api.MRValues;
-import kono.ceu.materialreplication.api.unification.materials.MRMaterials;
-import kono.ceu.materialreplication.api.unification.materials.flags.MRMaterialFlagAddition;
 import kono.ceu.materialreplication.common.items.MRMetaItems;
 import kono.ceu.materialreplication.common.machines.MRMetaTileEntities;
 import kono.ceu.materialreplication.loaders.recipe.MRRecipes;
@@ -48,20 +45,10 @@ public class CommonProxy {
         itemBlock.setRegistryName(block.getRegistryName());
         return itemBlock;
     }
-    @SubscribeEvent(priority = EventPriority.HIGH)
-    public static void registerMaterials(MaterialEvent event) {
-        MRMaterials.init();
-        MRMaterials.orePrefix();
-    }
 
     @SubscribeEvent(priority = EventPriority.LOW)
     public static void registerRecipesRemoval(RegistryEvent.Register<IRecipe> event) {
         MRRecipes.removeRecipe();
-    }
-
-    @SubscribeEvent(priority = EventPriority.LOW)
-    public static void registerMaterialFlags(MaterialEvent event) {
-        MRMaterialFlagAddition.init();
     }
 
     @SubscribeEvent(priority = EventPriority.LOWEST)

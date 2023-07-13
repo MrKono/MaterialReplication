@@ -10,18 +10,6 @@ import static kono.ceu.materialreplication.api.unification.materials.flags.MRMat
 public class MRMaterialFlagAddition {
     public static void init() {
 
-        // Does not have chemical formula
-        for (Material material : GregTechAPI.materialManager.getRegisteredMaterials()) {
-            for (String white : MRConfig.materialOption.WhitelistMaterial) {
-                Material whitelist = GregTechAPI.materialManager.getMaterial(white);
-                if (material.getChemicalFormula().isEmpty()) {
-                    if (material != whitelist) {
-                        material.addFlags(DISABLE_REPLICATION, DISABLE_DECONSTRUCTION);
-                    }
-                }
-            }
-        }
-
         // Deconstruction & Replication Blacklist
         for (String both : MRConfig.materialOption.blacklistForMatter) {
             if (!both.isEmpty()) {
@@ -48,5 +36,20 @@ public class MRMaterialFlagAddition {
                 blacklistReplicate.addFlags(DISABLE_REPLICATION);
             }
         }
+    }
+
+    public static void intLate() {
+        // Does not have chemical formula
+        for (Material material : GregTechAPI.materialManager.getRegisteredMaterials()) {
+            for (String white : MRConfig.materialOption.WhitelistMaterial) {
+                Material whitelist = GregTechAPI.materialManager.getMaterial(white);
+                if (material.getChemicalFormula().isEmpty()) {
+                    if (material != whitelist) {
+                        material.addFlags(DISABLE_REPLICATION, DISABLE_DECONSTRUCTION);
+                    }
+                }
+            }
+        }
+
     }
 }
