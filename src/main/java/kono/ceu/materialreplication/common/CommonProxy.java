@@ -1,7 +1,8 @@
 package kono.ceu.materialreplication.common;
 
 
-import kono.ceu.materialreplication.api.MRValues;
+import kono.ceu.materialreplication.api.util.MRValues;
+import kono.ceu.materialreplication.api.util.MaterialReplicationLog;
 import kono.ceu.materialreplication.common.items.MRMetaItems;
 import kono.ceu.materialreplication.common.machines.MRMetaTileEntities;
 import kono.ceu.materialreplication.loaders.recipe.MRRecipes;
@@ -24,7 +25,6 @@ import java.util.function.Function;
 public class CommonProxy {
     public void preInit(FMLPreInitializationEvent e) {
         MRMetaItems.init();
-        //MRMetaTileEntities.init();
     }
 
     public void init(FMLInitializationEvent e) {
@@ -46,21 +46,23 @@ public class CommonProxy {
         return itemBlock;
     }
 
+    @SubscribeEvent
+    public static void registerRecipes(RegistryEvent.Register<IRecipe> event) {
+        MaterialReplicationLog.logger.info("Registering recipes...");
+        MRMetaTileEntities.init();
+        MRMetaItems.init();
+    }
+
     @SubscribeEvent(priority = EventPriority.LOW)
     public static void registerRecipesRemoval(RegistryEvent.Register<IRecipe> event) {
+        MaterialReplicationLog.logger.info("Removing recipes...");
         MRRecipes.removeRecipe();
     }
 
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void registerRecipesLow(RegistryEvent.Register<IRecipe> event){
+        MaterialReplicationLog.logger.info("Registering recipes...");
         MRRecipes.addRecipe();
-    }
-
-    @SubscribeEvent
-    public static void registerRecipes(RegistryEvent.Register<IRecipe> event) {
-        //MR.logger.info("Registering recipes...");
-        MRMetaTileEntities.init();
-        MRMetaItems.init();
     }
 }
 

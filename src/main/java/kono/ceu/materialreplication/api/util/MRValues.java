@@ -1,4 +1,4 @@
-package kono.ceu.materialreplication.api;
+package kono.ceu.materialreplication.api.util;
 
 import kono.ceu.materialreplication.MRConfig;
 

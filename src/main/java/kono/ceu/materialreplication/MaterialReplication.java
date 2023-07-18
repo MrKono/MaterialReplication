@@ -1,14 +1,13 @@
 package kono.ceu.materialreplication;
 
 import gregtech.GTInternalTags;
-import kono.ceu.materialreplication.api.MRValues;
+import kono.ceu.materialreplication.api.util.MRValues;
 import kono.ceu.materialreplication.common.CommonProxy;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import org.apache.logging.log4j.Logger;
 
 @Mod(modid= MRValues.MODID,
         name = MRValues.MODNAME,
@@ -22,11 +21,9 @@ public class MaterialReplication {
     @Mod.Instance
     public static MaterialReplication instance;
 
-    public static Logger logger;
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event)
     {
-        logger = event.getModLog();
         proxy.preInit(event);
     }
 

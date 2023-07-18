@@ -1,7 +1,7 @@
 package kono.ceu.materialreplication;
 
 
-import kono.ceu.materialreplication.api.MRValues;
+import kono.ceu.materialreplication.api.util.MRValues;
 import net.minecraftforge.common.config.Config;
 
 @Config(modid = MRValues.MODID)

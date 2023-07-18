@@ -22,7 +22,7 @@ import static gregtech.api.GTValues.*;
 import static gregtech.api.recipes.RecipeMaps.*;
 import static gregtech.api.unification.ore.OrePrefix.dust;
 import static gregtech.api.unification.ore.OrePrefix.dustTiny;
-import static kono.ceu.materialreplication.api.MRValues.*;
+import static kono.ceu.materialreplication.api.util.MRValues.*;
 import static kono.ceu.materialreplication.common.items.MRMetaItems.SCRAP;
 import static kono.ceu.materialreplication.common.items.MRMetaItems.SCRAP_BOX;
 
