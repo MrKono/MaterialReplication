@@ -5,6 +5,7 @@ import gregtech.api.recipes.Recipe;
 import gregtech.api.recipes.RecipeBuilder;
 import gregtech.api.recipes.RecipeMap;
 import gregtech.api.unification.material.Material;
+import gregtech.api.unification.material.Materials;
 import gregtech.api.util.EnumValidationResult;
 import gregtech.api.util.GTLog;
 import gregtech.api.util.ValidationResult;
@@ -15,13 +16,13 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import javax.annotation.Nonnull;
 
-import static kono.ceu.materialreplication.api.MRValues.BaseTime_S;
-import static kono.ceu.materialreplication.api.MRValues.Voltage_S;
+import static kono.ceu.materialreplication.api.util.MRValues.BaseTime_S;
+import static kono.ceu.materialreplication.api.util.MRValues.Voltage_S;
 
 public class ReplicatorRecipeBuilder extends RecipeBuilder<ReplicatorRecipeBuilder>  {
 
-    private String materialName = null;
-    private Material replicationMaterial = GregTechAPI.MaterialRegistry.get(materialName);
+    private final String materialName = Materials.NULL.getName();
+    private Material replicationMaterial = GregTechAPI.materialManager.getMaterial(materialName);
     private int Duration = BaseTime_S; // Default : 1200 tick
     private int Voltage = Voltage_S; // Default : 30 EU/t
     private boolean scanRecipe = true;

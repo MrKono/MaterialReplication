@@ -1,10 +1,8 @@
 package kono.ceu.materialreplication.common;
 
 
-import gregtech.api.GregTechAPI;
-import kono.ceu.materialreplication.api.MRValues;
-import kono.ceu.materialreplication.api.unification.materials.MRMaterials;
-import kono.ceu.materialreplication.api.unification.materials.flags.MRMaterialFlagAddition;
+import kono.ceu.materialreplication.api.util.MRValues;
+import kono.ceu.materialreplication.api.util.MaterialReplicationLog;
 import kono.ceu.materialreplication.common.items.MRMetaItems;
 import kono.ceu.materialreplication.common.machines.MRMetaTileEntities;
 import kono.ceu.materialreplication.loaders.recipe.MRRecipes;
@@ -27,7 +25,6 @@ import java.util.function.Function;
 public class CommonProxy {
     public void preInit(FMLPreInitializationEvent e) {
         MRMetaItems.init();
-        MRMetaTileEntities.init();
     }
 
     public void init(FMLInitializationEvent e) {
@@ -48,24 +45,23 @@ public class CommonProxy {
         itemBlock.setRegistryName(block.getRegistryName());
         return itemBlock;
     }
-    @SubscribeEvent(priority = EventPriority.HIGH)
-    public static void registerMaterials(GregTechAPI.MaterialEvent event) {
-        MRMaterials.init();
-        MRMaterials.orePrefix();
+
+    @SubscribeEvent
+    public static void registerRecipes(RegistryEvent.Register<IRecipe> event) {
+        MaterialReplicationLog.logger.info("Registering recipes...");
+        MRMetaTileEntities.init();
+        MRMetaItems.init();
     }
 
     @SubscribeEvent(priority = EventPriority.LOW)
     public static void registerRecipesRemoval(RegistryEvent.Register<IRecipe> event) {
+        MaterialReplicationLog.logger.info("Removing recipes...");
         MRRecipes.removeRecipe();
     }
 
-    @SubscribeEvent(priority = EventPriority.LOW)
-    public static void registerMaterialFlags(GregTechAPI.MaterialEvent event) {
-        MRMaterialFlagAddition.init();
-    }
-
     @SubscribeEvent(priority = EventPriority.LOWEST)
-    public static void registerRecipes(RegistryEvent.Register<IRecipe> event){
+    public static void registerRecipesLow(RegistryEvent.Register<IRecipe> event){
+        MaterialReplicationLog.logger.info("Registering recipes...");
         MRRecipes.addRecipe();
     }
 }

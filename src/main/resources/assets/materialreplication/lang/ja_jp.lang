@@ -12,14 +12,12 @@ behaviour.usb.replicate_data1=複製対象: §a%s
 behaviour.usb.replicate_data2=複製時の要求マター量
 behaviour.usb.replicate_data3=§4%s§7 : %s L
 behaviour.usb.replicate_data4=§3%s§7 : %s L
-behaviour.scrap.information2.1=入手確率 : 
-behaviour.scrap.information2.2= %s%% +%s%%/tier
 
 # Material
-material.primal_matter=プライマルマター
-material.charged_matter=荷電マター
-material.neutral_matter=中性マター
-material.matter_amplifier=マター増幅剤
+gregtech.material.primal_matter=プライマルマター
+gregtech.material.charged_matter=荷電マター
+gregtech.material.neutral_matter=中性マター
+gregtech.material.matter_amplifier=マター増幅剤
 
 # Machine
 # Material Deconstructor

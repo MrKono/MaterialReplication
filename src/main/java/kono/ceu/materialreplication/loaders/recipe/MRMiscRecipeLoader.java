@@ -7,7 +7,7 @@ import gregtech.api.recipes.RecipeMaps;
 import gregtech.api.recipes.ingredients.IntCircuitIngredient;
 import gregtech.api.unification.OreDictUnifier;
 import kono.ceu.materialreplication.MRConfig;
-import kono.ceu.materialreplication.api.MRValues;
+import kono.ceu.materialreplication.api.util.MRValues;
 import kono.ceu.materialreplication.api.unification.materials.MRMaterials;
 import net.minecraftforge.fml.common.Loader;
 

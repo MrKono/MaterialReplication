@@ -1,6 +1,7 @@
 package kono.ceu.materialreplication.api.unification.materials;
 
 import gregtech.api.unification.material.Material;
+import kono.ceu.materialreplication.api.unification.materials.flags.MRMaterialFlagAddition;
 
 import static gregtech.api.unification.ore.OrePrefix.dustSmall;
 
@@ -14,6 +15,7 @@ public class MRMaterials {
 
     public static void init() {
         MRMaterial.init();
+        MRMaterialFlagAddition.init();
     }
     public static void orePrefix() {
         dustSmall.setIgnored(PrimalMatter);

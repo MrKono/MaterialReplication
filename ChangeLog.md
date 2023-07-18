@@ -1,4 +1,17 @@
 # ChangeLog (更新履歴)
+## v 1.1.0
+**_EN_** <br>
+**Update**
+GTCEu 2.6.2-bata -> 2.7.0-bata<br>
+**Change**<br>
+- Change material research machine from Assembler to Scanner<br>
+
+**_JP_** <br>
+**Update**<br>
+GTCEu 2.6.2-bata -> 2.7.0-bata<br>
+**変更**<br>
+- 素材を調査する機械を組立機からスキャナーに変更<br>
+---------
 ## v 1.0.2
 **_EN_** <br>
 **hotfix**

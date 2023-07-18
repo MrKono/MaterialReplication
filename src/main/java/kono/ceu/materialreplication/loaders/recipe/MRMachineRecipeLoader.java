@@ -22,7 +22,7 @@ import static gregtech.api.GTValues.*;
 import static gregtech.api.recipes.RecipeMaps.*;
 import static gregtech.api.unification.ore.OrePrefix.dust;
 import static gregtech.api.unification.ore.OrePrefix.dustTiny;
-import static kono.ceu.materialreplication.api.MRValues.*;
+import static kono.ceu.materialreplication.api.util.MRValues.*;
 import static kono.ceu.materialreplication.common.items.MRMetaItems.SCRAP;
 import static kono.ceu.materialreplication.common.items.MRMetaItems.SCRAP_BOX;
 
@@ -35,7 +35,7 @@ public class MRMachineRecipeLoader {
     public static void recipeMatter() {
         List<Material> materialDusts = new ArrayList<>();
         List<Material> materialFluids = new ArrayList<>();
-       for (Material material : GregTechAPI.MATERIAL_REGISTRY) {
+       for (Material material : GregTechAPI.materialManager.getRegisteredMaterials()) {
            if (material.hasProperty(PropertyKey.DUST)) { // Has Dust Property? Propertyにdustがあるか
                materialDusts.add(material);
            } else if (material.hasProperty(PropertyKey.FLUID)) { // Has Fluid Property? ないならPropertyにFluidがあるか

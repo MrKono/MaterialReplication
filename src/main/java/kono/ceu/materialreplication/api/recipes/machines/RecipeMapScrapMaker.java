@@ -12,8 +12,8 @@ import java.util.List;
 
 import static gregtech.api.GTValues.LV;
 import static gregtech.api.GTValues.VA;
-import static kono.ceu.materialreplication.api.MRValues.ScrapChance;
-import static kono.ceu.materialreplication.api.MRValues.ScrapChanceBoost;
+import static kono.ceu.materialreplication.api.util.MRValues.ScrapChance;
+import static kono.ceu.materialreplication.api.util.MRValues.ScrapChanceBoost;
 import static kono.ceu.materialreplication.common.items.MRMetaItems.SCRAP;
 
 public class RecipeMapScrapMaker extends RecipeMap<SimpleRecipeBuilder> {
