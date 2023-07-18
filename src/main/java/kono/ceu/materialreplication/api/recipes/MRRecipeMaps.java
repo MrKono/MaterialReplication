@@ -38,7 +38,7 @@ public class MRRecipeMaps {
     //Replicator
     public static final RecipeMap<ReplicatorRecipeBuilder> REPLICATION_RECIPES = new RecipeMapReplicator("replication",
             1, 1, 2, 1, new ReplicatorRecipeBuilder(), false)
-            .setSound(GTSoundEvents.REPLICATOR)
+            .setSound(GTSoundEvents.ASSEMBLER)
             .setSlotOverlay(false, false, GuiTextures.DATA_ORB_OVERLAY)
             .setSlotOverlay(false, false, MRGuiTextures.USB_OVERLAY) // Item Input
             .setSlotOverlay(false, true, false, GuiTextures.ATOMIC_OVERLAY_1) // Fluid Input 1

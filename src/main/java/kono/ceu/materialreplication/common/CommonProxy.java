@@ -24,7 +24,7 @@ import java.util.function.Function;
 public class CommonProxy {
     public void preInit(FMLPreInitializationEvent e) {
         MRMetaItems.init();
-        MRMetaTileEntities.init();
+        //MRMetaTileEntities.init();
     }
 
     public void init(FMLInitializationEvent e) {
@@ -52,8 +52,15 @@ public class CommonProxy {
     }
 
     @SubscribeEvent(priority = EventPriority.LOWEST)
-    public static void registerRecipes(RegistryEvent.Register<IRecipe> event){
+    public static void registerRecipesLow(RegistryEvent.Register<IRecipe> event){
         MRRecipes.addRecipe();
+    }
+
+    @SubscribeEvent
+    public static void registerRecipes(RegistryEvent.Register<IRecipe> event) {
+        //MR.logger.info("Registering recipes...");
+        MRMetaTileEntities.init();
+        MRMetaItems.init();
     }
 }
 

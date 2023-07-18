@@ -21,7 +21,7 @@ import static kono.ceu.materialreplication.api.MRValues.Voltage_S;
 public class ReplicatorRecipeBuilder extends RecipeBuilder<ReplicatorRecipeBuilder>  {
 
     private String materialName = null;
-    private Material replicationMaterial = GregTechAPI.materialManager.getMaterial(materialName);
+    private Material replicationMaterial = GregTechAPI.materialManager.getMaterial(null);
     private int Duration = BaseTime_S; // Default : 1200 tick
     private int Voltage = Voltage_S; // Default : 30 EU/t
     private boolean scanRecipe = true;
