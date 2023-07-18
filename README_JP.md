@@ -9,3 +9,7 @@ For English, see [Here](https://github.com/MrKono/MaterialReplication/blob/maste
 
 # Credits
 LGPL-3.0 Licenseの下, [GTCE unofficial](https://github.com/GregTechCEu/GregTech)のテクスチャを一部改変しています.
+<br>
+# Special Thanks
+[miozune](https://github.com/miozune)<br>
+[tier940](https://github.com/tier940)
