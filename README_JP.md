@@ -6,6 +6,8 @@ For English, see [Here](https://github.com/MrKono/MaterialReplication/blob/maste
 
 ### このmodの設定
 [こちら](https://github.com/MrKono/MaterialReplication/blob/master/Setting_JP.md)をご覧ください.
+### 対応情報
+[こちら](https://github.com/MrKono/MaterialReplication/blob/master/VersionInformation.md)をご覧ください.
 
 # Credits
 LGPL-3.0 Licenseの下, [GTCE unofficial](https://github.com/GregTechCEu/GregTech)のテクスチャを一部改変しています.
