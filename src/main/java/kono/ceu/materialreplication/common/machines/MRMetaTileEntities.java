@@ -1,10 +1,11 @@
 package kono.ceu.materialreplication.common.machines;
 
 import gregtech.api.GTValues;
+import gregtech.api.GregTechAPI;
 import gregtech.api.metatileentity.SimpleMachineMetaTileEntity;
 import gregtech.api.util.GTUtility;
-import kono.ceu.materialreplication.api.util.MRValues;
 import kono.ceu.materialreplication.api.recipes.MRRecipeMaps;
+import kono.ceu.materialreplication.api.util.MRValues;
 import kono.ceu.materialreplication.client.MRTextures;
 import net.minecraft.util.ResourceLocation;
 
@@ -28,7 +29,14 @@ public class MRMetaTileEntities {
 
         for (int i = 0; i < SCRAPPER.length - 1 ; i++ ) {
             String voltageName = GTValues.VN[i + 1].toLowerCase();
-            SCRAPPER[i] = registerMetaTileEntity(20030 + i,  new MetaTileEntityScrapMaker(new ResourceLocation(MRValues.MODID,(String.format("%s.%s", "scrapmaker", voltageName))), MRRecipeMaps.SCRAPMAKER_RECIPES, MRTextures.SCRAPPER_OVERLAY, i + 1, GTUtility.hvCappedTankSizeFunction));
+            if ( i <= 7) {
+                SCRAPPER[i] = registerMetaTileEntity(20030 + i,  new MetaTileEntityScrapMaker(new ResourceLocation(MRValues.MODID,(String.format("%s.%s", "scrapmaker", voltageName))), MRRecipeMaps.SCRAPMAKER_RECIPES, MRTextures.SCRAPPER_OVERLAY, i + 1, GTUtility.hvCappedTankSizeFunction));
+            }
+            else {
+                if (GregTechAPI.isHighTier()) {
+                    SCRAPPER[i] = registerMetaTileEntity(20030 + i,  new MetaTileEntityScrapMaker(new ResourceLocation(MRValues.MODID,(String.format("%s.%s", "scrapmaker", voltageName))), MRRecipeMaps.SCRAPMAKER_RECIPES, MRTextures.SCRAPPER_OVERLAY, i + 1, GTUtility.hvCappedTankSizeFunction));
+                }
+            }
         }
 
     }
