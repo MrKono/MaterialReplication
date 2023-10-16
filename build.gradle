@@ -27,7 +27,7 @@ if (project.use_mixins.toBoolean()) {
 }
 
 
-version = "1.1.0"
+version = "1.1.1"
 
 group ="kono.ceu.materialreplication"
 archivesBaseName = "MaterialReplication"
@@ -97,13 +97,10 @@ dependencies {
 
     compile 'CraftTweaker2:CraftTweaker2-MC1120-Main:1.12-4.1.20.677'
     compile 'curse.maven:had-enough-items-557549:3862733'
-    //compile "curse.maven:endercore-231868:2972849"
     deobfCompile 'curse.maven:codechicken-lib-1-8-242818:2779848'
     deobfCompile 'curse.maven:the-one-probe-245211:2667280'
-    //deobfCompile 'curse.maven:gregtech-ce-unofficial-557242:4527757'
-    //provided (files("libs/gregtech-1.12.2-2.5.0-beta.jar"))
-    //provided (files("libs/theoneprobe-1.12-1.4.28.jar"))
-    implementation fileTree(dir: 'libs', include: '*.jar')
+    deobfCompile 'curse.maven:gregtech-ce-unofficial-557242:4799055'
+    //implementation fileTree(dir: 'libs', include: '*.jar')
     }
 
     jar {
