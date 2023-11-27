@@ -99,8 +99,8 @@ dependencies {
     compile 'curse.maven:had-enough-items-557549:3862733'
     deobfCompile 'curse.maven:codechicken-lib-1-8-242818:2779848'
     deobfCompile 'curse.maven:the-one-probe-245211:2667280'
-    deobfCompile 'curse.maven:gregtech-ce-unofficial-557242:4799055'
-    //implementation fileTree(dir: 'libs', include: '*.jar')
+    //deobfCompile 'curse.maven:gregtech-ce-unofficial-557242:4904269'
+    implementation fileTree(dir: 'libs', include: '*.jar')
     }
 
     jar {
