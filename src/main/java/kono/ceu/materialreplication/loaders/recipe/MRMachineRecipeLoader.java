@@ -143,19 +143,19 @@ public class MRMachineRecipeLoader {
                 .output(SCRAP_BOX)
                 .duration(1200).EUt(VA[HV]).buildAndRegister();
 
-        SIFTER_RECIPES.recipeBuilder()
+        CENTRIFUGE_RECIPES.recipeBuilder()
                 .input(SCRAP)
-                .chancedOutput(dustTiny, MRMaterials.MatterAmplifier, AmplifierChance, AmplifierChanceBoost)
+                .chancedFluidOutput(MRMaterials.MatterAmplifier.getFluid(1), AmplifierChance, AmplifierChanceBoost)
                 .duration(256).EUt(VA[LV]).buildAndRegister();
 
-        SIFTER_RECIPES.recipeBuilder()
+        CENTRIFUGE_RECIPES.recipeBuilder()
                 .input(SCRAP_BOX)
-                .chancedOutput(dustTiny, MRMaterials.MatterAmplifier, 2, AmplifierChance, AmplifierChanceBoost)
-                .chancedOutput(dustTiny, MRMaterials.MatterAmplifier, 2, AmplifierChance, AmplifierChanceBoost)
-                .chancedOutput(dustTiny, MRMaterials.MatterAmplifier, 2, AmplifierChance, AmplifierChanceBoost)
-                .chancedOutput(dustTiny, MRMaterials.MatterAmplifier, 1, AmplifierChance, AmplifierChanceBoost)
-                .chancedOutput(dustTiny, MRMaterials.MatterAmplifier, 1, AmplifierChance, AmplifierChanceBoost)
-                .chancedOutput(dustTiny, MRMaterials.MatterAmplifier, 1, AmplifierChance, AmplifierChanceBoost)
+                .chancedFluidOutput(MRMaterials.MatterAmplifier.getFluid(2), AmplifierChance, AmplifierChanceBoost)
+                .chancedFluidOutput(MRMaterials.MatterAmplifier.getFluid(2), AmplifierChance, AmplifierChanceBoost)
+                .chancedFluidOutput(MRMaterials.MatterAmplifier.getFluid(2), AmplifierChance, AmplifierChanceBoost)
+                .chancedFluidOutput(MRMaterials.MatterAmplifier.getFluid(1), AmplifierChance, AmplifierChanceBoost)
+                .chancedFluidOutput(MRMaterials.MatterAmplifier.getFluid(1), AmplifierChance, AmplifierChanceBoost)
+                .chancedFluidOutput(MRMaterials.MatterAmplifier.getFluid(1), AmplifierChance, AmplifierChanceBoost)
                 .duration(256).EUt(VA[LV]).buildAndRegister();
 
         EXTRACTOR_RECIPES.recipeBuilder()
