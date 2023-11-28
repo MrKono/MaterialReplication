@@ -1,11 +1,12 @@
 package kono.ceu.materialreplication.api.util;
 
 import kono.ceu.materialreplication.MRConfig;
+import net.minecraft.util.ResourceLocation;
+import org.jetbrains.annotations.NotNull;
 
 public class MRValues {
     public static final String MODNAME = "Material Replication";
     public static final String MODID = "materialreplication",
-            MODID_GRGF = "gregification",
             MODID_FFM = "forestry";
     public static final int BaseTime_D = MRConfig.deconstruction.DeconstructionBaseTime,
             BaseTime_R = MRConfig.replication.ReplicationBaseTime,
@@ -17,4 +18,8 @@ public class MRValues {
             ScrapChanceBoost = MRConfig.scrap.ScrapChanceBoost,
             AmplifierChance = MRConfig.scrap.AmplifierChance,
             AmplifierChanceBoost = MRConfig.scrap.AmplifierChanceBoost;
+
+    public static @NotNull ResourceLocation mrId (@NotNull String path) {
+        return new ResourceLocation(MODID, path);
+    }
 }
