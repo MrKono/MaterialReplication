@@ -1,4 +1,19 @@
 # ChangeLog (更新履歴)
+## v 1.2.0
+**_EN_** <br>
+**Update**<br>
+GTCEu 2.7.4-bata -> 2.8.1-bata<br>
+**Change**<br>
+- Remove Sifter Recipe (Scrap -> Amplifier)<br>
+- Add Centrifuge Recipe (Scrap -> Amplifier (liquid))<br>
+
+**_JP_** <br>
+**Update**<br>
+GTCEu 2.7.4-bata -> 2.8.1-bata<br>
+**変更**<br>
+- ふるい機のレシピを削除 (スクラップ -> 増幅剤)<br>
+- 遠心分離機のレシピ追加 (スクラップ -> 増幅剤 (液体))<br>
+---------
 ## v 1.1.1
 **_EN_** <br>
 **Update**<br>

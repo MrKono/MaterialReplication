@@ -158,10 +158,16 @@ public class MRMachineRecipeLoader {
                 .chancedFluidOutput(MRMaterials.MatterAmplifier.getFluid(1), AmplifierChance, AmplifierChanceBoost)
                 .duration(256).EUt(VA[LV]).buildAndRegister();
 
+        // removed 1.3.0
         EXTRACTOR_RECIPES.recipeBuilder()
                 .input(dust, MRMaterials.MatterAmplifier)
                 .fluidOutputs(MRMaterials.MatterAmplifier.getFluid(10))
                 .duration(BaseTime_D / 4).EUt(VA[EV]).buildAndRegister();
+
+        EXTRACTOR_RECIPES.recipeBuilder()
+                .input(dustTiny, MRMaterials.MatterAmplifier)
+                .fluidOutputs(MRMaterials.MatterAmplifier.getFluid(1))
+                .duration(BaseTime_D / 4).EUt(VA[MV]).buildAndRegister();
     }
 
 }
