@@ -1,4 +1,17 @@
 # ChangeLog (更新履歴)
+## v 1.2.1
+**_EN_** <br>
+**Update**<br>
+***From now, required GregicalityMultiblocks***<br>
+**fix**<br>
+- fix crash if fluid material has only Molten<br>
+
+**_JP_** <br>
+**Update**<br>
+***GregicalityMultiblocksが必要になりました***<br>
+**修正**<br>
+- Moltenしか持ってない素材があるとクラッシュするのを修正<br>
+----------
 ## v 1.2.0
 **_EN_** <br>
 **Update**<br>
