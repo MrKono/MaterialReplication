@@ -7,7 +7,7 @@ import org.jetbrains.annotations.NotNull;
 public class MRValues {
     public static final String MODNAME = "Material Replication";
     public static final String MODID = "materialreplication",
-            MODID_GCYM = "gcys",
+            MODID_GCYM = "gcym",
             MODID_FFM = "forestry";
     public static int BaseTime_D = rangeTime(MRConfig.deconstruction.DeconstructionBaseTime) ?
             MRConfig.deconstruction.DeconstructionBaseTime : 600,
