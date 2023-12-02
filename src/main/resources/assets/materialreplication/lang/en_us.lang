@@ -12,11 +12,12 @@ behaviour.usb.replicate_data1=Replication Material: §a%s
 behaviour.usb.replicate_data2=Amount of Matter required when replication
 behaviour.usb.replicate_data3=§4%s§7 : %s L
 behaviour.usb.replicate_data4=§3%s§7 : %s L
+
 # Material
-gregtech.material.primal_matter=Primal Matter
-gregtech.material.charged_matter=Charged Matter
-gregtech.material.neutral_matter=Neutral Matter
-gregtech.material.matter_amplifier=Matter Amplifier
+materialreplication.material.primal_matter=Primal Matter
+materialreplication.material.charged_matter=Charged Matter
+materialreplication.material.neutral_matter=Neutral Matter
+materialreplication.material.matter_amplifier=Matter Amplifier
 
 # Machine
 # Material Deconstructor

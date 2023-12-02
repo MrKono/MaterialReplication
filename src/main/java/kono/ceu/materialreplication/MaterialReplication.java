@@ -11,6 +11,7 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
 @Mod(modid= MRValues.MODID,
         name = MRValues.MODNAME,
+        version = Tags.VERSION,
         acceptedMinecraftVersions = "[1.12, 1.12.2]",
         dependencies = GTInternalTags.DEP_VERSION_STRING)
 

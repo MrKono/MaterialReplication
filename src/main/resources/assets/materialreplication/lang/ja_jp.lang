@@ -14,10 +14,10 @@ behaviour.usb.replicate_data3=§4%s§7 : %s L
 behaviour.usb.replicate_data4=§3%s§7 : %s L
 
 # Material
-gregtech.material.primal_matter=プライマルマター
-gregtech.material.charged_matter=荷電マター
-gregtech.material.neutral_matter=中性マター
-gregtech.material.matter_amplifier=マター増幅剤
+materialreplication.material.primal_matter=プライマルマター
+materialreplication.material.charged_matter=荷電マター
+materialreplication.material.neutral_matter=中性マター
+materialreplication.material.matter_amplifier=マター増幅剤
 
 # Machine
 # Material Deconstructor

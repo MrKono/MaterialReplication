@@ -7,9 +7,7 @@ import gregtech.api.recipes.RecipeMaps;
 import gregtech.api.recipes.ingredients.IntCircuitIngredient;
 import gregtech.api.unification.OreDictUnifier;
 import kono.ceu.materialreplication.MRConfig;
-import kono.ceu.materialreplication.api.util.MRValues;
 import kono.ceu.materialreplication.api.unification.materials.MRMaterials;
-import net.minecraftforge.fml.common.Loader;
 
 import static gregtech.api.GTValues.*;
 import static gregtech.api.recipes.RecipeMaps.*;
@@ -59,7 +57,7 @@ public class MRMiscRecipeLoader {
                 .duration(1200).EUt(VA[HV]).buildAndRegister();
 
         //UUMatter
-        if (MRConfig.recipe.addUUMatterRecipe || (Loader.isModLoaded(MRValues.MODID_GRGF) && Loader.isModLoaded(MRValues.MODID_FFM))) {
+        if (MRConfig.recipe.addUUMatterRecipe) {
             MIXER_RECIPES.recipeBuilder()
                     .fluidInputs(MRMaterials.ChargedMatter.getFluid(50))
                     .fluidInputs(MRMaterials.NeutralMatter.getFluid(50))
