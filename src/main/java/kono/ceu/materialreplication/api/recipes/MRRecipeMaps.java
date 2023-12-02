@@ -1,7 +1,9 @@
 package kono.ceu.materialreplication.api.recipes;
 
+import gregicality.multiblocks.api.fluids.GCYMFluidStorageKeys;
 import gregtech.api.gui.GuiTextures;
 import gregtech.api.gui.widgets.ProgressWidget;
+import gregtech.api.recipes.RecipeBuilder;
 import gregtech.api.recipes.RecipeMap;
 import gregtech.api.recipes.RecipeMaps;
 import gregtech.api.recipes.builders.SimpleRecipeBuilder;
@@ -18,9 +20,12 @@ import kono.ceu.materialreplication.api.unification.materials.flags.MRMaterialFl
 import kono.ceu.materialreplication.common.items.MRMetaItems;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraftforge.fluids.FluidStack;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static kono.ceu.materialreplication.loaders.recipe.MRMachineRecipeLoader.hasOnlyMolten;
 
 public class MRRecipeMaps {
 
@@ -82,14 +87,21 @@ public class MRRecipeMaps {
                             .buildAndRegister();
 
                 }
+
                 for (Material materialFluid : materialFluids) {
-                    RecipeMaps.SCANNER_RECIPES.recipeBuilder()
-                            .input(MRMetaItems.USB_STICK)
-                            .fluidInputs(materialFluid.getFluid(1000))
+                    RecipeBuilder<SimpleRecipeBuilder> scanner = RecipeMaps.SCANNER_RECIPES.recipeBuilder();
+                            scanner.input(MRMetaItems.USB_STICK)
                             .outputs(usb)
                             .EUt(recipeBuilder.getVoltage())
-                            .duration(recipeBuilder.getDuration())
-                            .buildAndRegister();
+                            .duration(recipeBuilder.getDuration());
+
+                    // check Molten
+                    if (hasOnlyMolten(materialFluid)) {
+                            scanner.fluidInputs(new FluidStack(materialFluid.getFluid(GCYMFluidStorageKeys.MOLTEN), 1000));
+                    } else {
+                        scanner.fluidInputs(materialFluid.getFluid(1000));
+                    }
+                    scanner.buildAndRegister();
                 }
             });
 
