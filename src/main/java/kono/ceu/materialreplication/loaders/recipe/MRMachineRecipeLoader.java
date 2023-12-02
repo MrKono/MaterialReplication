@@ -1,7 +1,10 @@
 package kono.ceu.materialreplication.loaders.recipe;
 
+import gregicality.multiblocks.api.fluids.GCYMFluidStorageKeys;
 import gregtech.api.GregTechAPI;
+import gregtech.api.fluids.store.FluidStorageKeys;
 import gregtech.api.recipes.RecipeBuilder;
+import gregtech.api.recipes.builders.SimpleRecipeBuilder;
 import gregtech.api.recipes.ingredients.GTRecipeItemInput;
 import gregtech.api.recipes.ingredients.nbtmatch.NBTCondition;
 import gregtech.api.recipes.ingredients.nbtmatch.NBTMatcher;
@@ -14,6 +17,8 @@ import kono.ceu.materialreplication.api.recipes.machines.IReplicatorRecipeMap;
 import kono.ceu.materialreplication.api.unification.materials.MRMaterials;
 import kono.ceu.materialreplication.api.unification.materials.flags.MRMaterialFlags;
 import kono.ceu.materialreplication.common.items.MRMetaItems;
+import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidStack;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -60,6 +65,8 @@ public class MRMachineRecipeLoader {
             // Replication
             if (!materialDust.hasFlag(MRMaterialFlags.DISABLE_REPLICATION)) {
                 RecipeBuilder<ReplicatorRecipeBuilder> builder = MRRecipeMaps.REPLICATION_RECIPES.recipeBuilder();
+
+                // check the amount of Protons and Neutrons
                 if (materialDust.getProtons() == 0) {
                     builder.fluidInputs(MRMaterials.NeutralMatter.getFluid((int) materialDust.getNeutrons()));
                 } else if (materialDust.getNeutrons() == 0) {
@@ -68,6 +75,7 @@ public class MRMachineRecipeLoader {
                     builder.fluidInputs(MRMaterials.ChargedMatter.getFluid((int) materialDust.getProtons()))
                             .fluidInputs(MRMaterials.NeutralMatter.getFluid((int) materialDust.getNeutrons()));
                     }
+
                 builder.duration(BaseTime_R * (int) materialDust.getMass())
                         .input(GTRecipeItemInput.getOrCreate(MRMetaItems.USB_STICK.getStackForm())
                                 .setNBTMatchingCondition(NBTMatcher.RECURSIVE_EQUAL_TO,
@@ -84,18 +92,26 @@ public class MRMachineRecipeLoader {
         for (Material materialFluid : materialFluids) {
             // Deconstruction
             if (!materialFluid.hasFlag(MRMaterialFlags.DISABLE_DECONSTRUCTION)) {
-                MRRecipeMaps.DECONSTRUCTION_RECIPES.recipeBuilder()
-                        .fluidInputs(materialFluid.getFluid(1000))
-                        .fluidOutputs(MRMaterials.ChargedMatter.getFluid((int) materialFluid.getProtons()))
+                RecipeBuilder<SimpleRecipeBuilder> builder = MRRecipeMaps.DECONSTRUCTION_RECIPES.recipeBuilder();
+                // check Molten
+                if (hasOnlyMolten(materialFluid)) {
+                        builder.fluidInputs(new FluidStack(materialFluid.getFluid(GCYMFluidStorageKeys.MOLTEN), 1000));
+                    } else {
+                        builder.fluidInputs(materialFluid.getFluid(1000));
+                    }
+                builder.fluidOutputs(MRMaterials.ChargedMatter.getFluid((int) materialFluid.getProtons()))
                         .fluidOutputs(MRMaterials.NeutralMatter.getFluid((int) materialFluid.getNeutrons()))
                         .chancedOutput(dustTiny, MRMaterials.PrimalMatter, 5,5)
                         .duration(BaseTime_D * (int) materialFluid.getMass())
                         .EUt(Voltage_D)
                         .buildAndRegister();
             }
+
             // Replication
             if (!materialFluid.hasFlag(MRMaterialFlags.DISABLE_REPLICATION)) {
                 RecipeBuilder <ReplicatorRecipeBuilder> builder = MRRecipeMaps.REPLICATION_RECIPES.recipeBuilder();
+
+                // check the amount of Protons and Neutrons
                 if (materialFluid.getProtons() == 0) {
                     builder.fluidInputs(MRMaterials.NeutralMatter.getFluid((int) materialFluid.getNeutrons()));
                 } else if (materialFluid.getNeutrons() == 0) {
@@ -104,18 +120,26 @@ public class MRMachineRecipeLoader {
                     builder.fluidInputs(MRMaterials.ChargedMatter.getFluid((int) materialFluid.getProtons()))
                             .fluidInputs(MRMaterials.NeutralMatter.getFluid((int) materialFluid.getNeutrons()));
                 }
+
                 builder.input(GTRecipeItemInput.getOrCreate(MRMetaItems.USB_STICK.getStackForm())
                         .setNBTMatchingCondition(NBTMatcher.RECURSIVE_EQUAL_TO,
                                 NBTCondition.create(NBTTagType.COMPOUND, IReplicatorRecipeMap.REPLICATE_NBT_TAG,
                                         NBTCondition.create(NBTTagType.STRING, IReplicatorRecipeMap.REPLICATE_MATERIAL, materialFluid.toString())))
                         .setNonConsumable())
-                        .fluidOutputs(materialFluid.getFluid(1000))
                         .replicate(materialFluid)
                         .duration(BaseTime_R * (int) materialFluid.getMass())
-                        .EUt(Voltage_R)
-                        .buildAndRegister();
+                        .EUt(Voltage_R);
+
+                // check Molten
+                if (hasOnlyMolten(materialFluid)) {
+                    builder.fluidOutputs(new FluidStack(materialFluid.getFluid(GCYMFluidStorageKeys.MOLTEN), 1000));
+                } else {
+                    builder.fluidOutputs(materialFluid.getFluid(1000));
+                }
+                builder.buildAndRegister();
             }
         }
+
         // Primal -> Charged & Neutral
         CENTRIFUGE_RECIPES.recipeBuilder()
                 .fluidInputs(MRMaterials.PrimalMatter.getFluid(1))
@@ -158,7 +182,7 @@ public class MRMachineRecipeLoader {
                 .chancedFluidOutput(MRMaterials.MatterAmplifier.getFluid(1), AmplifierChance, AmplifierChanceBoost)
                 .duration(256).EUt(VA[LV]).buildAndRegister();
 
-        // removed 1.3.0
+        // Will be removed 1.3.0
         EXTRACTOR_RECIPES.recipeBuilder()
                 .input(dust, MRMaterials.MatterAmplifier)
                 .fluidOutputs(MRMaterials.MatterAmplifier.getFluid(10))
@@ -168,6 +192,15 @@ public class MRMachineRecipeLoader {
                 .input(dustTiny, MRMaterials.MatterAmplifier)
                 .fluidOutputs(MRMaterials.MatterAmplifier.getFluid(1))
                 .duration(BaseTime_D / 4).EUt(VA[MV]).buildAndRegister();
+    }
+
+    // check whether fluid material has only Molten
+    public static boolean hasOnlyMolten(Material material) {
+        Fluid gas = material.getFluid(FluidStorageKeys.GAS);
+        Fluid liquid = material.getFluid(FluidStorageKeys.LIQUID);
+        Fluid plasma = material.getFluid(FluidStorageKeys.PLASMA);
+        Fluid molten = material.getFluid(GCYMFluidStorageKeys.MOLTEN);
+        return molten != null && gas == null && liquid == null && plasma == null;
     }
 
 }
