@@ -1,4 +1,4 @@
-package kono.ceu.materialreplication.common.machines;
+package kono.ceu.materialreplication.common.machines.single;
 
 import gregtech.api.GTValues;
 import gregtech.api.metatileentity.MetaTileEntity;
