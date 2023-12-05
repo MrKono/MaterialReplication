@@ -35,13 +35,19 @@ public class RecipeMapScrapMaker extends RecipeMap<SimpleRecipeBuilder> {
                             .duration(128).EUt(VA[LV]).build().getResult();
                 }
             }
-        if (!fluidInputs.isEmpty() && fluidInputs.get(0) != null) {
-            FluidStack inputFluid = fluidInputs.get(0).copy();
-            if (inputFluid.amount == 1000)
-            return recipeBuilder()
-                    .fluidInputs(inputFluid)
-                    .chancedOutput(SCRAP, ScrapChance, ScrapChanceBoost)
-                    .duration(128).EUt(VA[LV]).build().getResult();
+        if (!fluidInputs.isEmpty()) {
+            for (FluidStack inputFluid : fluidInputs) {
+                if (inputFluid == null) {
+                    continue;
+                }
+                inputFluid = inputFluid.copy();
+                if (inputFluid.amount > 0) {
+                    return recipeBuilder()
+                            .fluidInputs(new FluidStack(inputFluid, 1000))
+                            .chancedOutput(SCRAP, ScrapChance, ScrapChanceBoost)
+                            .duration(128).EUt(VA[LV]).build().getResult();
+                }
+            }
         }
         return null;
     }
