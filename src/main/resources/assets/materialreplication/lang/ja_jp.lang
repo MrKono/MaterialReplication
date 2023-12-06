@@ -1,11 +1,11 @@
-# Item
+## Item
 metaitem.usb_stick.name=USBメモリ
 metaitem.scrap.name=スクラップ
 metaitem.scrap.tooltip=スクラップ製造機から入手できる
 metaitem.scrap_box.name=スクラップボックス
 metaitem.scrap_box.tooltip=§8§oスクラップ§o§lボックス§r§8§o...? いいや、§o§lブロック§r§8§oだろう。
 
-# Item Tooltip
+## behaviour
 behaviour.usb.no_data=素材データの保管に
 behaviour.usb.replicate=物質複製機で用いる素材のデータが格納されている
 behaviour.usb.replicate_data1=複製対象: §a%s
@@ -13,13 +13,13 @@ behaviour.usb.replicate_data2=複製時の要求マター量
 behaviour.usb.replicate_data3=§4%s§7 : %s L
 behaviour.usb.replicate_data4=§3%s§7 : %s L
 
-# Material
+## Material
 materialreplication.material.primal_matter=プライマルマター
 materialreplication.material.charged_matter=荷電マター
 materialreplication.material.neutral_matter=中性マター
 materialreplication.material.matter_amplifier=マター増幅剤
 
-# Machine
+## Machine
 # Material Deconstructor
 materialreplication.machine.deconstructor.lv.name=基本型物質分解機
 materialreplication.machine.deconstructor.mv.name=発展型物質分解機
@@ -70,7 +70,14 @@ materialreplication.machine.scrapmaker.warning2.2= §l全てのアイテムと�
 materialreplication.machine.scrapmaker.warning3.1=生産確率 :
 materialreplication.machine.scrapmaker.warning3.2= %s%% +%s%%/tier
 
-# Recipe map
+## Multiblock
+# Controllers
+materialreplication.machine.large_deconstructor.name=大型分解機
+
+# descriptions
+materialreplication.multiblock.large_deconstructor.description=
+
+## RecipeMap
 recipemap.deconstruction.name=物質分解機
 recipemap.replication.name=物質複製機
 recipemap.replication.property1=素材をスキャンしたUSBメモリが必要

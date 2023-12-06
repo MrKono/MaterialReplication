@@ -11,6 +11,7 @@ import gregtech.api.metatileentity.multiblock.IMultiblockPart;
 import gregtech.api.pattern.BlockPattern;
 import gregtech.api.pattern.FactoryBlockPattern;
 import gregtech.client.renderer.ICubeRenderer;
+import gregtech.client.renderer.texture.cube.OrientedOverlayRenderer;
 import gregtech.common.blocks.BlockFusionCasing;
 import gregtech.common.blocks.BlockGlassCasing;
 import gregtech.common.blocks.MetaBlocks;
@@ -18,6 +19,9 @@ import kono.ceu.materialreplication.api.recipes.MRRecipeMaps;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.ResourceLocation;
 import org.jetbrains.annotations.NotNull;
+
+import static kono.ceu.materialreplication.api.util.MRValues.tierLargeDeconstruct;
+import static kono.ceu.materialreplication.client.MRTextures.LARGE_DECONSTRUCTOR_OVERLAY;
 
 public class MetaTileEntityLargeDeconstructor extends GCYMRecipeMapMultiblockController {
 
@@ -58,7 +62,12 @@ public class MetaTileEntityLargeDeconstructor extends GCYMRecipeMapMultiblockCon
     }
 
     private static IBlockState getCasingState3() {
-        return MetaBlocks.FUSION_CASING.getState(BlockFusionCasing.CasingType.FUSION_CASING);
+        return MetaBlocks.FUSION_CASING.getState(switch (tierLargeDeconstruct) {
+            case 6 -> BlockFusionCasing.CasingType.FUSION_CASING;
+            case 7 -> BlockFusionCasing.CasingType.FUSION_CASING_MK2;
+            case 8 -> BlockFusionCasing.CasingType.FUSION_CASING_MK3;
+            default -> throw new IllegalStateException("Unexpected value: " + tierLargeDeconstruct);
+        });
     }
 
     private static IBlockState getCasingStateCoil() {
@@ -72,5 +81,10 @@ public class MetaTileEntityLargeDeconstructor extends GCYMRecipeMapMultiblockCon
     @Override
     public ICubeRenderer getBaseTexture(IMultiblockPart iMultiblockPart) {
         return GCYMTextures.ATOMIC_CASING;
+    }
+
+    @Override
+    protected @NotNull OrientedOverlayRenderer getFrontOverlay() {
+        return LARGE_DECONSTRUCTOR_OVERLAY;
     }
 }
