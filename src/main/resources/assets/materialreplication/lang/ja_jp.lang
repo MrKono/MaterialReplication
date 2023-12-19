@@ -72,10 +72,12 @@ materialreplication.machine.scrapmaker.warning3.2= %s%% +%s%%/tier
 
 ## Multiblock
 # Controllers
-materialreplication.machine.large_deconstructor.name=大型分解機
+materialreplication.machine.large_deconstructor.name=大型物質分解機
+materialreplication.machine.large_scrapper.name=大型スクラップ製造機
 
 # descriptions
 materialreplication.multiblock.large_deconstructor.description=
+materialreplication.machine.large_scrapper.description=万能ゴミ箱
 
 ## RecipeMap
 recipemap.deconstruction.name=物質分解機

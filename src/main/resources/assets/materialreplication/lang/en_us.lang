@@ -72,10 +72,12 @@ materialreplication.machine.scrapmaker.warning3.2= %s%% +%s%%/tier
 
 ## Multiblock
 # Controllers
-materialreplication.machine.large_deconstructor.name=Large Deconstructor
+materialreplication.machine.large_deconstructor.name=Large Material Deconstructor
+materialreplication.machine.large_scrapper.name=Large Scrapper
 
 # descriptions
 materialreplication.multiblock.large_deconstructor.description=
+materialreplication.machine.large_scrapper.description=Universal Trash Can
 
 ## RecipeMap
 recipemap.deconstruction.name=Material Deconstruction

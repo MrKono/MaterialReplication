@@ -17,7 +17,7 @@ public class MRTextures {
 
     public static final OrientedOverlayRenderer LARGE_DECONSTRUCTOR_OVERLAY = new OrientedOverlayRenderer("machines/multi/deconstructor");
     public static final OrientedOverlayRenderer LARGE_REPLICATOR_OVERLAY = new OrientedOverlayRenderer("machines/multi/replicator");
-    public static final OrientedOverlayRenderer LARGE_SCRAPPER_OVERLAY = new OrientedOverlayRenderer("machine/multi/scrapper");
+    public static final OrientedOverlayRenderer LARGE_SCRAPPER_OVERLAY = new OrientedOverlayRenderer("machines/multi/scrapper");
     public static void preInit() {
     }
 }

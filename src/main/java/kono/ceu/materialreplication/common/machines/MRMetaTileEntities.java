@@ -7,6 +7,7 @@ import gregtech.api.util.GTUtility;
 import kono.ceu.materialreplication.api.recipes.MRRecipeMaps;
 import kono.ceu.materialreplication.client.MRTextures;
 import kono.ceu.materialreplication.common.machines.multi.MetaTileEntityLargeDeconstructor;
+import kono.ceu.materialreplication.common.machines.multi.MetaTileEntityLargeScrapper;
 import kono.ceu.materialreplication.common.machines.single.MetaTileEntityScrapMaker;
 import net.minecraft.util.ResourceLocation;
 import org.jetbrains.annotations.NotNull;
@@ -23,6 +24,7 @@ public class MRMetaTileEntities {
 
     //Multi : 21000
     public static MetaTileEntityLargeDeconstructor LARGE_DECONSTRUCTOR;
+    public static MetaTileEntityLargeScrapper LARGE_SCRAPPER;
 
     public static void init() {
         registerSingleMachine();
@@ -66,6 +68,10 @@ public class MRMetaTileEntities {
         //LargeDeconstructor 21000
         LARGE_DECONSTRUCTOR = registerMetaTileEntity(21000,
                 new MetaTileEntityLargeDeconstructor(mrId("large_deconstructor")));
+
+        //LargeScrapper 21001
+        LARGE_SCRAPPER = registerMetaTileEntity(21001,
+                new MetaTileEntityLargeScrapper(mrId("large_scrapper")));
     }
 
     private static @NotNull ResourceLocation mrId(String name) {
