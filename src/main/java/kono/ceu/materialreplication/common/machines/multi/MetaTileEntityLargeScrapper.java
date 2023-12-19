@@ -12,11 +12,21 @@ import gregtech.api.pattern.BlockPattern;
 import gregtech.api.pattern.FactoryBlockPattern;
 import gregtech.client.renderer.ICubeRenderer;
 import gregtech.client.renderer.texture.cube.OrientedOverlayRenderer;
+import gregtech.client.utils.TooltipHelper;
 import kono.ceu.materialreplication.api.recipes.MRRecipeMaps;
+import kono.ceu.materialreplication.api.util.MRValues;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.resources.I18n;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
+import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import org.jetbrains.annotations.NotNull;
+
+import javax.annotation.Nullable;
+import java.util.List;
 
 import static kono.ceu.materialreplication.client.MRTextures.LARGE_SCRAPPER_OVERLAY;
 
@@ -67,5 +77,19 @@ public class MetaTileEntityLargeScrapper extends GCYMRecipeMapMultiblockControll
     @Override
     protected @NotNull OrientedOverlayRenderer getFrontOverlay() {
         return LARGE_SCRAPPER_OVERLAY;
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void addInformation(ItemStack stack, @Nullable World player, List<String> tooltip, boolean advanced) {
+        tooltip.add(I18n.format("materialreplication.machine.large_scrapper.description"));
+        tooltip.add(I18n.format("materialreplication.machine.scrapmaker.warning2.1") +
+                TooltipHelper.BLINKING_RED + I18n.format("materialreplication.machine.scrapmaker.warning2.2"));
+        if (TooltipHelper.isShiftDown()){
+            double chance = MRValues.ScrapChance / 100.0;
+            double boost = MRValues.ScrapChanceBoost / 100.0;
+            tooltip.add(I18n.format("materialreplication.machine.scrapmaker.warning3.1")
+                    + TooltipHelper.BLINKING_CYAN + I18n.format("materialreplication.machine.scrapmaker.warning3.2", chance, boost));
+        }
     }
 }
