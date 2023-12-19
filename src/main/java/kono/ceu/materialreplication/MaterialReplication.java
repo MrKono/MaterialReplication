@@ -13,7 +13,8 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
         name = MRValues.MODNAME,
         version = Tags.VERSION,
         acceptedMinecraftVersions = "[1.12, 1.12.2]",
-        dependencies = GTInternalTags.DEP_VERSION_STRING)
+        dependencies = GTInternalTags.DEP_VERSION_STRING +
+                "required-after:" + MRValues.MODID_GCYM + ";")
 
 public class MaterialReplication {
     @SidedProxy(modId = MRValues.MODID, clientSide = "kono.ceu.materialreplication.client.ClientProxy", serverSide = "kono.ceu.materialreplication.common.CommonProxy")

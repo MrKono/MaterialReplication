@@ -28,7 +28,13 @@ public class MRValues {
             AmplifierChance = rangeChance(MRConfig.scrap.AmplifierChance) ?
                     MRConfig.scrap.AmplifierChance : 1,
             AmplifierChanceBoost = rangeChance(MRConfig.scrap.AmplifierChanceBoost) ?
-                    MRConfig.scrap.AmplifierChanceBoost : 0;
+                    MRConfig.scrap.AmplifierChanceBoost : 0,
+            tierDeconstruct = rangeTier(MRConfig.tier.tierDeconstruct, 1, 8) ?
+                    MRConfig.tier.tierDeconstruct : 1,
+            tierReplicate = rangeTier(MRConfig.tier.tierReplicate, 1, 8) ?
+                    MRConfig.tier.tierReplicate : 1,
+            tierLargeDeconstruct = rangeTier(MRConfig.tier.tierLargeDeconstruct, 6, 8) ?
+                    MRConfig.tier.tierLargeDeconstruct : 6;
 
     public static @NotNull ResourceLocation mrId (@NotNull String path) {
         return new ResourceLocation(MODID, path);
@@ -53,6 +59,14 @@ public class MRValues {
     private static boolean rangeChance (int chance) {
         if (chance < 0 || 100000 < chance) {
             MaterialReplicationLog.logger.error("Output Chance must be 0 to 100000! Set to default value.");
+            return false;
+        }
+        return true;
+    }
+
+    private static boolean rangeTier (int tier, int min, int max) {
+        if (tier < min || max < tier) {
+            MaterialReplicationLog.logger.error("Start tier is over range! Set to default value.");
             return false;
         }
         return true;

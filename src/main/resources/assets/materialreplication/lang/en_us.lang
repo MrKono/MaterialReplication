@@ -1,11 +1,11 @@
-# Item
+## Item
 metaitem.usb_stick.name=USB Stick
 metaitem.scrap.name=Scrap
 metaitem.scrap.tooltip=Get it from Scrap Maker
 metaitem.scrap_box.name=Scrap Box
 metaitem.scrap_box.tooltip=§8§oScrap §o§lBox§r§8§o...? No, it's a §o§lBlock§r§8.
 
-# behaviour
+## behaviour
 behaviour.usb.no_data=Saving for Material Data
 behaviour.usb.replicate=Contain Material Data tobe used in Material Replicator
 behaviour.usb.replicate_data1=Replication Material: §a%s
@@ -13,13 +13,13 @@ behaviour.usb.replicate_data2=Amount of Matter required when replication
 behaviour.usb.replicate_data3=§4%s§7 : %s L
 behaviour.usb.replicate_data4=§3%s§7 : %s L
 
-# Material
+## Material
 materialreplication.material.primal_matter=Primal Matter
 materialreplication.material.charged_matter=Charged Matter
 materialreplication.material.neutral_matter=Neutral Matter
 materialreplication.material.matter_amplifier=Matter Amplifier
 
-# Machine
+## Machine
 # Material Deconstructor
 materialreplication.machine.deconstructor.lv.name=Basic Material Deconstructor
 materialreplication.machine.deconstructor.mv.name=Advanced Material Deconstructor
@@ -70,7 +70,16 @@ materialreplication.machine.scrapmaker.warning2.2= §lAccepts ALL ITEMS and ALL 
 materialreplication.machine.scrapmaker.warning3.1=Produce rate :
 materialreplication.machine.scrapmaker.warning3.2= %s%% +%s%%/tier
 
-# Recipe map
+## Multiblock
+# Controllers
+materialreplication.machine.large_deconstructor.name=Large Material Deconstructor
+materialreplication.machine.large_scrapper.name=Large Scrapper
+
+# descriptions
+materialreplication.multiblock.large_deconstructor.description=
+materialreplication.machine.large_scrapper.description=Universal Trash Can
+
+## RecipeMap
 recipemap.deconstruction.name=Material Deconstruction
 recipemap.replication.name=Material Replication
 recipemap.replication.property1=Required a USB Stick with
