@@ -78,7 +78,6 @@ public class recipeHelper {
     public static MetaItem<?>.MetaValueItem FIELD_GENERATOR(int voltage) {
         return switch (voltage) {
             case 1 -> MetaItems.FIELD_GENERATOR_LV;
-
             case 2 -> MetaItems.FIELD_GENERATOR_MV;
             case 3 -> MetaItems.FIELD_GENERATOR_HV;
             case 4 -> MetaItems.FIELD_GENERATOR_EV;
