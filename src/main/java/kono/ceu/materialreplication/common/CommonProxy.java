@@ -1,6 +1,7 @@
 package kono.ceu.materialreplication.common;
 
 
+import gregtech.loaders.recipe.RecyclingRecipes;
 import kono.ceu.materialreplication.api.util.MRValues;
 import kono.ceu.materialreplication.api.util.MaterialReplicationLog;
 import kono.ceu.materialreplication.common.items.MRMetaItems;
@@ -63,6 +64,7 @@ public class CommonProxy {
     public static void registerRecipesLow(RegistryEvent.Register<IRecipe> event){
         MaterialReplicationLog.logger.info("Registering recipes...");
         MRRecipes.addRecipe();
+        RecyclingRecipes.init();
     }
 }
 
