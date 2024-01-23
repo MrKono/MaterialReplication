@@ -1,6 +1,7 @@
 # Corresponding Version Information / 対応バージョン情報
 | MaterialReplication | GTCEu      |
 |---------------------|------------|
+| 1.2.2               | 2.8.6-beta |
 | 1.2.0 <br> 1.2.1    | 2.8.1-bata |
 | 1.1.1               | 2.7.4-beta |
 | 1.1.0               | 2.7.2-beta |

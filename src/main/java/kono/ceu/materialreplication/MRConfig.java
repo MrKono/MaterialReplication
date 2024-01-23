@@ -115,7 +115,7 @@ public class MRConfig {
     }
 
     public static class RecipeOptions {
-        @Config.Comment({"Whether to add the UUMatter recipe.", "If you install Gregification and Forestry, this will be ignored.",
+        @Config.Comment({"Whether to add the UUMatter recipe.", "If you install Forestry and, this will be ignored.",
                 "Default : false"})
         public boolean addUUMatterRecipe = false;
     }

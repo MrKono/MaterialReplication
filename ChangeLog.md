@@ -1,4 +1,19 @@
 # ChangeLog (更新履歴)
+## v 1.2.2
+**_EN_** <br>
+**Update**<br>
+***GTCEu 2.8.1-beta -> 2.8.6-beta***<br>
+**add**<br>
+- Add Large Machine (Deconstructor and Scrapper)<br>
+- Add recycling recipe
+
+**_JP_** <br>
+**Update**<br>
+***GTCEu 2.8.1-beta -> 2.8.6-beta***<br>
+**追加**<br>
+- 大型機械を追加 (分解機とスクラップ製造機)<br>
+- リサイクルレシピを追加
+----------
 ## v 1.2.1
 **_EN_** <br>
 **Update**<br>
