@@ -43,7 +43,7 @@ public class MRMachineRecipeLoader {
        for (Material material : GregTechAPI.materialManager.getRegisteredMaterials()) {
            if (material.hasProperty(PropertyKey.DUST)) { // Has Dust Property? Propertyにdustがあるか
                materialDusts.add(material);
-           } else if (material.hasProperty(PropertyKey.FLUID)) { // Has Fluid Property? ないならPropertyにFluidがあるか
+           } else if (material.hasProperty(PropertyKey.FLUID) && material.getFluid() != null) { // Has Fluid Property? ないならPropertyにFluidがあるか
                materialFluids.add(material);
            }
        }
