@@ -2,12 +2,12 @@
 ## v 1.2.3
 **_EN_** <br>
 **Update**<br>
-***GTCEu 2.8.6-beta -> 2.8.7-beta***<br>
+***GTCEu 2.8.6-beta -> 2.8.8-beta***<br>
 ***GCYM 1.2.7 -> 1.2.8***<br>
 
 **_JP_** <br>
 **Update**<br>
-***GTCEu 2.8.6-beta -> 2.8.7-beta***<br>
+***GTCEu 2.8.6-beta -> 2.8.8-beta***<br>
 ***GCYM 1.2.7 -> 1.2.8***<br>
 ----------
 ## v 1.2.2
