@@ -1,23 +1,28 @@
 package kono.ceu.materialreplication.api.recipes.machines;
 
-import gregtech.api.recipes.Recipe;
-import gregtech.api.recipes.RecipeMap;
-import gregtech.api.util.EnumValidationResult;
-import gregtech.api.util.ValidationResult;
-import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
-import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet;
-import kono.ceu.materialreplication.api.recipes.builders.ReplicatorRecipeBuilder;
-import kono.ceu.materialreplication.api.recipes.properties.ReplicateProperty;
-
-import javax.annotation.Nonnull;
 import java.util.Collections;
 import java.util.Map;
 import java.util.Set;
 
+import javax.annotation.Nonnull;
+
+import gregtech.api.recipes.Recipe;
+import gregtech.api.recipes.RecipeMap;
+import gregtech.api.util.EnumValidationResult;
+import gregtech.api.util.ValidationResult;
+
+import kono.ceu.materialreplication.api.recipes.builders.ReplicatorRecipeBuilder;
+import kono.ceu.materialreplication.api.recipes.properties.ReplicateProperty;
+
+import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
+import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet;
+
 public class RecipeMapReplicator extends RecipeMap<ReplicatorRecipeBuilder> implements IReplicatorRecipeMap {
+
     private final Map<String, Set<Recipe>> replicateEntries = new Object2ObjectOpenHashMap<>();
 
-    public RecipeMapReplicator(String unlocalizedName, int maxInputs, int maxOutputs, int maxFluidInputs, int maxFluidOutputs, ReplicatorRecipeBuilder defaultRecipe, boolean isHidden) {
+    public RecipeMapReplicator(String unlocalizedName, int maxInputs, int maxOutputs, int maxFluidInputs,
+                               int maxFluidOutputs, ReplicatorRecipeBuilder defaultRecipe, boolean isHidden) {
         super(unlocalizedName, maxInputs, maxOutputs, maxFluidInputs, maxFluidOutputs, defaultRecipe, isHidden);
     }
 

@@ -1,14 +1,5 @@
 package kono.ceu.materialreplication.loaders.recipe;
 
-import gregtech.api.metatileentity.multiblock.CleanroomType;
-import gregtech.api.recipes.GTRecipeHandler;
-import gregtech.api.recipes.ModHandler;
-import gregtech.api.recipes.RecipeMaps;
-import gregtech.api.recipes.ingredients.IntCircuitIngredient;
-import gregtech.api.unification.OreDictUnifier;
-import kono.ceu.materialreplication.MRConfig;
-import kono.ceu.materialreplication.api.unification.materials.MRMaterials;
-
 import static gregtech.api.GTValues.*;
 import static gregtech.api.recipes.RecipeMaps.*;
 import static gregtech.api.unification.material.Materials.*;
@@ -18,12 +9,22 @@ import static kono.ceu.materialreplication.api.unification.materials.MRMaterials
 import static kono.ceu.materialreplication.api.unification.materials.MRMaterials.PrimalMatter;
 import static kono.ceu.materialreplication.common.items.MRMetaItems.USB_STICK;
 
+import gregtech.api.metatileentity.multiblock.CleanroomType;
+import gregtech.api.recipes.GTRecipeHandler;
+import gregtech.api.recipes.ModHandler;
+import gregtech.api.recipes.RecipeMaps;
+import gregtech.api.recipes.ingredients.IntCircuitIngredient;
+import gregtech.api.unification.OreDictUnifier;
+
+import kono.ceu.materialreplication.MRConfig;
+import kono.ceu.materialreplication.api.unification.materials.MRMaterials;
+
 public class MRMiscRecipeLoader {
 
     public static void removeMaterialRecipe() {
-        //PrimalMatter
-        ModHandler.removeRecipeByName("gregtech:small_dust_assembling_primal_matter"); //tiny x9 -> dust x1
-        ModHandler.removeRecipeByName("gregtech:tiny_dust_assembling_primal_matter"); //small x4 -> dust x1
+        // PrimalMatter
+        ModHandler.removeRecipeByName("gregtech:small_dust_assembling_primal_matter"); // tiny x9 -> dust x1
+        ModHandler.removeRecipeByName("gregtech:tiny_dust_assembling_primal_matter"); // small x4 -> dust x1
 
         GTRecipeHandler.removeRecipesByInputs(RecipeMaps.PACKER_RECIPES,
                 OreDictUnifier.get(dustTiny, MatterAmplifier, 9),
@@ -39,8 +40,7 @@ public class MRMiscRecipeLoader {
                 OreDictUnifier.get(dust, MatterAmplifier));
     }
 
-    public static void addMaterialRecipe(){
-
+    public static void addMaterialRecipe() {
         EXTRACTOR_RECIPES.recipeBuilder()
                 .input(dustTiny, MRMaterials.PrimalMatter)
                 .fluidOutputs(MRMaterials.PrimalMatter.getFluid(1))
@@ -56,7 +56,7 @@ public class MRMiscRecipeLoader {
                 .output(dust, MRMaterials.PrimalMatter)
                 .duration(1200).EUt(VA[HV]).buildAndRegister();
 
-        //UUMatter
+        // UUMatter
         if (MRConfig.recipe.addUUMatterRecipe) {
             MIXER_RECIPES.recipeBuilder()
                     .fluidInputs(MRMaterials.ChargedMatter.getFluid(50))
@@ -79,6 +79,7 @@ public class MRMiscRecipeLoader {
                 .cleanroom(CleanroomType.CLEANROOM)
                 .duration(400).EUt(90).buildAndRegister();
 
-        ModHandler.addShapelessNBTClearingRecipe("usb_nbt_clearing", USB_STICK.getStackForm(), USB_STICK.getStackForm());
+        ModHandler.addShapelessNBTClearingRecipe("usb_nbt_clearing", USB_STICK.getStackForm(),
+                USB_STICK.getStackForm());
     }
 }

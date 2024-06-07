@@ -1,6 +1,19 @@
 package kono.ceu.materialreplication.loaders.recipe;
 
-import gregicality.multiblocks.api.fluids.GCYMFluidStorageKeys;
+import static gregtech.api.GTValues.*;
+import static gregtech.api.recipes.RecipeMaps.*;
+import static gregtech.api.unification.ore.OrePrefix.dust;
+import static gregtech.api.unification.ore.OrePrefix.dustTiny;
+import static kono.ceu.materialreplication.api.util.MRValues.*;
+import static kono.ceu.materialreplication.common.items.MRMetaItems.SCRAP;
+import static kono.ceu.materialreplication.common.items.MRMetaItems.SCRAP_BOX;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidStack;
+
 import gregtech.api.GregTechAPI;
 import gregtech.api.fluids.store.FluidStorageKeys;
 import gregtech.api.recipes.RecipeBuilder;
@@ -11,27 +24,18 @@ import gregtech.api.recipes.ingredients.nbtmatch.NBTMatcher;
 import gregtech.api.recipes.ingredients.nbtmatch.NBTTagType;
 import gregtech.api.unification.material.Material;
 import gregtech.api.unification.material.properties.PropertyKey;
+
+import gregicality.multiblocks.api.fluids.GCYMFluidStorageKeys;
+
 import kono.ceu.materialreplication.api.recipes.MRRecipeMaps;
 import kono.ceu.materialreplication.api.recipes.builders.ReplicatorRecipeBuilder;
 import kono.ceu.materialreplication.api.recipes.machines.IReplicatorRecipeMap;
 import kono.ceu.materialreplication.api.unification.materials.MRMaterials;
 import kono.ceu.materialreplication.api.unification.materials.flags.MRMaterialFlags;
 import kono.ceu.materialreplication.common.items.MRMetaItems;
-import net.minecraftforge.fluids.Fluid;
-import net.minecraftforge.fluids.FluidStack;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import static gregtech.api.GTValues.*;
-import static gregtech.api.recipes.RecipeMaps.*;
-import static gregtech.api.unification.ore.OrePrefix.dust;
-import static gregtech.api.unification.ore.OrePrefix.dustTiny;
-import static kono.ceu.materialreplication.api.util.MRValues.*;
-import static kono.ceu.materialreplication.common.items.MRMetaItems.SCRAP;
-import static kono.ceu.materialreplication.common.items.MRMetaItems.SCRAP_BOX;
 
 public class MRMachineRecipeLoader {
+
     public static void register() {
         recipeMatter();
         recipeScrap();
@@ -40,13 +44,14 @@ public class MRMachineRecipeLoader {
     public static void recipeMatter() {
         List<Material> materialDusts = new ArrayList<>();
         List<Material> materialFluids = new ArrayList<>();
-       for (Material material : GregTechAPI.materialManager.getRegisteredMaterials()) {
-           if (material.hasProperty(PropertyKey.DUST)) { // Has Dust Property? Propertyにdustがあるか
-               materialDusts.add(material);
-           } else if (material.hasProperty(PropertyKey.FLUID)) { // Has Fluid Property? ないならPropertyにFluidがあるか
-               materialFluids.add(material);
-           }
-       }
+        for (Material material : GregTechAPI.materialManager.getRegisteredMaterials()) {
+            if (material.hasProperty(PropertyKey.DUST)) { // Has Dust Property? Propertyにdustがあるか
+                materialDusts.add(material);
+            } else if (material.hasProperty(PropertyKey.FLUID) && material.getFluid() != null) { // Has Fluid Property?
+                                                                                                 // ないならPropertyにFluidがあるか
+                materialFluids.add(material);
+            }
+        }
 
         for (Material materialDust : materialDusts) {
             // Has dust property material. dustがあるmaterial
@@ -56,7 +61,7 @@ public class MRMachineRecipeLoader {
                         .input(dust, materialDust)
                         .fluidOutputs(MRMaterials.ChargedMatter.getFluid((int) materialDust.getProtons()))
                         .fluidOutputs(MRMaterials.NeutralMatter.getFluid((int) materialDust.getNeutrons()))
-                        .chancedOutput(dustTiny, MRMaterials.PrimalMatter, 5,5)
+                        .chancedOutput(dustTiny, MRMaterials.PrimalMatter, 5, 5)
                         .duration(BaseTime_D * (int) materialDust.getMass())
                         .EUt(Voltage_D)
                         .buildAndRegister();
@@ -74,20 +79,22 @@ public class MRMachineRecipeLoader {
                 } else {
                     builder.fluidInputs(MRMaterials.ChargedMatter.getFluid((int) materialDust.getProtons()))
                             .fluidInputs(MRMaterials.NeutralMatter.getFluid((int) materialDust.getNeutrons()));
-                    }
+                }
 
                 builder.duration(BaseTime_R * (int) materialDust.getMass())
                         .input(GTRecipeItemInput.getOrCreate(MRMetaItems.USB_STICK.getStackForm())
                                 .setNBTMatchingCondition(NBTMatcher.RECURSIVE_EQUAL_TO,
                                         NBTCondition.create(NBTTagType.COMPOUND, IReplicatorRecipeMap.REPLICATE_NBT_TAG,
-                                                NBTCondition.create(NBTTagType.STRING, IReplicatorRecipeMap.REPLICATE_MATERIAL, materialDust.toString())))
+                                                NBTCondition.create(NBTTagType.STRING,
+                                                        IReplicatorRecipeMap.REPLICATE_MATERIAL,
+                                                        materialDust.toString())))
                                 .setNonConsumable())
                         .replicate(materialDust)
                         .EUt(Voltage_R)
                         .output(dust, materialDust)
                         .buildAndRegister();
-                }
             }
+        }
 
         for (Material materialFluid : materialFluids) {
             // Deconstruction
@@ -95,13 +102,13 @@ public class MRMachineRecipeLoader {
                 RecipeBuilder<SimpleRecipeBuilder> builder = MRRecipeMaps.DECONSTRUCTION_RECIPES.recipeBuilder();
                 // check Molten
                 if (hasOnlyMolten(materialFluid)) {
-                        builder.fluidInputs(new FluidStack(materialFluid.getFluid(GCYMFluidStorageKeys.MOLTEN), 1000));
-                    } else {
-                        builder.fluidInputs(materialFluid.getFluid(1000));
-                    }
+                    builder.fluidInputs(new FluidStack(materialFluid.getFluid(GCYMFluidStorageKeys.MOLTEN), 1000));
+                } else {
+                    builder.fluidInputs(materialFluid.getFluid(1000));
+                }
                 builder.fluidOutputs(MRMaterials.ChargedMatter.getFluid((int) materialFluid.getProtons()))
                         .fluidOutputs(MRMaterials.NeutralMatter.getFluid((int) materialFluid.getNeutrons()))
-                        .chancedOutput(dustTiny, MRMaterials.PrimalMatter, 5,5)
+                        .chancedOutput(dustTiny, MRMaterials.PrimalMatter, 5, 5)
                         .duration(BaseTime_D * (int) materialFluid.getMass())
                         .EUt(Voltage_D)
                         .buildAndRegister();
@@ -109,7 +116,7 @@ public class MRMachineRecipeLoader {
 
             // Replication
             if (!materialFluid.hasFlag(MRMaterialFlags.DISABLE_REPLICATION)) {
-                RecipeBuilder <ReplicatorRecipeBuilder> builder = MRRecipeMaps.REPLICATION_RECIPES.recipeBuilder();
+                RecipeBuilder<ReplicatorRecipeBuilder> builder = MRRecipeMaps.REPLICATION_RECIPES.recipeBuilder();
 
                 // check the amount of Protons and Neutrons
                 if (materialFluid.getProtons() == 0) {
@@ -124,7 +131,8 @@ public class MRMachineRecipeLoader {
                 builder.input(GTRecipeItemInput.getOrCreate(MRMetaItems.USB_STICK.getStackForm())
                         .setNBTMatchingCondition(NBTMatcher.RECURSIVE_EQUAL_TO,
                                 NBTCondition.create(NBTTagType.COMPOUND, IReplicatorRecipeMap.REPLICATE_NBT_TAG,
-                                        NBTCondition.create(NBTTagType.STRING, IReplicatorRecipeMap.REPLICATE_MATERIAL, materialFluid.toString())))
+                                        NBTCondition.create(NBTTagType.STRING, IReplicatorRecipeMap.REPLICATE_MATERIAL,
+                                                materialFluid.toString())))
                         .setNonConsumable())
                         .replicate(materialFluid)
                         .duration(BaseTime_R * (int) materialFluid.getMass())
@@ -202,5 +210,4 @@ public class MRMachineRecipeLoader {
         Fluid molten = material.getFluid(GCYMFluidStorageKeys.MOLTEN);
         return molten != null && gas == null && liquid == null && plasma == null;
     }
-
 }

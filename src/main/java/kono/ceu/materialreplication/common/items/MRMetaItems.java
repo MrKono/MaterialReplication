@@ -1,13 +1,10 @@
 package kono.ceu.materialreplication.common.items;
 
-
 import gregtech.api.items.metaitem.MetaItem;
 
 public final class MRMetaItems {
 
-    private MRMetaItems() {
-
-    }
+    private MRMetaItems() {}
 
     public static MetaItem<?>.MetaValueItem USB_STICK;
     public static MetaItem<?>.MetaValueItem SCRAP;
