@@ -1,5 +1,14 @@
 package kono.ceu.materialreplication.api.recipes.builders;
 
+import static kono.ceu.materialreplication.api.util.MRValues.BaseTime_S;
+import static kono.ceu.materialreplication.api.util.MRValues.Voltage_S;
+
+import javax.annotation.Nonnull;
+
+import net.minecraft.nbt.NBTTagCompound;
+
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
 import gregtech.api.GregTechAPI;
 import gregtech.api.recipes.Recipe;
 import gregtech.api.recipes.RecipeBuilder;
@@ -9,23 +18,18 @@ import gregtech.api.unification.material.Materials;
 import gregtech.api.util.EnumValidationResult;
 import gregtech.api.util.GTLog;
 import gregtech.api.util.ValidationResult;
+
 import kono.ceu.materialreplication.api.recipes.machines.IReplicatorRecipeMap;
 import kono.ceu.materialreplication.api.recipes.properties.ReplicateProperty;
-import net.minecraft.nbt.NBTTagCompound;
-import org.apache.commons.lang3.builder.ToStringBuilder;
 
-import javax.annotation.Nonnull;
-
-import static kono.ceu.materialreplication.api.util.MRValues.BaseTime_S;
-import static kono.ceu.materialreplication.api.util.MRValues.Voltage_S;
-
-public class ReplicatorRecipeBuilder extends RecipeBuilder<ReplicatorRecipeBuilder>  {
+public class ReplicatorRecipeBuilder extends RecipeBuilder<ReplicatorRecipeBuilder> {
 
     private final String materialName = Materials.NULL.getName();
     private Material replicationMaterial = GregTechAPI.materialManager.getMaterial(materialName);
     private int Duration = BaseTime_S; // Default : 1200 tick
     private int Voltage = Voltage_S; // Default : 30 EU/t
     private boolean scanRecipe = true;
+
     public ReplicatorRecipeBuilder() {}
 
     @SuppressWarnings("unused")
@@ -72,7 +76,8 @@ public class ReplicatorRecipeBuilder extends RecipeBuilder<ReplicatorRecipeBuild
         return replicate(replicationMaterial, replicationMaterial.toString(), time, EUt);
     }
 
-    public ReplicatorRecipeBuilder replicate(@Nonnull Material replicationMaterial, @Nonnull String replicateID, int time, int EUt) {
+    public ReplicatorRecipeBuilder replicate(@Nonnull Material replicationMaterial, @Nonnull String replicateID,
+                                             int time, int EUt) {
         if (replicationMaterial == null) {
             GTLog.logger.error("Materials cannot be empty", new IllegalArgumentException());
             recipeStatus = EnumValidationResult.INVALID;
@@ -80,7 +85,7 @@ public class ReplicatorRecipeBuilder extends RecipeBuilder<ReplicatorRecipeBuild
             this.replicationMaterial = replicationMaterial;
             replicate(replicateID);
         }
-        if (time <=0) {
+        if (time <= 0) {
             GTLog.logger.error("Duration must be greater than 0", new IllegalArgumentException());
             recipeStatus = EnumValidationResult.INVALID;
         } else {
@@ -98,11 +103,12 @@ public class ReplicatorRecipeBuilder extends RecipeBuilder<ReplicatorRecipeBuild
     @Override
     public ValidationResult<Recipe> build() {
         ValidationResult<Recipe> result = super.build();
-        if (result.getType() == EnumValidationResult.VALID && !this.outputs.isEmpty() && !this.outputs.get(0).isEmpty()) {
+        if (result.getType() == EnumValidationResult.VALID && !this.outputs.isEmpty() &&
+                !this.outputs.get(0).isEmpty()) {
             if (!recipePropertyStorage.hasRecipeProperty(ReplicateProperty.getInstance())) {
                 this.applyProperty(ReplicateProperty.getInstance(), this.outputs.get(0).getTranslationKey());
-                }
             }
+        }
         return result;
     }
 
@@ -143,5 +149,4 @@ public class ReplicatorRecipeBuilder extends RecipeBuilder<ReplicatorRecipeBuild
         compound.setString(IReplicatorRecipeMap.REPLICATE_MATERIAL, replicateId);
         return compound;
     }
-
 }

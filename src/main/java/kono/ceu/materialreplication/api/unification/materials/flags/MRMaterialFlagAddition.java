@@ -1,15 +1,16 @@
 package kono.ceu.materialreplication.api.unification.materials.flags;
 
-import gregtech.api.GregTechAPI;
-import gregtech.api.unification.material.Material;
-import kono.ceu.materialreplication.MRConfig;
-
 import static kono.ceu.materialreplication.api.unification.materials.flags.MRMaterialFlags.DISABLE_DECONSTRUCTION;
 import static kono.ceu.materialreplication.api.unification.materials.flags.MRMaterialFlags.DISABLE_REPLICATION;
 
-public class MRMaterialFlagAddition {
-    public static void init() {
+import gregtech.api.GregTechAPI;
+import gregtech.api.unification.material.Material;
 
+import kono.ceu.materialreplication.MRConfig;
+
+public class MRMaterialFlagAddition {
+
+    public static void init() {
         // Deconstruction & Replication Blacklist
         for (String both : MRConfig.materialOption.blacklistForMatter) {
             if (!both.isEmpty()) {
@@ -32,7 +33,7 @@ public class MRMaterialFlagAddition {
         for (String replication : MRConfig.materialOption.blacklistForReplication) {
             if (!replication.isEmpty()) {
                 Material blacklistReplicate = GregTechAPI.materialManager.getMaterial(replication);
-                if (blacklistReplicate == null ) continue;
+                if (blacklistReplicate == null) continue;
                 blacklistReplicate.addFlags(DISABLE_REPLICATION);
             }
         }
@@ -50,6 +51,5 @@ public class MRMaterialFlagAddition {
                 }
             }
         }
-
     }
 }

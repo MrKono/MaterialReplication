@@ -5,6 +5,7 @@ import gregtech.api.items.metaitem.MetaItem;
 import gregtech.common.items.MetaItems;
 
 public class recipeHelper {
+
     public static MetaItem<?>.MetaValueItem MOTOR(int voltage) {
         return switch (voltage) {
             case 1 -> MetaItems.ELECTRIC_MOTOR_LV;

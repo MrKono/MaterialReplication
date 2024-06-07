@@ -1,10 +1,13 @@
 package kono.ceu.materialreplication.common.machines.multi;
 
-import gregicality.multiblocks.api.metatileentity.GCYMRecipeMapMultiblockController;
-import gregicality.multiblocks.api.render.GCYMTextures;
-import gregicality.multiblocks.common.block.GCYMMetaBlocks;
-import gregicality.multiblocks.common.block.blocks.BlockLargeMultiblockCasing;
-import gregicality.multiblocks.common.block.blocks.BlockUniqueCasing;
+import static kono.ceu.materialreplication.api.util.MRValues.tierLargeDeconstruct;
+import static kono.ceu.materialreplication.client.MRTextures.LARGE_DECONSTRUCTOR_OVERLAY;
+
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.util.ResourceLocation;
+
+import org.jetbrains.annotations.NotNull;
+
 import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
 import gregtech.api.metatileentity.multiblock.IMultiblockPart;
@@ -15,13 +18,14 @@ import gregtech.client.renderer.texture.cube.OrientedOverlayRenderer;
 import gregtech.common.blocks.BlockFusionCasing;
 import gregtech.common.blocks.BlockGlassCasing;
 import gregtech.common.blocks.MetaBlocks;
-import kono.ceu.materialreplication.api.recipes.MRRecipeMaps;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.util.ResourceLocation;
-import org.jetbrains.annotations.NotNull;
 
-import static kono.ceu.materialreplication.api.util.MRValues.tierLargeDeconstruct;
-import static kono.ceu.materialreplication.client.MRTextures.LARGE_DECONSTRUCTOR_OVERLAY;
+import gregicality.multiblocks.api.metatileentity.GCYMRecipeMapMultiblockController;
+import gregicality.multiblocks.api.render.GCYMTextures;
+import gregicality.multiblocks.common.block.GCYMMetaBlocks;
+import gregicality.multiblocks.common.block.blocks.BlockLargeMultiblockCasing;
+import gregicality.multiblocks.common.block.blocks.BlockUniqueCasing;
+
+import kono.ceu.materialreplication.api.recipes.MRRecipeMaps;
 
 public class MetaTileEntityLargeDeconstructor extends GCYMRecipeMapMultiblockController {
 

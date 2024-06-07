@@ -1,7 +1,8 @@
 package kono.ceu.materialreplication.loaders.recipe;
 
 public class MRRecipes {
-    public static void addRecipe(){
+
+    public static void addRecipe() {
         MRMachineRecipeLoader.register();
         MRMiscRecipeLoader.addMaterialRecipe();
         MRMiscRecipeLoader.miscRecipe();

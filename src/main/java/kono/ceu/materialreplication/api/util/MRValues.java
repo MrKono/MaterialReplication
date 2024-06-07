@@ -1,10 +1,13 @@
 package kono.ceu.materialreplication.api.util;
 
-import kono.ceu.materialreplication.MRConfig;
 import net.minecraft.util.ResourceLocation;
+
 import org.jetbrains.annotations.NotNull;
 
+import kono.ceu.materialreplication.MRConfig;
+
 public class MRValues {
+
     public static final String MODNAME = "Material Replication";
     public static final String MODID = "materialreplication",
             MODID_GCYM = "gcym",
@@ -36,7 +39,7 @@ public class MRValues {
             tierLargeDeconstruct = rangeTier(MRConfig.tier.tierLargeDeconstruct, 6, 8) ?
                     MRConfig.tier.tierLargeDeconstruct : 6;
 
-    public static @NotNull ResourceLocation mrId (@NotNull String path) {
+    public static @NotNull ResourceLocation mrId(@NotNull String path) {
         return new ResourceLocation(MODID, path);
     }
 
@@ -48,7 +51,7 @@ public class MRValues {
         return true;
     }
 
-    private static boolean rangeVoltage (int voltage) {
+    private static boolean rangeVoltage(int voltage) {
         if (voltage <= 0) {
             MaterialReplicationLog.logger.error("Base Voltage must be greater than 0! Set to default value.");
             return false;
@@ -56,7 +59,7 @@ public class MRValues {
         return true;
     }
 
-    private static boolean rangeChance (int chance) {
+    private static boolean rangeChance(int chance) {
         if (chance < 0 || 100000 < chance) {
             MaterialReplicationLog.logger.error("Output Chance must be 0 to 100000! Set to default value.");
             return false;
@@ -64,7 +67,7 @@ public class MRValues {
         return true;
     }
 
-    private static boolean rangeTier (int tier, int min, int max) {
+    private static boolean rangeTier(int tier, int min, int max) {
         if (tier < min || max < tier) {
             MaterialReplicationLog.logger.error("Start tier is over range! Set to default value.");
             return false;

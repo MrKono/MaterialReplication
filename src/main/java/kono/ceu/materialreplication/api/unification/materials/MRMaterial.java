@@ -1,15 +1,14 @@
 package kono.ceu.materialreplication.api.unification.materials;
 
+import static kono.ceu.materialreplication.api.util.MRValues.mrId;
+
 import gregtech.api.fluids.FluidBuilder;
 import gregtech.api.unification.material.Material;
 import gregtech.api.unification.material.info.MaterialIconSet;
 
-import static kono.ceu.materialreplication.api.util.MRValues.mrId;
-
 public class MRMaterial {
 
     public static void init() {
-
         MRMaterials.PrimalMatter = new Material.Builder(31000, mrId("primal_matter"))
                 .dust()
                 .liquid(new FluidBuilder().temperature(10))

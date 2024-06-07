@@ -1,5 +1,9 @@
 package kono.ceu.materialreplication.loaders.recipe;
 
+import static gregtech.loaders.recipe.CraftingComponent.*;
+import static gregtech.loaders.recipe.MetaTileEntityLoader.registerMachineRecipe;
+import static kono.ceu.materialreplication.api.util.MRValues.tierLargeDeconstruct;
+
 import gregtech.api.GTValues;
 import gregtech.api.recipes.ModHandler;
 import gregtech.api.unification.material.MarkerMaterials;
@@ -7,16 +11,14 @@ import gregtech.api.unification.material.Materials;
 import gregtech.api.unification.ore.OrePrefix;
 import gregtech.api.unification.stack.UnificationEntry;
 import gregtech.common.items.MetaItems;
+
 import kono.ceu.materialreplication.api.util.recipeHelper;
 import kono.ceu.materialreplication.common.machines.MRMetaTileEntities;
 
-import static gregtech.loaders.recipe.CraftingComponent.*;
-import static gregtech.loaders.recipe.MetaTileEntityLoader.registerMachineRecipe;
-import static kono.ceu.materialreplication.api.util.MRValues.tierLargeDeconstruct;
-
 public class MRMTECraftingRecipeLoader {
+
     public static void register() {
-        //Deconstructor
+        // Deconstructor
         registerMachineRecipe(MRMetaTileEntities.DECONSTRUCTOR,
                 "CSC", "FHF", "CQC",
                 'C', BETTER_CIRCUIT,
@@ -25,7 +27,7 @@ public class MRMTECraftingRecipeLoader {
                 'H', HULL,
                 'Q', CABLE_QUAD);
 
-        //Replicator
+        // Replicator
         registerMachineRecipe(MRMetaTileEntities.REPLICATOR,
                 "EFE", "CHC", "SQS",
                 'E', EMITTER,
@@ -35,16 +37,16 @@ public class MRMTECraftingRecipeLoader {
                 'S', SENSOR,
                 'Q', CABLE_QUAD);
 
-        //ScrapMaker
+        // ScrapMaker
         registerMachineRecipe(MRMetaTileEntities.SCRAPPER,
-                    "GCG", "PHP", "WCW",
-                    'G', new UnificationEntry(OrePrefix.dust, Materials.Glowstone),
-                    'C', CIRCUIT,
-                    'P', PISTON,
-                    'W', CABLE,
-                    'H', HULL);
+                "GCG", "PHP", "WCW",
+                'G', new UnificationEntry(OrePrefix.dust, Materials.Glowstone),
+                'C', CIRCUIT,
+                'P', PISTON,
+                'W', CABLE,
+                'H', HULL);
 
-        //LargeDeconstructor
+        // LargeDeconstructor
         ModHandler.addShapedRecipe(true, "large_deconstructor", MRMetaTileEntities.LARGE_DECONSTRUCTOR.getStackForm(),
                 "FCF", "EDE", "FQF",
                 'C', recipeHelper.oreDictCircuit(tierLargeDeconstruct + 1),
@@ -53,14 +55,13 @@ public class MRMTECraftingRecipeLoader {
                 'E', recipeHelper.EMITTER(tierLargeDeconstruct),
                 'Q', new UnificationEntry(OrePrefix.cableGtQuadruple,
                         switch (tierLargeDeconstruct) {
-                    case 6 -> Materials.VanadiumGallium;
-                    case 7 -> Materials.YttriumBariumCuprate;
-                    case 8 -> Materials.Europium;
-                            default -> throw new IllegalStateException("Unexpected value: " + tierLargeDeconstruct);
-                        }
-                ));
+                        case 6 -> Materials.VanadiumGallium;
+                        case 7 -> Materials.YttriumBariumCuprate;
+                        case 8 -> Materials.Europium;
+                        default -> throw new IllegalStateException("Unexpected value: " + tierLargeDeconstruct);
+                        }));
 
-        //LargeScrapper
+        // LargeScrapper
         ModHandler.addShapedRecipe(true, "large_scrapper", MRMetaTileEntities.LARGE_SCRAPPER.getStackForm(),
                 "PCP", "BSB", "MWM",
                 'P', MetaItems.ELECTRIC_PISTON_IV,

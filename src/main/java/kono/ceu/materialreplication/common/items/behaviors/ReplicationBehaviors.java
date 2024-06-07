@@ -1,20 +1,23 @@
 package kono.ceu.materialreplication.common.items.behaviors;
 
-import gregtech.api.GregTechAPI;
-import gregtech.api.items.metaitem.stats.IItemBehaviour;
-import gregtech.api.unification.material.Material;
-import gregtech.client.utils.TooltipHelper;
-import kono.ceu.materialreplication.api.recipes.machines.IReplicatorRecipeMap;
+import static kono.ceu.materialreplication.api.unification.materials.MRMaterials.ChargedMatter;
+import static kono.ceu.materialreplication.api.unification.materials.MRMaterials.NeutralMatter;
+import static net.minecraft.util.text.TextFormatting.*;
+
+import java.util.List;
+
+import javax.annotation.Nonnull;
+
 import net.minecraft.client.resources.I18n;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
-import javax.annotation.Nonnull;
-import java.util.List;
+import gregtech.api.GregTechAPI;
+import gregtech.api.items.metaitem.stats.IItemBehaviour;
+import gregtech.api.unification.material.Material;
+import gregtech.client.utils.TooltipHelper;
 
-import static kono.ceu.materialreplication.api.unification.materials.MRMaterials.ChargedMatter;
-import static kono.ceu.materialreplication.api.unification.materials.MRMaterials.NeutralMatter;
-import static net.minecraft.util.text.TextFormatting.*;
+import kono.ceu.materialreplication.api.recipes.machines.IReplicatorRecipeMap;
 
 public class ReplicationBehaviors implements IItemBehaviour {
 
@@ -32,7 +35,7 @@ public class ReplicationBehaviors implements IItemBehaviour {
 
             lines.add(I18n.format("behaviour.usb.replicate"));
             lines.add(I18n.format("behaviour.usb.replicate_data1", materialName));
-            if (TooltipHelper.isShiftDown()){
+            if (TooltipHelper.isShiftDown()) {
                 lines.add(BLINKING_GRAY_FAST + I18n.format("behaviour.usb.replicate_data2"));
                 if (materialStack.getNeutrons() > 0) {
                     lines.add(I18n.format("behaviour.usb.replicate_data3", Neutral, materialStack.getNeutrons()));
