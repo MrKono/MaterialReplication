@@ -34,30 +34,30 @@ public class MRRecipeMaps {
     // Deconstructor
     public static final RecipeMap<SimpleRecipeBuilder> DECONSTRUCTION_RECIPES = new RecipeMapBuilder<>("deconstruction",
             new SimpleRecipeBuilder())
-                .itemInputs(1).itemOutputs(1)
-                .fluidInputs(1).fluidOutputs(2)
-                .itemSlotOverlay(GuiTextures.DUST_OVERLAY, false)
-                .itemSlotOverlay(GuiTextures.DUST_OVERLAY, true)
-                .fluidSlotOverlay(GuiTextures.LIGHTNING_OVERLAY_2, false)
-                .fluidSlotOverlay(GuiTextures.MOLECULAR_OVERLAY_3, true, false)
-                .fluidSlotOverlay(GuiTextures.MOLECULAR_OVERLAY_4, true, true)
-                .sound(GTSoundEvents.CENTRIFUGE)
-                .progressBar(GuiTextures.PROGRESS_BAR_MASS_FAB, ProgressWidget.MoveType.HORIZONTAL)
-                .build();
+                    .itemInputs(1).itemOutputs(1)
+                    .fluidInputs(1).fluidOutputs(2)
+                    .itemSlotOverlay(GuiTextures.DUST_OVERLAY, false)
+                    .itemSlotOverlay(GuiTextures.DUST_OVERLAY, true)
+                    .fluidSlotOverlay(GuiTextures.LIGHTNING_OVERLAY_2, false)
+                    .fluidSlotOverlay(GuiTextures.MOLECULAR_OVERLAY_3, true, false)
+                    .fluidSlotOverlay(GuiTextures.MOLECULAR_OVERLAY_4, true, true)
+                    .sound(GTSoundEvents.CENTRIFUGE)
+                    .progressBar(GuiTextures.PROGRESS_BAR_MASS_FAB, ProgressWidget.MoveType.HORIZONTAL)
+                    .build();
 
     // Replicator
     public static final RecipeMap<ReplicatorRecipeBuilder> REPLICATION_RECIPES = new RecipeMapBuilder<>("replication",
-             new ReplicatorRecipeBuilder())
-                .itemInputs(1).itemOutputs(1)
-                .fluidInputs(2).fluidOutputs(1)
-                .itemSlotOverlay(MRGuiTextures.USB_OVERLAY, false)
-                .itemSlotOverlay(GuiTextures.DUST_OVERLAY, true)
-                .fluidSlotOverlay(GuiTextures.ATOMIC_OVERLAY_1, false, false)
-                .fluidSlotOverlay(GuiTextures.ATOMIC_OVERLAY_2, false, true)
-                .fluidSlotOverlay(GuiTextures.VIAL_OVERLAY_1, true)
-                .progressBar(GuiTextures.PROGRESS_BAR_REPLICATOR, ProgressWidget.MoveType.HORIZONTAL)
-                .sound(GTSoundEvents.ASSEMBLER)
-                .onBuild(mrId("replication_research"), recipeBuilder -> {
+            new ReplicatorRecipeBuilder())
+                    .itemInputs(1).itemOutputs(1)
+                    .fluidInputs(2).fluidOutputs(1)
+                    .itemSlotOverlay(MRGuiTextures.USB_OVERLAY, false)
+                    .itemSlotOverlay(GuiTextures.DUST_OVERLAY, true)
+                    .fluidSlotOverlay(GuiTextures.ATOMIC_OVERLAY_1, false, false)
+                    .fluidSlotOverlay(GuiTextures.ATOMIC_OVERLAY_2, false, true)
+                    .fluidSlotOverlay(GuiTextures.VIAL_OVERLAY_1, true)
+                    .progressBar(GuiTextures.PROGRESS_BAR_REPLICATOR, ProgressWidget.MoveType.HORIZONTAL)
+                    .sound(GTSoundEvents.ASSEMBLER)
+                    .onBuild(mrId("replication_research"), recipeBuilder -> {
                         if (!recipeBuilder.scanRecipe()) return;
 
                         String replicateId = recipeBuilder.getReplicateID();
@@ -117,9 +117,9 @@ public class MRRecipeMaps {
     // Scrapper
     public static final RecipeMap<SimpleRecipeBuilder> SCRAPMAKER_RECIPES = new RecipeMapScrapMaker("scrapper",
             new SimpleRecipeBuilder(), recipeMap -> {
-            RecipeMapUI<?> ui = new RecipeMapUI<>(recipeMap, true, true, true, false);
-            ui.setItemSlotOverlay(GuiTextures.DUST_OVERLAY, true);
-            ui.setFluidSlotOverlay(GuiTextures.LIGHTNING_OVERLAY_2, false);
-            return ui;
-    });
+                RecipeMapUI<?> ui = new RecipeMapUI<>(recipeMap, true, true, true, false);
+                ui.setItemSlotOverlay(GuiTextures.DUST_OVERLAY, true);
+                ui.setFluidSlotOverlay(GuiTextures.LIGHTNING_OVERLAY_2, false);
+                return ui;
+            });
 }
