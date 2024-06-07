@@ -1,28 +1,27 @@
 package kono.ceu.materialreplication.api.recipes.machines;
 
+import gregtech.api.recipes.Recipe;
+import gregtech.api.recipes.RecipeMap;
+import gregtech.api.recipes.builders.SimpleRecipeBuilder;
+import gregtech.api.recipes.ingredients.GTRecipeItemInput;
+import gregtech.api.recipes.ui.RecipeMapUIFunction;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.fluids.FluidStack;
+import org.jetbrains.annotations.NotNull;
+
+import javax.annotation.Nullable;
+import java.util.List;
+
 import static gregtech.api.GTValues.LV;
 import static gregtech.api.GTValues.VA;
 import static kono.ceu.materialreplication.api.util.MRValues.ScrapChance;
 import static kono.ceu.materialreplication.api.util.MRValues.ScrapChanceBoost;
 import static kono.ceu.materialreplication.common.items.MRMetaItems.SCRAP;
 
-import java.util.List;
-
-import javax.annotation.Nullable;
-
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.fluids.FluidStack;
-
-import gregtech.api.recipes.Recipe;
-import gregtech.api.recipes.RecipeMap;
-import gregtech.api.recipes.builders.SimpleRecipeBuilder;
-import gregtech.api.recipes.ingredients.GTRecipeItemInput;
-
 public class RecipeMapScrapMaker extends RecipeMap<SimpleRecipeBuilder> {
 
-    public RecipeMapScrapMaker(String unlocalizedName, int maxInputs, int maxOutputs, int maxFluidInputs,
-                               int maxFluidOutputs, SimpleRecipeBuilder defaultRecipe, boolean isHidden) {
-        super(unlocalizedName, maxInputs, maxOutputs, maxFluidInputs, maxFluidOutputs, defaultRecipe, isHidden);
+    public RecipeMapScrapMaker(@NotNull String unlocalizedName, @NotNull SimpleRecipeBuilder defaultRecipeBuilder, @NotNull RecipeMapUIFunction recipeMapUI) {
+        super(unlocalizedName, defaultRecipeBuilder, recipeMapUI, 1, 1, 1, 0);
     }
 
     @Override
