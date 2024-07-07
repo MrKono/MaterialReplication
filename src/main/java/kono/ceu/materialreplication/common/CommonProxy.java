@@ -1,7 +1,13 @@
 package kono.ceu.materialreplication.common;
 
-import java.util.function.Function;
-
+import gregtech.api.GregTechAPI;
+import gregtech.api.metatileentity.registry.MTEManager;
+import gregtech.loaders.recipe.RecyclingRecipes;
+import kono.ceu.materialreplication.api.util.MRValues;
+import kono.ceu.materialreplication.api.util.MaterialReplicationLog;
+import kono.ceu.materialreplication.common.items.MRMetaItems;
+import kono.ceu.materialreplication.common.machines.MRMetaTileEntities;
+import kono.ceu.materialreplication.loaders.recipe.MRRecipes;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
@@ -14,13 +20,7 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
-import gregtech.loaders.recipe.RecyclingRecipes;
-
-import kono.ceu.materialreplication.api.util.MRValues;
-import kono.ceu.materialreplication.api.util.MaterialReplicationLog;
-import kono.ceu.materialreplication.common.items.MRMetaItems;
-import kono.ceu.materialreplication.common.machines.MRMetaTileEntities;
-import kono.ceu.materialreplication.loaders.recipe.MRRecipes;
+import java.util.function.Function;
 
 @Mod.EventBusSubscriber(modid = MRValues.MODID)
 public class CommonProxy {
@@ -42,6 +42,11 @@ public class CommonProxy {
         ItemBlock itemBlock = producer.apply(block);
         itemBlock.setRegistryName(block.getRegistryName());
         return itemBlock;
+    }
+
+    @SubscribeEvent
+    public static void registerMTERegistry(MTEManager.MTERegistryEvent event) {
+        GregTechAPI.mteManager.createRegistry(MRValues.MODID);
     }
 
     @SubscribeEvent
