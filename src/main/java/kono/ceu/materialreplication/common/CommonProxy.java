@@ -1,13 +1,7 @@
 package kono.ceu.materialreplication.common;
 
-import gregtech.api.GregTechAPI;
-import gregtech.api.metatileentity.registry.MTEManager;
-import gregtech.loaders.recipe.RecyclingRecipes;
-import kono.ceu.materialreplication.api.util.MRValues;
-import kono.ceu.materialreplication.api.util.MaterialReplicationLog;
-import kono.ceu.materialreplication.common.items.MRMetaItems;
-import kono.ceu.materialreplication.common.machines.MRMetaTileEntities;
-import kono.ceu.materialreplication.loaders.recipe.MRRecipes;
+import java.util.function.Function;
+
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
@@ -20,7 +14,15 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
-import java.util.function.Function;
+import gregtech.api.GregTechAPI;
+import gregtech.api.metatileentity.registry.MTEManager;
+import gregtech.loaders.recipe.RecyclingRecipes;
+
+import kono.ceu.materialreplication.api.util.MRValues;
+import kono.ceu.materialreplication.api.util.MaterialReplicationLog;
+import kono.ceu.materialreplication.common.items.MRMetaItems;
+import kono.ceu.materialreplication.common.machines.MRMetaTileEntities;
+import kono.ceu.materialreplication.loaders.recipe.MRRecipes;
 
 @Mod.EventBusSubscriber(modid = MRValues.MODID)
 public class CommonProxy {
