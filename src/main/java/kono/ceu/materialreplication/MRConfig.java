@@ -79,7 +79,7 @@ public class MRConfig {
         @Config.RangeInt(min = 1)
         public int DeconstructionVoltage = 30;
 
-        @Config.Comment({"If true, only Elements can be deconstructed.", "Default: false"})
+        @Config.Comment({ "If true, only Elements can be deconstructed.", "Default: false" })
         public boolean DeconstructOnlyElements = false;
     }
 
@@ -102,8 +102,7 @@ public class MRConfig {
         @Config.RangeInt(min = 1)
         public int ScanVoltage = 30;
 
-
-        @Config.Comment({"If true, only Elements can be replicated.", "Default: false"})
+        @Config.Comment({ "If true, only Elements can be replicated.", "Default: false" })
         public boolean ReplicateOnlyElements = false;
     }
 
@@ -132,7 +131,7 @@ public class MRConfig {
 
     public static class RecipeOptions {
 
-        @Config.Comment({"Whether to add the UUMatter recipe.", "Default : false"})
+        @Config.Comment({ "Whether to add the UUMatter recipe.", "Default : false" })
         public boolean addUUMatterRecipe = false;
     }
 

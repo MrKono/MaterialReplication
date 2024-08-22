@@ -1,6 +1,14 @@
 package kono.ceu.materialreplication.api.recipes;
 
-import gregicality.multiblocks.api.fluids.GCYMFluidStorageKeys;
+import static kono.ceu.materialreplication.loaders.recipe.MRMachineRecipeLoader.hasOnlyMolten;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraftforge.fluids.FluidStack;
+
 import gregtech.api.gui.GuiTextures;
 import gregtech.api.gui.widgets.ProgressWidget;
 import gregtech.api.recipes.RecipeBuilder;
@@ -11,6 +19,9 @@ import gregtech.api.unification.material.Material;
 import gregtech.api.unification.material.properties.PropertyKey;
 import gregtech.api.unification.ore.OrePrefix;
 import gregtech.core.sound.GTSoundEvents;
+
+import gregicality.multiblocks.api.fluids.GCYMFluidStorageKeys;
+
 import kono.ceu.materialreplication.MRConfig;
 import kono.ceu.materialreplication.api.gui.MRGuiTextures;
 import kono.ceu.materialreplication.api.recipes.builders.ReplicatorRecipeBuilder;
@@ -19,14 +30,6 @@ import kono.ceu.materialreplication.api.recipes.machines.RecipeMapReplicator;
 import kono.ceu.materialreplication.api.recipes.machines.RecipeMapScrapMaker;
 import kono.ceu.materialreplication.api.unification.materials.flags.MRMaterialFlags;
 import kono.ceu.materialreplication.common.items.MRMetaItems;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraftforge.fluids.FluidStack;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import static kono.ceu.materialreplication.loaders.recipe.MRMachineRecipeLoader.hasOnlyMolten;
 
 public class MRRecipeMaps {
 
@@ -76,7 +79,7 @@ public class MRRecipeMaps {
                             if (replicateMaterial.hasProperty(PropertyKey.DUST)) {
                                 materialDusts.add(replicateMaterial);
 
-                            // Has Fluid Property?
+                                // Has Fluid Property?
                             } else if (replicateMaterial.hasProperty(PropertyKey.FLUID)) {
                                 materialFluids.add(replicateMaterial);
                             }

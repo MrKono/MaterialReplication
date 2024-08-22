@@ -1,6 +1,21 @@
 package kono.ceu.materialreplication.loaders.recipe;
 
-import gregicality.multiblocks.api.fluids.GCYMFluidStorageKeys;
+import static gregtech.api.GTValues.*;
+import static gregtech.api.recipes.RecipeMaps.*;
+import static gregtech.api.unification.ore.OrePrefix.dust;
+import static gregtech.api.unification.ore.OrePrefix.dustTiny;
+import static kono.ceu.materialreplication.api.util.MRValues.*;
+import static kono.ceu.materialreplication.common.items.MRMetaItems.SCRAP;
+import static kono.ceu.materialreplication.common.items.MRMetaItems.SCRAP_BOX;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidStack;
+
+import org.jetbrains.annotations.NotNull;
+
 import gregtech.api.GregTechAPI;
 import gregtech.api.fluids.store.FluidStorageKeys;
 import gregtech.api.recipes.RecipeBuilder;
@@ -11,6 +26,9 @@ import gregtech.api.recipes.ingredients.nbtmatch.NBTMatcher;
 import gregtech.api.recipes.ingredients.nbtmatch.NBTTagType;
 import gregtech.api.unification.material.Material;
 import gregtech.api.unification.material.properties.PropertyKey;
+
+import gregicality.multiblocks.api.fluids.GCYMFluidStorageKeys;
+
 import kono.ceu.materialreplication.MRConfig;
 import kono.ceu.materialreplication.api.recipes.MRRecipeMaps;
 import kono.ceu.materialreplication.api.recipes.builders.ReplicatorRecipeBuilder;
@@ -18,20 +36,6 @@ import kono.ceu.materialreplication.api.recipes.machines.IReplicatorRecipeMap;
 import kono.ceu.materialreplication.api.unification.materials.MRMaterials;
 import kono.ceu.materialreplication.api.unification.materials.flags.MRMaterialFlags;
 import kono.ceu.materialreplication.common.items.MRMetaItems;
-import net.minecraftforge.fluids.Fluid;
-import net.minecraftforge.fluids.FluidStack;
-import org.jetbrains.annotations.NotNull;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import static gregtech.api.GTValues.*;
-import static gregtech.api.recipes.RecipeMaps.*;
-import static gregtech.api.unification.ore.OrePrefix.dust;
-import static gregtech.api.unification.ore.OrePrefix.dustTiny;
-import static kono.ceu.materialreplication.api.util.MRValues.*;
-import static kono.ceu.materialreplication.common.items.MRMetaItems.SCRAP;
-import static kono.ceu.materialreplication.common.items.MRMetaItems.SCRAP_BOX;
 
 public class MRMachineRecipeLoader {
 
@@ -194,11 +198,11 @@ public class MRMachineRecipeLoader {
         }
 
         builder.input(GTRecipeItemInput.getOrCreate(MRMetaItems.USB_STICK.getStackForm())
-                        .setNBTMatchingCondition(NBTMatcher.RECURSIVE_EQUAL_TO,
-                                NBTCondition.create(NBTTagType.COMPOUND, IReplicatorRecipeMap.REPLICATE_NBT_TAG,
-                                        NBTCondition.create(NBTTagType.STRING, IReplicatorRecipeMap.REPLICATE_MATERIAL,
-                                                material.toString())))
-                        .setNonConsumable())
+                .setNBTMatchingCondition(NBTMatcher.RECURSIVE_EQUAL_TO,
+                        NBTCondition.create(NBTTagType.COMPOUND, IReplicatorRecipeMap.REPLICATE_NBT_TAG,
+                                NBTCondition.create(NBTTagType.STRING, IReplicatorRecipeMap.REPLICATE_MATERIAL,
+                                        material.toString())))
+                .setNonConsumable())
                 .replicate(material)
                 .duration(BaseTime_R * (int) material.getMass())
                 .EUt(Voltage_R);
