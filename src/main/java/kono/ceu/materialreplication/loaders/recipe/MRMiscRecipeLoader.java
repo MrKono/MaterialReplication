@@ -1,5 +1,18 @@
 package kono.ceu.materialreplication.loaders.recipe;
 
+import gregtech.api.metatileentity.multiblock.CleanroomType;
+import gregtech.api.recipes.GTRecipeHandler;
+import gregtech.api.recipes.ModHandler;
+import gregtech.api.recipes.RecipeMaps;
+import gregtech.api.recipes.ingredients.IntCircuitIngredient;
+import gregtech.api.unification.OreDictUnifier;
+import gregtech.api.unification.material.Materials;
+import gregtech.api.unification.ore.OrePrefix;
+import kono.ceu.materialreplication.MRConfig;
+import kono.ceu.materialreplication.api.unification.materials.MRMaterials;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
+
 import static gregtech.api.GTValues.*;
 import static gregtech.api.recipes.RecipeMaps.*;
 import static gregtech.api.unification.material.Materials.*;
@@ -8,16 +21,6 @@ import static gregtech.common.items.MetaItems.*;
 import static kono.ceu.materialreplication.api.unification.materials.MRMaterials.MatterAmplifier;
 import static kono.ceu.materialreplication.api.unification.materials.MRMaterials.PrimalMatter;
 import static kono.ceu.materialreplication.common.items.MRMetaItems.USB_STICK;
-
-import gregtech.api.metatileentity.multiblock.CleanroomType;
-import gregtech.api.recipes.GTRecipeHandler;
-import gregtech.api.recipes.ModHandler;
-import gregtech.api.recipes.RecipeMaps;
-import gregtech.api.recipes.ingredients.IntCircuitIngredient;
-import gregtech.api.unification.OreDictUnifier;
-
-import kono.ceu.materialreplication.MRConfig;
-import kono.ceu.materialreplication.api.unification.materials.MRMaterials;
 
 public class MRMiscRecipeLoader {
 
@@ -63,6 +66,13 @@ public class MRMiscRecipeLoader {
                     .fluidInputs(MRMaterials.NeutralMatter.getFluid(50))
                     .fluidOutputs(UUMatter.getFluid(50))
                     .duration(1200).EUt(VA[HV]).buildAndRegister();
+
+            // Will be removed if implemented by CEu.
+            RecipeMaps.AUTOCLAVE_RECIPES.recipeBuilder()
+                    .input(OrePrefix.dust, Materials.NetherStar)
+                    .fluidInputs(Materials.UUMatter.getFluid(576))
+                    .chancedOutput(new ItemStack(Items.NETHER_STAR), 3333, 3333)
+                    .duration(72000).EUt(VA[HV]).buildAndRegister();
         }
     }
 
