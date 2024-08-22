@@ -1,4 +1,21 @@
 # ChangeLog (更新履歴)
+## v 1.2.4
+**_EN_** <br>
+**Update**<br>
+***GTCEu 2.8.8-beta -> 2.8.10-beta***<br>
+***GCYM 1.2.8 -> 1.2.11***<br>
+**add**<br>
+- Add _OnlyElements_ Option. If true, only Elements apply.
+- Add Autoclave recipe for NetherStar. (Only _addUUMatterRecipe_ is true) 
+
+**_JP_** <br>
+**Update**<br>
+***GTCEu 2.8.8-beta -> 2.8.10-beta***<br>
+***GCYM 1.2.8 -> 1.2.11***<br>
+**追加**<br>
+- 設定 _OnlyElements_ を追加しました. trueの場合元素のみが適用されます.
+- AutoclaveにNetherStarのレシピを追加しました. (_addUUMatterRecipe_ がtrueの場合のみ)
+---------
 ## v 1.2.3
 **_EN_** <br>
 **Update**<br>

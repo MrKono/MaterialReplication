@@ -22,6 +22,7 @@ import gregtech.core.sound.GTSoundEvents;
 
 import gregicality.multiblocks.api.fluids.GCYMFluidStorageKeys;
 
+import kono.ceu.materialreplication.MRConfig;
 import kono.ceu.materialreplication.api.gui.MRGuiTextures;
 import kono.ceu.materialreplication.api.recipes.builders.ReplicatorRecipeBuilder;
 import kono.ceu.materialreplication.api.recipes.machines.IReplicatorRecipeMap;
@@ -64,7 +65,7 @@ public class MRRecipeMaps {
                         compound.setTag(IReplicatorRecipeMap.REPLICATE_NBT_TAG,
                                 ReplicatorRecipeBuilder.generateReplicateNBT(replicateId));
 
-                        // NBT作成
+                        // NBT
                         ItemStack usb = MRMetaItems.USB_STICK.getStackForm();
                         usb.setTagCompound(compound);
 
@@ -72,18 +73,20 @@ public class MRRecipeMaps {
 
                         List<Material> materialDusts = new ArrayList<>();
                         List<Material> materialFluids = new ArrayList<>();
-                        // 対象を仕分け
+
                         if (!replicateMaterial.hasFlag(MRMaterialFlags.DISABLE_REPLICATION)) {
-                            if (replicateMaterial.hasProperty(PropertyKey.DUST)) { // Has Dust Property?
-                                                                                   // Propertyにdustがあるか
+                            // Has Dust Property?
+                            if (replicateMaterial.hasProperty(PropertyKey.DUST)) {
                                 materialDusts.add(replicateMaterial);
-                            } else if (replicateMaterial.hasProperty(PropertyKey.FLUID)) { // Has Fluid Property?
-                                                                                           // ないならPropertyにFluidがあるか
+
+                                // Has Fluid Property?
+                            } else if (replicateMaterial.hasProperty(PropertyKey.FLUID)) {
                                 materialFluids.add(replicateMaterial);
                             }
                         }
 
                         for (Material materialDust : materialDusts) {
+                            if (MRConfig.replication.ReplicateOnlyElements && !materialDust.isElement()) return;
                             RecipeMaps.SCANNER_RECIPES.recipeBuilder()
                                     .input(MRMetaItems.USB_STICK)
                                     .input(OrePrefix.dust, materialDust)
@@ -95,6 +98,7 @@ public class MRRecipeMaps {
                         }
 
                         for (Material materialFluid : materialFluids) {
+                            if (MRConfig.replication.ReplicateOnlyElements && !materialFluid.isElement()) return;
                             RecipeBuilder<SimpleRecipeBuilder> scanner = RecipeMaps.SCANNER_RECIPES.recipeBuilder();
                             scanner.input(MRMetaItems.USB_STICK)
                                     .outputs(usb)

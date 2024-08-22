@@ -78,6 +78,9 @@ public class MRConfig {
         @Config.Comment({ "Deconstruction Base Voltage in int.", "Default : 30 (LV)" })
         @Config.RangeInt(min = 1)
         public int DeconstructionVoltage = 30;
+
+        @Config.Comment({ "If true, only Elements can be deconstructed.", "Default: false" })
+        public boolean DeconstructOnlyElements = false;
     }
 
     public static class ReplicationOptions {
@@ -98,6 +101,9 @@ public class MRConfig {
         @Config.Comment({ "Material Scan Voltage in int.", "Default : 30 (LV)" })
         @Config.RangeInt(min = 1)
         public int ScanVoltage = 30;
+
+        @Config.Comment({ "If true, only Elements can be replicated.", "Default: false" })
+        public boolean ReplicateOnlyElements = false;
     }
 
     public static class ScrapOptions {
@@ -125,8 +131,7 @@ public class MRConfig {
 
     public static class RecipeOptions {
 
-        @Config.Comment({ "Whether to add the UUMatter recipe.", "If you install Forestry and, this will be ignored.",
-                "Default : false" })
+        @Config.Comment({ "Whether to add the UUMatter recipe.", "Default : false" })
         public boolean addUUMatterRecipe = false;
     }
 

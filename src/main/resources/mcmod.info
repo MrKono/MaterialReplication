@@ -2,15 +2,19 @@
 {
   "modid": "materialreplication",
   "name": "Material Replication",
-  "description": "An addon for GTCEu.",
+  "description": "Add matter system for GTCEu.",
   "version": "${version}",
   "mcversion": "${mcversion}",
-  "url": "",
+  "url": "https://www.curseforge.com/minecraft/mc-mods/material-replication",
   "updateUrl": "",
-  "authorList": ["Kono"],
+  "authorList": ["MrKono"],
   "credits": "",
   "logoFile": "",
   "screenshots": [],
-  "dependencies": []
+  "dependencies": [
+    "chickenchunks",
+    "gregtech",
+    "gcym"
+  ]
 }
 ]

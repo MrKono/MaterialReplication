@@ -23,10 +23,11 @@
  */
 dependencies {
     api("codechicken:codechickenlib:3.2.3.358") // CCL 3.2.3.358
-    devOnlyNonPublishable(rfg.deobf("curse.maven:gregtech-ce-unofficial-557242:5322655")) // CEu 2.8.8
-    devOnlyNonPublishable(rfg.deobf("curse.maven:gregicality-multiblocks-564858:5121714")) // GCYM 1.2.8
+    devOnlyNonPublishable(rfg.deobf("curse.maven:gregtech-ce-unofficial-557242:5519022")) // CEu 2.8.10
+    devOnlyNonPublishable(rfg.deobf("curse.maven:gregicality-multiblocks-564858:5619513")) // GCYM 1.2.11
 
-    api("com.cleanroommc:groovyscript:1.0.1") { transitive = false } // GrS 0.7.3
-    api("CraftTweaker2:CraftTweaker2-MC1120-Main:1.12-4.1.20.689") // CrT 4.1.20.689
+    api("com.cleanroommc:groovyscript:1.1.1") { transitive = false } // GrS 1.1.1
+    api("CraftTweaker2:CraftTweaker2-MC1120-Main:1.12-4.1.20.700") // CrT 4.1.20.689
+    api("com.cleanroommc:modularui:2.4.3") // MUI 2.4.3
 
 }
