@@ -29,5 +29,12 @@ dependencies {
     api("com.cleanroommc:groovyscript:1.1.1") { transitive = false } // GrS 1.1.1
     api("CraftTweaker2:CraftTweaker2-MC1120-Main:1.12-4.1.20.700") // CrT 4.1.20.689
     api("com.cleanroommc:modularui:2.4.3") // MUI 2.4.3
+    api("appeng:ae2-uel:v0.56.4") { transitive = false }
+
+    // Debug Forestry
+    compileOnly rfg.deobf("curse.maven:forestry-59751:2684780") // Forestry 5.8.2.387
+    if (project.forestry.toBoolean()) {
+        runtimeOnlyNonPublishable rfg.deobf("curse.maven:forestry-59751:2684780") // Forestry 5.8.2.387
+    }
 
 }

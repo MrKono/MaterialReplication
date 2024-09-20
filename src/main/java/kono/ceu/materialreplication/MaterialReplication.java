@@ -1,5 +1,6 @@
 package kono.ceu.materialreplication;
 
+import kono.ceu.materialreplication.api.util.Mods;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -15,8 +16,8 @@ import kono.ceu.materialreplication.common.CommonProxy;
      name = MRValues.MODNAME,
      version = Tags.VERSION,
      acceptedMinecraftVersions = "[1.12, 1.12.2]",
-     dependencies = GTInternalTags.DEP_VERSION_STRING +
-             "required-after:" + MRValues.MODID_GCYM + ";")
+     dependencies = GTInternalTags.DEP_VERSION_STRING + "required-after:" + Mods.Names.GREGICALITY_MULTIBLOCKS + ";"
+             + "after:" + Mods.Names.FORESTRY)
 
 public class MaterialReplication {
 

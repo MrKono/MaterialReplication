@@ -1,14 +1,6 @@
 package kono.ceu.materialreplication.api.recipes;
 
-import static kono.ceu.materialreplication.loaders.recipe.MRMachineRecipeLoader.hasOnlyMolten;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraftforge.fluids.FluidStack;
-
+import gregicality.multiblocks.api.fluids.GCYMFluidStorageKeys;
 import gregtech.api.gui.GuiTextures;
 import gregtech.api.gui.widgets.ProgressWidget;
 import gregtech.api.recipes.RecipeBuilder;
@@ -19,9 +11,6 @@ import gregtech.api.unification.material.Material;
 import gregtech.api.unification.material.properties.PropertyKey;
 import gregtech.api.unification.ore.OrePrefix;
 import gregtech.core.sound.GTSoundEvents;
-
-import gregicality.multiblocks.api.fluids.GCYMFluidStorageKeys;
-
 import kono.ceu.materialreplication.MRConfig;
 import kono.ceu.materialreplication.api.gui.MRGuiTextures;
 import kono.ceu.materialreplication.api.recipes.builders.ReplicatorRecipeBuilder;
@@ -30,6 +19,14 @@ import kono.ceu.materialreplication.api.recipes.machines.RecipeMapReplicator;
 import kono.ceu.materialreplication.api.recipes.machines.RecipeMapScrapMaker;
 import kono.ceu.materialreplication.api.unification.materials.flags.MRMaterialFlags;
 import kono.ceu.materialreplication.common.items.MRMetaItems;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraftforge.fluids.FluidStack;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import static kono.ceu.materialreplication.loaders.recipe.MRMachineRecipeLoader.hasOnlyMolten;
 
 public class MRRecipeMaps {
 
@@ -46,7 +43,7 @@ public class MRRecipeMaps {
 
     // Replicator
     public static final RecipeMap<ReplicatorRecipeBuilder> REPLICATION_RECIPES = new RecipeMapReplicator("replication",
-            1, 1, 2, 1, new ReplicatorRecipeBuilder(), false)
+            2, 1, 2, 1, new ReplicatorRecipeBuilder(), false)
                     .setSound(GTSoundEvents.ASSEMBLER)
                     .setSlotOverlay(false, false, GuiTextures.DATA_ORB_OVERLAY)
                     .setSlotOverlay(false, false, MRGuiTextures.USB_OVERLAY) // Item Input
@@ -55,6 +52,7 @@ public class MRRecipeMaps {
                     .setSlotOverlay(true, false, GuiTextures.DUST_OVERLAY) // Item Output
                     .setSlotOverlay(true, true, GuiTextures.VIAL_OVERLAY_1) // Fluid Output
                     .setProgressBar(GuiTextures.PROGRESS_BAR_REPLICATOR, ProgressWidget.MoveType.HORIZONTAL)
+                    .allowEmptyOutput()
                     .onRecipeBuild(recipeBuilder -> {
                         if (!recipeBuilder.scanRecipe()) return;
 

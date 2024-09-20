@@ -9,9 +9,7 @@ import kono.ceu.materialreplication.MRConfig;
 public class MRValues {
 
     public static final String MODNAME = "Material Replication";
-    public static final String MODID = "materialreplication",
-            MODID_GCYM = "gcym",
-            MODID_FFM = "forestry";
+    public static final String MODID = "materialreplication";
     public static int BaseTime_D = rangeTime(MRConfig.deconstruction.DeconstructionBaseTime) ?
             MRConfig.deconstruction.DeconstructionBaseTime : 600,
             BaseTime_R = rangeTime(MRConfig.replication.ReplicationBaseTime) ?
