@@ -1,6 +1,11 @@
 package kono.ceu.materialreplication.api.util;
 
-import gregtech.api.util.ModIncompatibilityException;
+import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.function.Function;
+
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextFormatting;
@@ -10,17 +15,13 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.FMLLaunchHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.lang.reflect.Field;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.function.Function;
+import gregtech.api.util.ModIncompatibilityException;
 
 public enum Mods {
-
 
     Forestry(Names.FORESTRY),
     GregicalityMultiblocks(Names.GREGICALITY_MULTIBLOCKS),
@@ -50,7 +51,6 @@ public enum Mods {
     };
 
     public static class Names {
-
 
         public static final String FORESTRY = "forestry";
         public static final String GREGICALITY_MULTIBLOCKS = "gcym";

@@ -1,6 +1,7 @@
 package kono.ceu.materialreplication.integration.forestry.loader;
 
-import appeng.core.Api;
+import net.minecraft.item.ItemStack;
+
 import gregtech.api.GTValues;
 import gregtech.api.metatileentity.multiblock.CleanroomType;
 import gregtech.api.unification.OreDictUnifier;
@@ -12,8 +13,10 @@ import gregtech.api.util.Mods;
 import gregtech.common.items.MetaItems;
 import gregtech.integration.forestry.ForestryUtil;
 import gregtech.integration.forestry.bees.GTCombType;
+
 import kono.ceu.materialreplication.api.recipes.MRRecipeMaps;
-import net.minecraft.item.ItemStack;
+
+import appeng.core.Api;
 
 public class CombRecipeLoader {
 
@@ -22,11 +25,12 @@ public class CombRecipeLoader {
         addProcess(GTCombType.COAL, new Material[] { Materials.Coal }, Voltage.LV);
         addProcess(GTCombType.COKE, new Material[] { Materials.Coke }, Voltage.LV);
         addProcess(GTCombType.OIL, new Material[] { Materials.Oilsands }, Voltage.LV);
-        addProcess(GTCombType.APATITE, new Material[] { Materials.Apatite, Materials.TricalciumPhosphate}, Voltage.LV);
+        addProcess(GTCombType.APATITE, new Material[] { Materials.Apatite, Materials.TricalciumPhosphate }, Voltage.LV);
         addProcess(GTCombType.ASH, new Material[] { Materials.DarkAsh, Materials.Ash }, Voltage.ULV);
-        addProcess(GTCombType.BIOMASS, new Material[] { Materials.Biomass, Materials.Ethanol}, Voltage.ULV);
-        addProcess(GTCombType.PHOSPHORUS, new Material[] {Materials.Phosphorus, Materials.TricalciumPhosphate}, Voltage.HV);
-        addProcess(GTCombType.COAL, new Material[] { Materials.Coal}, Voltage.ULV);
+        addProcess(GTCombType.BIOMASS, new Material[] { Materials.Biomass, Materials.Ethanol }, Voltage.ULV);
+        addProcess(GTCombType.PHOSPHORUS, new Material[] { Materials.Phosphorus, Materials.TricalciumPhosphate },
+                Voltage.HV);
+        addProcess(GTCombType.COAL, new Material[] { Materials.Coal }, Voltage.ULV);
         addProcess(GTCombType.COKE, new Material[] { Materials.Coke }, Voltage.ULV);
         addProcess(GTCombType.OIL, new Material[] { Materials.Oilsands }, Voltage.ULV);
 
@@ -87,7 +91,8 @@ public class CombRecipeLoader {
                 new Material[] { Materials.Grossular, Materials.Aluminium, Materials.Silicon }, Voltage.LV);
         addProcess(GTCombType.STONE,
                 new Material[] { Materials.Stone, Materials.GraniteBlack, Materials.GraniteRed, Materials.Basalt,
-                        Materials.Marble }, Voltage.ULV);
+                        Materials.Marble },
+                Voltage.ULV);
 
         // Metals
         addProcess(GTCombType.COPPER, new Material[] { Materials.Copper, Materials.Tetrahedrite,
@@ -206,7 +211,7 @@ public class CombRecipeLoader {
     public static void addProcess(GTCombType comb, Material[] material, Voltage v) {
         for (int i = 0; i < material.length; i++) {
             if (OreDictUnifier.get(OrePrefix.crushedPurified, material[i], 4).isEmpty() &&
-                OreDictUnifier.get(OrePrefix.dust, material[i], 4).isEmpty()) {
+                    OreDictUnifier.get(OrePrefix.dust, material[i], 4).isEmpty()) {
                 addReplicationProcessFluid(comb, material[i], v, i + 1);
             }
             addReplicationProcess(comb, material[i], v, i + 1);
@@ -273,5 +278,4 @@ public class CombRecipeLoader {
             return 9 * ((this.compareTo(Voltage.MV) < 0) ? 10 : 10 * this.compareTo(Voltage.MV));
         }
     }
-
 }
