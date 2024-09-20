@@ -9,14 +9,15 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import gregtech.GTInternalTags;
 
 import kono.ceu.materialreplication.api.util.MRValues;
+import kono.ceu.materialreplication.api.util.Mods;
 import kono.ceu.materialreplication.common.CommonProxy;
 
 @Mod(modid = MRValues.MODID,
      name = MRValues.MODNAME,
      version = Tags.VERSION,
      acceptedMinecraftVersions = "[1.12, 1.12.2]",
-     dependencies = GTInternalTags.DEP_VERSION_STRING +
-             "required-after:" + MRValues.MODID_GCYM + ";")
+     dependencies = GTInternalTags.DEP_VERSION_STRING + "required-after:" + Mods.Names.GREGICALITY_MULTIBLOCKS + ";" +
+             "after:" + Mods.Names.FORESTRY)
 
 public class MaterialReplication {
 

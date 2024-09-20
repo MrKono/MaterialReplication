@@ -20,6 +20,7 @@ import kono.ceu.materialreplication.api.util.MRValues;
 import kono.ceu.materialreplication.api.util.MaterialReplicationLog;
 import kono.ceu.materialreplication.common.items.MRMetaItems;
 import kono.ceu.materialreplication.common.machines.MRMetaTileEntities;
+import kono.ceu.materialreplication.integration.forestry.MRIntegration;
 import kono.ceu.materialreplication.loaders.recipe.MRRecipes;
 
 @Mod.EventBusSubscriber(modid = MRValues.MODID)
@@ -62,5 +63,6 @@ public class CommonProxy {
         MaterialReplicationLog.logger.info("Registering recipes...");
         MRRecipes.addRecipe();
         RecyclingRecipes.init();
+        MRIntegration.registerRecipeLowest();
     }
 }

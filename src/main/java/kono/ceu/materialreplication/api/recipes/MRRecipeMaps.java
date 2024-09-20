@@ -46,7 +46,7 @@ public class MRRecipeMaps {
 
     // Replicator
     public static final RecipeMap<ReplicatorRecipeBuilder> REPLICATION_RECIPES = new RecipeMapReplicator("replication",
-            1, 1, 2, 1, new ReplicatorRecipeBuilder(), false)
+            2, 1, 2, 1, new ReplicatorRecipeBuilder(), false)
                     .setSound(GTSoundEvents.ASSEMBLER)
                     .setSlotOverlay(false, false, GuiTextures.DATA_ORB_OVERLAY)
                     .setSlotOverlay(false, false, MRGuiTextures.USB_OVERLAY) // Item Input
@@ -55,6 +55,7 @@ public class MRRecipeMaps {
                     .setSlotOverlay(true, false, GuiTextures.DUST_OVERLAY) // Item Output
                     .setSlotOverlay(true, true, GuiTextures.VIAL_OVERLAY_1) // Fluid Output
                     .setProgressBar(GuiTextures.PROGRESS_BAR_REPLICATOR, ProgressWidget.MoveType.HORIZONTAL)
+                    .allowEmptyOutput()
                     .onRecipeBuild(recipeBuilder -> {
                         if (!recipeBuilder.scanRecipe()) return;
 
