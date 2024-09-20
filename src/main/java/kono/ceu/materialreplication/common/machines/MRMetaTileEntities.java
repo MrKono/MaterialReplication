@@ -1,19 +1,22 @@
 package kono.ceu.materialreplication.common.machines;
 
+import static gregtech.common.metatileentities.MetaTileEntities.registerMetaTileEntity;
+import static kono.ceu.materialreplication.api.util.MRValues.*;
+
+import net.minecraft.util.ResourceLocation;
+
+import org.jetbrains.annotations.NotNull;
+
 import gregtech.api.GTValues;
 import gregtech.api.GregTechAPI;
 import gregtech.api.metatileentity.SimpleMachineMetaTileEntity;
 import gregtech.api.util.GTUtility;
+
 import kono.ceu.materialreplication.api.recipes.MRRecipeMaps;
 import kono.ceu.materialreplication.client.MRTextures;
 import kono.ceu.materialreplication.common.machines.multi.MetaTileEntityLargeDeconstructor;
 import kono.ceu.materialreplication.common.machines.multi.MetaTileEntityLargeScrapper;
 import kono.ceu.materialreplication.common.machines.single.MetaTileEntityScrapMaker;
-import net.minecraft.util.ResourceLocation;
-import org.jetbrains.annotations.NotNull;
-
-import static gregtech.common.metatileentities.MetaTileEntities.registerMetaTileEntity;
-import static kono.ceu.materialreplication.api.util.MRValues.*;
 
 public class MRMetaTileEntities {
 

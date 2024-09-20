@@ -1,15 +1,17 @@
 package kono.ceu.materialreplication.common;
 
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.eventhandler.EventPriority;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+
 import gregtech.api.GregTechAPI;
 import gregtech.api.metatileentity.registry.MTEManager;
 import gregtech.api.unification.material.event.MaterialEvent;
 import gregtech.api.unification.material.event.PostMaterialEvent;
+
 import kono.ceu.materialreplication.api.unification.materials.MRMaterials;
 import kono.ceu.materialreplication.api.unification.materials.flags.MRMaterialFlagAddition;
 import kono.ceu.materialreplication.api.util.MRValues;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.eventhandler.EventPriority;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 @Mod.EventBusSubscriber(modid = MRValues.MODID)
 public class MREventHandlers {
