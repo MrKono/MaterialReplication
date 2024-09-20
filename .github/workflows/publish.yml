@@ -89,6 +89,7 @@ jobs:
           curseforge-dependencies: |
             gregtech-ce-unofficial(required)
             gregicality-multiblocks(required)
+            forestry(recommended)
           files: |
             build/libs/!(*-@(dev|sources|javadoc)).jar
             build/libs/*-@(sources).jar
