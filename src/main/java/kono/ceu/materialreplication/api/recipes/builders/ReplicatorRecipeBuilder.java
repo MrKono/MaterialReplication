@@ -1,14 +1,5 @@
 package kono.ceu.materialreplication.api.recipes.builders;
 
-import static kono.ceu.materialreplication.api.util.MRValues.BaseTime_S;
-import static kono.ceu.materialreplication.api.util.MRValues.Voltage_S;
-
-import javax.annotation.Nonnull;
-
-import net.minecraft.nbt.NBTTagCompound;
-
-import org.apache.commons.lang3.builder.ToStringBuilder;
-
 import gregtech.api.GregTechAPI;
 import gregtech.api.recipes.Recipe;
 import gregtech.api.recipes.RecipeBuilder;
@@ -18,9 +9,16 @@ import gregtech.api.unification.material.Materials;
 import gregtech.api.util.EnumValidationResult;
 import gregtech.api.util.GTLog;
 import gregtech.api.util.ValidationResult;
-
 import kono.ceu.materialreplication.api.recipes.machines.IReplicatorRecipeMap;
-import kono.ceu.materialreplication.api.recipes.properties.ReplicateProperty;
+import kono.ceu.materialreplication.api.recipes.properties.impl.ReplicateProperty;
+import net.minecraft.nbt.NBTTagCompound;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.jetbrains.annotations.NotNull;
+
+import javax.annotation.Nonnull;
+
+import static kono.ceu.materialreplication.api.util.MRValues.BaseTime_S;
+import static kono.ceu.materialreplication.api.util.MRValues.Voltage_S;
 
 public class ReplicatorRecipeBuilder extends RecipeBuilder<ReplicatorRecipeBuilder> {
 
@@ -37,7 +35,7 @@ public class ReplicatorRecipeBuilder extends RecipeBuilder<ReplicatorRecipeBuild
         super(recipe, recipeMap);
     }
 
-    public ReplicatorRecipeBuilder(ReplicatorRecipeBuilder recipeBuilder) {
+    public ReplicatorRecipeBuilder(@NotNull ReplicatorRecipeBuilder recipeBuilder) {
         super(recipeBuilder);
         this.replicationMaterial = recipeBuilder.replicationMaterial;
         this.Duration = recipeBuilder.Duration;
@@ -50,12 +48,12 @@ public class ReplicatorRecipeBuilder extends RecipeBuilder<ReplicatorRecipeBuild
     }
 
     @Override
-    public boolean applyProperty(@Nonnull String key, Object value) {
+    public boolean applyPropertyCT(@Nonnull String key, @NotNull Object value) {
         if (key.equals(ReplicateProperty.KEY)) {
             this.replicate(value.toString());
             return true;
         }
-        return super.applyProperty(key, value);
+        return super.applyPropertyCT(key, value);
     }
 
     protected ReplicatorRecipeBuilder replicate(@Nonnull String replicateID) {
@@ -105,9 +103,7 @@ public class ReplicatorRecipeBuilder extends RecipeBuilder<ReplicatorRecipeBuild
         ValidationResult<Recipe> result = super.build();
         if (result.getType() == EnumValidationResult.VALID && !this.outputs.isEmpty() &&
                 !this.outputs.get(0).isEmpty()) {
-            if (!recipePropertyStorage.hasRecipeProperty(ReplicateProperty.getInstance())) {
                 this.applyProperty(ReplicateProperty.getInstance(), this.outputs.get(0).getTranslationKey());
-            }
         }
         return result;
     }
@@ -131,7 +127,7 @@ public class ReplicatorRecipeBuilder extends RecipeBuilder<ReplicatorRecipeBuild
 
     public String getReplicateID() {
         return this.recipePropertyStorage == null ? "" :
-                this.recipePropertyStorage.getRecipePropertyValue(ReplicateProperty.getInstance(), "");
+                this.recipePropertyStorage.get(ReplicateProperty.getInstance(), "");
     }
 
     @Override

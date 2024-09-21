@@ -1,33 +1,34 @@
 package kono.ceu.materialreplication.api.recipes.machines;
 
+import gregtech.api.recipes.Recipe;
+import gregtech.api.recipes.RecipeBuilder;
+import gregtech.api.recipes.RecipeMap;
+import gregtech.api.recipes.ui.RecipeMapUIFunction;
+import gregtech.api.util.EnumValidationResult;
+import gregtech.api.util.ValidationResult;
+import gregtech.core.sound.GTSoundEvents;
+import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
+import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet;
+import kono.ceu.materialreplication.api.recipes.properties.impl.ReplicateProperty;
+import org.jetbrains.annotations.NotNull;
+
+import javax.annotation.Nonnull;
 import java.util.Collections;
 import java.util.Map;
 import java.util.Set;
 
-import javax.annotation.Nonnull;
-
-import gregtech.api.recipes.Recipe;
-import gregtech.api.recipes.RecipeMap;
-import gregtech.api.util.EnumValidationResult;
-import gregtech.api.util.ValidationResult;
-
-import kono.ceu.materialreplication.api.recipes.builders.ReplicatorRecipeBuilder;
-import kono.ceu.materialreplication.api.recipes.properties.ReplicateProperty;
-
-import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
-import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet;
-
-public class RecipeMapReplicator extends RecipeMap<ReplicatorRecipeBuilder> implements IReplicatorRecipeMap {
+public class RecipeMapReplicator<R extends RecipeBuilder<R>> extends RecipeMap<R> implements IReplicatorRecipeMap {
 
     private final Map<String, Set<Recipe>> replicateEntries = new Object2ObjectOpenHashMap<>();
 
-    public RecipeMapReplicator(String unlocalizedName, int maxInputs, int maxOutputs, int maxFluidInputs,
-                               int maxFluidOutputs, ReplicatorRecipeBuilder defaultRecipe, boolean isHidden) {
-        super(unlocalizedName, maxInputs, maxOutputs, maxFluidInputs, maxFluidOutputs, defaultRecipe, isHidden);
+    public RecipeMapReplicator(@NotNull String unlocalizedName, @NotNull R defaultRecipe,
+    @NotNull RecipeMapUIFunction recipeMapUI) {
+        super(unlocalizedName, defaultRecipe, recipeMapUI, 2, 1, 2, 1);
+        setSound(GTSoundEvents.ASSEMBLER);
     }
 
     @Override
-    public boolean addRecipe(ValidationResult<Recipe> validationResult) {
+    public boolean addRecipe(@NotNull ValidationResult<Recipe> validationResult) {
         super.addRecipe(validationResult);
         if (validationResult.getType() == EnumValidationResult.INVALID) {
             Recipe recipe = validationResult.getResult();
@@ -40,7 +41,7 @@ public class RecipeMapReplicator extends RecipeMap<ReplicatorRecipeBuilder> impl
     }
 
     @Override
-    public boolean removeRecipe(Recipe recipe) {
+    public boolean removeRecipe(@NotNull Recipe recipe) {
         boolean result = super.removeRecipe(recipe);
         if (result && recipe.hasProperty(ReplicateProperty.getInstance())) {
             String replicateId = recipe.getProperty(ReplicateProperty.getInstance(), "");
