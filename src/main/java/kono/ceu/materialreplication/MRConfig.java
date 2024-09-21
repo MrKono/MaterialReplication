@@ -131,8 +131,17 @@ public class MRConfig {
 
     public static class RecipeOptions {
 
-        @Config.Comment({ "Whether to add the UUMatter recipe.", "Default : false" })
+        @Config.Comment({ "Whether to add the UUMatter recipe.", "If Forestry is loaded, this option is ignored",
+                "Default : false" })
         public boolean addUUMatterRecipe = false;
+
+        @Config.Comment({ "Whether to requiered Cleanroom  when create UU-Matter", "Default: NONE",
+                "valid: [NONE, CLEANROOM, STERILE]" })
+        public String CleanroomType = "NONE";
+
+        @Config.Comment({ "Ratio of UUMatter created from two maters", "ChargedMatter, NeutralMatter, UUMatter",
+                "Default: 50, 50, 50" })
+        public int[] matterRatio = { 50, 50, 50 };
     }
 
     public static class StartTier {

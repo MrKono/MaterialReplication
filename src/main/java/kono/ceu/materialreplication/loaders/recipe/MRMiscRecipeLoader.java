@@ -7,6 +7,7 @@ import static gregtech.api.unification.ore.OrePrefix.*;
 import static gregtech.common.items.MetaItems.*;
 import static kono.ceu.materialreplication.api.unification.materials.MRMaterials.MatterAmplifier;
 import static kono.ceu.materialreplication.api.unification.materials.MRMaterials.PrimalMatter;
+import static kono.ceu.materialreplication.api.util.MRValues.*;
 import static kono.ceu.materialreplication.common.items.MRMetaItems.USB_STICK;
 
 import net.minecraft.init.Items;
@@ -15,7 +16,9 @@ import net.minecraft.item.ItemStack;
 import gregtech.api.metatileentity.multiblock.CleanroomType;
 import gregtech.api.recipes.GTRecipeHandler;
 import gregtech.api.recipes.ModHandler;
+import gregtech.api.recipes.RecipeBuilder;
 import gregtech.api.recipes.RecipeMaps;
+import gregtech.api.recipes.builders.SimpleRecipeBuilder;
 import gregtech.api.recipes.ingredients.IntCircuitIngredient;
 import gregtech.api.unification.OreDictUnifier;
 import gregtech.api.unification.material.Materials;
@@ -23,6 +26,7 @@ import gregtech.api.unification.ore.OrePrefix;
 
 import kono.ceu.materialreplication.MRConfig;
 import kono.ceu.materialreplication.api.unification.materials.MRMaterials;
+import kono.ceu.materialreplication.api.util.Mods;
 
 public class MRMiscRecipeLoader {
 
@@ -62,12 +66,23 @@ public class MRMiscRecipeLoader {
                 .duration(1200).EUt(VA[HV]).buildAndRegister();
 
         // UUMatter
-        if (MRConfig.recipe.addUUMatterRecipe) {
-            MIXER_RECIPES.recipeBuilder()
-                    .fluidInputs(MRMaterials.ChargedMatter.getFluid(50))
-                    .fluidInputs(MRMaterials.NeutralMatter.getFluid(50))
-                    .fluidOutputs(UUMatter.getFluid(50))
-                    .duration(1200).EUt(VA[HV]).buildAndRegister();
+        if (MRConfig.recipe.addUUMatterRecipe || Mods.Forestry.isModLoaded()) {
+            RecipeBuilder<SimpleRecipeBuilder> builder = MIXER_RECIPES.recipeBuilder().duration(1200).EUt(VA[HV]);
+            if (ChargedMatterAmount > 0) {
+                builder.fluidInputs(MRMaterials.ChargedMatter.getFluid(ChargedMatterAmount));
+            }
+            if (NeutralMatterAmount > 0) {
+                builder.fluidInputs(MRMaterials.NeutralMatter.getFluid(NeutralMatterAmount));
+            }
+
+            builder.fluidOutputs(UUMatter.getFluid(UUMatterAmount));
+
+            if (MRConfig.recipe.CleanroomType.equals("CLEANROOM")) {
+                builder.cleanroom(CleanroomType.CLEANROOM);
+            } else if (MRConfig.recipe.CleanroomType.equals("STERILE")) {
+                builder.cleanroom(CleanroomType.STERILE_CLEANROOM);
+            }
+            builder.buildAndRegister();
 
             // Will be removed if implemented by CEu.
             RecipeMaps.AUTOCLAVE_RECIPES.recipeBuilder()
