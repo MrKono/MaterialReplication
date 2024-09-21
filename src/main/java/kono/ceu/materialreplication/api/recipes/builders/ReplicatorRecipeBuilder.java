@@ -1,5 +1,15 @@
 package kono.ceu.materialreplication.api.recipes.builders;
 
+import static kono.ceu.materialreplication.api.util.MRValues.BaseTime_S;
+import static kono.ceu.materialreplication.api.util.MRValues.Voltage_S;
+
+import javax.annotation.Nonnull;
+
+import net.minecraft.nbt.NBTTagCompound;
+
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.jetbrains.annotations.NotNull;
+
 import gregtech.api.GregTechAPI;
 import gregtech.api.recipes.Recipe;
 import gregtech.api.recipes.RecipeBuilder;
@@ -9,16 +19,9 @@ import gregtech.api.unification.material.Materials;
 import gregtech.api.util.EnumValidationResult;
 import gregtech.api.util.GTLog;
 import gregtech.api.util.ValidationResult;
+
 import kono.ceu.materialreplication.api.recipes.machines.IReplicatorRecipeMap;
 import kono.ceu.materialreplication.api.recipes.properties.impl.ReplicateProperty;
-import net.minecraft.nbt.NBTTagCompound;
-import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.jetbrains.annotations.NotNull;
-
-import javax.annotation.Nonnull;
-
-import static kono.ceu.materialreplication.api.util.MRValues.BaseTime_S;
-import static kono.ceu.materialreplication.api.util.MRValues.Voltage_S;
 
 public class ReplicatorRecipeBuilder extends RecipeBuilder<ReplicatorRecipeBuilder> {
 
@@ -103,7 +106,7 @@ public class ReplicatorRecipeBuilder extends RecipeBuilder<ReplicatorRecipeBuild
         ValidationResult<Recipe> result = super.build();
         if (result.getType() == EnumValidationResult.VALID && !this.outputs.isEmpty() &&
                 !this.outputs.get(0).isEmpty()) {
-                this.applyProperty(ReplicateProperty.getInstance(), this.outputs.get(0).getTranslationKey());
+            this.applyProperty(ReplicateProperty.getInstance(), this.outputs.get(0).getTranslationKey());
         }
         return result;
     }

@@ -1,14 +1,16 @@
 package kono.ceu.materialreplication.api.recipes.ui.impl;
 
+import org.jetbrains.annotations.NotNull;
+
 import gregtech.api.gui.GuiTextures;
 import gregtech.api.gui.widgets.ProgressWidget;
 import gregtech.api.recipes.RecipeMap;
 import gregtech.api.recipes.ui.RecipeMapUI;
+
 import kono.ceu.materialreplication.api.gui.MRGuiTextures;
-import org.jetbrains.annotations.NotNull;
 
 // Implemented for now (unused)
-public class ReplicatorUI <R extends RecipeMap<?>> extends RecipeMapUI<R> {
+public class ReplicatorUI<R extends RecipeMap<?>> extends RecipeMapUI<R> {
 
     public ReplicatorUI(@NotNull R recipeMap) {
         super(recipeMap, true, true, true, true, false);

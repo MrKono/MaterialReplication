@@ -1,18 +1,20 @@
 package kono.ceu.materialreplication.api.recipes.properties.impl;
 
-import gregtech.api.GregTechAPI;
-import gregtech.api.recipes.properties.RecipeProperty;
-import gregtech.client.utils.TooltipHelper;
+import static net.minecraft.util.text.TextFormatting.GOLD;
+import static net.minecraft.util.text.TextFormatting.YELLOW;
+
+import javax.annotation.Nonnull;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagString;
+
 import org.jetbrains.annotations.NotNull;
 
-import javax.annotation.Nonnull;
-
-import static net.minecraft.util.text.TextFormatting.GOLD;
-import static net.minecraft.util.text.TextFormatting.YELLOW;
+import gregtech.api.GregTechAPI;
+import gregtech.api.recipes.properties.RecipeProperty;
+import gregtech.client.utils.TooltipHelper;
 
 public final class ReplicateProperty extends RecipeProperty<String> {
 

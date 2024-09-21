@@ -50,73 +50,73 @@ public class MRRecipeMaps {
     // toDo Use RecipeMapReplicator<> instead of RecipeMapBuilder<>
     public static final RecipeMap<ReplicatorRecipeBuilder> REPLICATION_RECIPES = new RecipeMapBuilder<>("replication",
             new ReplicatorRecipeBuilder())
-            .itemInputs(1).itemOutputs(1)
-            .fluidInputs(2).fluidOutputs(1)
-            .itemSlotOverlay(MRGuiTextures.USB_OVERLAY, false)
-            .itemSlotOverlay(GuiTextures.DUST_OVERLAY, true)
-            .fluidSlotOverlay(GuiTextures.ATOMIC_OVERLAY_1, false, false)
-            .fluidSlotOverlay(GuiTextures.ATOMIC_OVERLAY_2, false, true)
-            .fluidSlotOverlay(GuiTextures.VIAL_OVERLAY_1, true)
-            .progressBar(GuiTextures.PROGRESS_BAR_REPLICATOR, ProgressWidget.MoveType.HORIZONTAL)
-            .sound(GTSoundEvents.ASSEMBLER)
-            .onBuild(mrId("replication_research"), recipeBuilder -> {
-                if (!recipeBuilder.scanRecipe()) return;
+                    .itemInputs(1).itemOutputs(1)
+                    .fluidInputs(2).fluidOutputs(1)
+                    .itemSlotOverlay(MRGuiTextures.USB_OVERLAY, false)
+                    .itemSlotOverlay(GuiTextures.DUST_OVERLAY, true)
+                    .fluidSlotOverlay(GuiTextures.ATOMIC_OVERLAY_1, false, false)
+                    .fluidSlotOverlay(GuiTextures.ATOMIC_OVERLAY_2, false, true)
+                    .fluidSlotOverlay(GuiTextures.VIAL_OVERLAY_1, true)
+                    .progressBar(GuiTextures.PROGRESS_BAR_REPLICATOR, ProgressWidget.MoveType.HORIZONTAL)
+                    .sound(GTSoundEvents.ASSEMBLER)
+                    .onBuild(mrId("replication_research"), recipeBuilder -> {
+                        if (!recipeBuilder.scanRecipe()) return;
 
-                String replicateId = recipeBuilder.getReplicateID();
-                if (replicateId.isEmpty()) return;
+                        String replicateId = recipeBuilder.getReplicateID();
+                        if (replicateId.isEmpty()) return;
 
-                NBTTagCompound compound = new NBTTagCompound();
-                compound.setTag(IReplicatorRecipeMap.REPLICATE_NBT_TAG,
-                        ReplicatorRecipeBuilder.generateReplicateNBT(replicateId));
+                        NBTTagCompound compound = new NBTTagCompound();
+                        compound.setTag(IReplicatorRecipeMap.REPLICATE_NBT_TAG,
+                                ReplicatorRecipeBuilder.generateReplicateNBT(replicateId));
 
-                // NBT
-                ItemStack usb = MRMetaItems.USB_STICK.getStackForm();
-                usb.setTagCompound(compound);
+                        // NBT
+                        ItemStack usb = MRMetaItems.USB_STICK.getStackForm();
+                        usb.setTagCompound(compound);
 
-                Material replicateMaterial = recipeBuilder.getReplicationMaterial();
+                        Material replicateMaterial = recipeBuilder.getReplicationMaterial();
 
-                List<Material> materialDusts = new ArrayList<>();
-                List<Material> materialFluids = new ArrayList<>();
-                if (!replicateMaterial.hasFlag(MRMaterialFlags.DISABLE_REPLICATION)) {
-                    // Has Dust Property?
-                    if (replicateMaterial.hasProperty(PropertyKey.DUST)) {
-                        materialDusts.add(replicateMaterial);
+                        List<Material> materialDusts = new ArrayList<>();
+                        List<Material> materialFluids = new ArrayList<>();
+                        if (!replicateMaterial.hasFlag(MRMaterialFlags.DISABLE_REPLICATION)) {
+                            // Has Dust Property?
+                            if (replicateMaterial.hasProperty(PropertyKey.DUST)) {
+                                materialDusts.add(replicateMaterial);
 
-                        // Has Fluid Property?
-                    } else if (replicateMaterial.hasProperty(PropertyKey.FLUID)) {
-                        materialFluids.add(replicateMaterial);
-                    }
-                }
+                                // Has Fluid Property?
+                            } else if (replicateMaterial.hasProperty(PropertyKey.FLUID)) {
+                                materialFluids.add(replicateMaterial);
+                            }
+                        }
 
-                for (Material materialDust : materialDusts) {
-                    if (MRConfig.replication.ReplicateOnlyElements && !materialDust.isElement()) return;
-                    RecipeMaps.SCANNER_RECIPES.recipeBuilder()
-                            .input(MRMetaItems.USB_STICK)
-                            .input(OrePrefix.dust, materialDust)
-                            .outputs(usb)
-                            .EUt(recipeBuilder.getVoltage())
-                            .duration(recipeBuilder.getDuration())
-                            .buildAndRegister();
-                }
+                        for (Material materialDust : materialDusts) {
+                            if (MRConfig.replication.ReplicateOnlyElements && !materialDust.isElement()) return;
+                            RecipeMaps.SCANNER_RECIPES.recipeBuilder()
+                                    .input(MRMetaItems.USB_STICK)
+                                    .input(OrePrefix.dust, materialDust)
+                                    .outputs(usb)
+                                    .EUt(recipeBuilder.getVoltage())
+                                    .duration(recipeBuilder.getDuration())
+                                    .buildAndRegister();
+                        }
 
-                for (Material materialFluid : materialFluids) {
-                    if (MRConfig.replication.ReplicateOnlyElements && !materialFluid.isElement()) return;
-                    RecipeBuilder<SimpleRecipeBuilder> scanner = RecipeMaps.SCANNER_RECIPES.recipeBuilder();
-                    scanner.input(MRMetaItems.USB_STICK)
-                            .outputs(usb)
-                            .EUt(recipeBuilder.getVoltage())
-                            .duration(recipeBuilder.getDuration());
+                        for (Material materialFluid : materialFluids) {
+                            if (MRConfig.replication.ReplicateOnlyElements && !materialFluid.isElement()) return;
+                            RecipeBuilder<SimpleRecipeBuilder> scanner = RecipeMaps.SCANNER_RECIPES.recipeBuilder();
+                            scanner.input(MRMetaItems.USB_STICK)
+                                    .outputs(usb)
+                                    .EUt(recipeBuilder.getVoltage())
+                                    .duration(recipeBuilder.getDuration());
 
-                    // check Molten
-                    if (hasOnlyMolten(materialFluid)) {
-                        scanner.fluidInputs(
-                                new FluidStack(materialFluid.getFluid(GCYMFluidStorageKeys.MOLTEN), 1000));
-                    } else {
-                        scanner.fluidInputs(materialFluid.getFluid(1000));
-                    }
-                    scanner.buildAndRegister();
-                }
-            }).build();
+                            // check Molten
+                            if (hasOnlyMolten(materialFluid)) {
+                                scanner.fluidInputs(
+                                        new FluidStack(materialFluid.getFluid(GCYMFluidStorageKeys.MOLTEN), 1000));
+                            } else {
+                                scanner.fluidInputs(materialFluid.getFluid(1000));
+                            }
+                            scanner.buildAndRegister();
+                        }
+                    }).build();
 
     // Scrapper
     public static final RecipeMap<SimpleRecipeBuilder> SCRAPMAKER_RECIPES = new RecipeMapScrapMaker("scrapper",

@@ -1,5 +1,13 @@
 package kono.ceu.materialreplication.api.recipes.machines;
 
+import java.util.Collections;
+import java.util.Map;
+import java.util.Set;
+
+import javax.annotation.Nonnull;
+
+import org.jetbrains.annotations.NotNull;
+
 import gregtech.api.recipes.Recipe;
 import gregtech.api.recipes.RecipeBuilder;
 import gregtech.api.recipes.RecipeMap;
@@ -7,15 +15,11 @@ import gregtech.api.recipes.ui.RecipeMapUIFunction;
 import gregtech.api.util.EnumValidationResult;
 import gregtech.api.util.ValidationResult;
 import gregtech.core.sound.GTSoundEvents;
+
+import kono.ceu.materialreplication.api.recipes.properties.impl.ReplicateProperty;
+
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
 import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet;
-import kono.ceu.materialreplication.api.recipes.properties.impl.ReplicateProperty;
-import org.jetbrains.annotations.NotNull;
-
-import javax.annotation.Nonnull;
-import java.util.Collections;
-import java.util.Map;
-import java.util.Set;
 
 // Implemented for now (unused)
 public class RecipeMapReplicator<R extends RecipeBuilder<R>> extends RecipeMap<R> implements IReplicatorRecipeMap {
@@ -23,7 +27,7 @@ public class RecipeMapReplicator<R extends RecipeBuilder<R>> extends RecipeMap<R
     private final Map<String, Set<Recipe>> replicateEntries = new Object2ObjectOpenHashMap<>();
 
     public RecipeMapReplicator(@NotNull String unlocalizedName, @NotNull R defaultRecipe,
-    @NotNull RecipeMapUIFunction recipeMapUI) {
+                               @NotNull RecipeMapUIFunction recipeMapUI) {
         super(unlocalizedName, defaultRecipe, recipeMapUI, 2, 1, 2, 1);
         setSound(GTSoundEvents.ASSEMBLER);
     }
