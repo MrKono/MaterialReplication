@@ -35,7 +35,10 @@ public class MRValues {
             tierReplicate = rangeTier(MRConfig.tier.tierReplicate, 1, 8) ?
                     MRConfig.tier.tierReplicate : 1,
             tierLargeDeconstruct = rangeTier(MRConfig.tier.tierLargeDeconstruct, 6, 8) ?
-                    MRConfig.tier.tierLargeDeconstruct : 6;
+                    MRConfig.tier.tierLargeDeconstruct : 6,
+            ChargedMatterAmount = MRConfig.recipe.matterRatio[0],
+            NeutralMatterAmount = MRConfig.recipe.matterRatio[1],
+            UUMatterAmount = MRConfig.recipe.matterRatio[2] > 0 ? MRConfig.recipe.matterRatio[2] : 1;
 
     public static @NotNull ResourceLocation mrId(@NotNull String path) {
         return new ResourceLocation(MODID, path);
