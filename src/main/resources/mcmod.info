@@ -9,7 +9,7 @@
   "updateUrl": "",
   "authorList": ["MrKono"],
   "credits": "",
-  "logoFile": "",
+  "logoFile": "assets/materialreplication/textures/logo.png",
   "screenshots": [],
   "dependencies": [
     "chickenchunks",
