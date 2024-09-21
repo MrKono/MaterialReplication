@@ -1,4 +1,15 @@
 # ChangeLog (更新履歴)
+## v 1.2.5
+**_EN_** <br>
+**add**<br>
+- Add Forestry Integration. Now you can process Comb by UU-Matter.
+- Add config options for UU-Matter.
+
+**_JP_** <br>
+**追加**<br>
+- Forestry Integration を追加しました. 巣板をUU-Matterで処理できるようになりました.
+- UU-Matterに関するconfigを追加しました.
+---------
 ## v 1.2.4
 **_EN_** <br>
 **Update**<br>
