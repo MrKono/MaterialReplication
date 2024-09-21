@@ -7,6 +7,7 @@ import gregtech.api.recipes.ui.RecipeMapUI;
 import kono.ceu.materialreplication.api.gui.MRGuiTextures;
 import org.jetbrains.annotations.NotNull;
 
+// Implemented for now (unused)
 public class ReplicatorUI <R extends RecipeMap<?>> extends RecipeMapUI<R> {
 
     public ReplicatorUI(@NotNull R recipeMap) {

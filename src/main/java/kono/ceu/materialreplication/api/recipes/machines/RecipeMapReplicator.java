@@ -17,6 +17,7 @@ import java.util.Collections;
 import java.util.Map;
 import java.util.Set;
 
+// Implemented for now (unused)
 public class RecipeMapReplicator<R extends RecipeBuilder<R>> extends RecipeMap<R> implements IReplicatorRecipeMap {
 
     private final Map<String, Set<Recipe>> replicateEntries = new Object2ObjectOpenHashMap<>();
