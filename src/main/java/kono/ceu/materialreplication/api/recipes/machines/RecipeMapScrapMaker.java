@@ -13,16 +13,19 @@ import javax.annotation.Nullable;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
 
+import org.jetbrains.annotations.NotNull;
+
 import gregtech.api.recipes.Recipe;
 import gregtech.api.recipes.RecipeMap;
 import gregtech.api.recipes.builders.SimpleRecipeBuilder;
 import gregtech.api.recipes.ingredients.GTRecipeItemInput;
+import gregtech.api.recipes.ui.RecipeMapUIFunction;
 
 public class RecipeMapScrapMaker extends RecipeMap<SimpleRecipeBuilder> {
 
-    public RecipeMapScrapMaker(String unlocalizedName, int maxInputs, int maxOutputs, int maxFluidInputs,
-                               int maxFluidOutputs, SimpleRecipeBuilder defaultRecipe, boolean isHidden) {
-        super(unlocalizedName, maxInputs, maxOutputs, maxFluidInputs, maxFluidOutputs, defaultRecipe, isHidden);
+    public RecipeMapScrapMaker(@NotNull String unlocalizedName, @NotNull SimpleRecipeBuilder defaultRecipe,
+                               @NotNull RecipeMapUIFunction recipeMapUI) {
+        super(unlocalizedName, defaultRecipe, recipeMapUI, 1, 1, 1, 0);
     }
 
     @Override
