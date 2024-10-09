@@ -15,6 +15,7 @@ on:
           - 'release'
           - 'beta'
           - 'alpha'
+          - ''
 
 env:
   # link to the changelog with a format code for the version
