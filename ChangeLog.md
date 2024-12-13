@@ -1,4 +1,15 @@
 # ChangeLog (更新履歴)
+## v 1.2.7
+**_EN_** <br>
+**add**<br>
+- Add config options for changing MetaTileEntityId.
+
+**_JP_** <br>
+**追加**<br>
+- MetaTileEntityIdを変更するConfigを追加.
+---------
+
+
 ## v 1.2.6
 **_EN_** <br>
 **fix**<br>
