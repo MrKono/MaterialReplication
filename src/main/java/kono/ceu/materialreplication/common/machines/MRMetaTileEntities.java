@@ -3,7 +3,6 @@ package kono.ceu.materialreplication.common.machines;
 import static gregtech.common.metatileentities.MetaTileEntities.registerMetaTileEntity;
 import static kono.ceu.materialreplication.api.util.MRValues.*;
 
-import kono.ceu.materialreplication.MRConfig;
 import net.minecraft.util.ResourceLocation;
 
 import org.jetbrains.annotations.NotNull;
@@ -13,6 +12,7 @@ import gregtech.api.GregTechAPI;
 import gregtech.api.metatileentity.SimpleMachineMetaTileEntity;
 import gregtech.api.util.GTUtility;
 
+import kono.ceu.materialreplication.MRConfig;
 import kono.ceu.materialreplication.api.recipes.MRRecipeMaps;
 import kono.ceu.materialreplication.client.MRTextures;
 import kono.ceu.materialreplication.common.machines.multi.MetaTileEntityLargeDeconstructor;

@@ -41,14 +41,14 @@ public class MRConfig {
     @Config.RequiresMcRestart
     public static StartTier tier = new StartTier();
 
-    public static class IdOption{
+    public static class IdOption {
+
         @Config.Comment({ "Change the starting ID of the MetaTileEntityID used by this add-on.",
                 "By Default, this add-on starts MetaTileEntityIDs of 20000.",
                 "Only change this if the crash is caused by a duplicate MTEIDs.",
                 "WARNING: If you change it, the one already created will disappear or be changed to another one." })
         public int startId = 20000;
     }
-
 
     public static class MaterialOption {
 
