@@ -1,4 +1,22 @@
 # ChangeLog (更新履歴)
+## v 1.2.7
+**_EN_** <br>
+**add**<br>
+- Add config options for changing MetaTileEntityId.
+
+**_JP_** <br>
+**追加**<br>
+- MetaTileEntityIdを変更するConfigを追加.
+---------
+## v 1.2.6
+**_EN_** <br>
+**fix**<br>
+- Config out of sync when changes in-game.
+
+**_JP_** <br>
+**修正**<br>
+- ゲーム内でConfigを変更しても反映されない.
+---------
 ## v 1.2.5
 **_EN_** <br>
 **add**<br>

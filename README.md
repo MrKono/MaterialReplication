@@ -22,6 +22,8 @@ You can include this mod in your modpack!
 See [Here](https://github.com/MrKono/MaterialReplication/blob/master/Setting.md).
 ### Corresponding Version Information
 See [Here](https://github.com/MrKono/MaterialReplication/blob/master/VersionInformation.md).
+### WARNING
+If you launched with [RosaTech](https://www.curseforge.com/minecraft/mc-mods/rosatech), minecraft crashes due to duplicate MetaTileEntityIDs. After crashing, change the MTEID used by MaterialReplication from cfg.
 ## Credits
 I modified some textures from [GTCE unofficial](https://github.com/GregTechCEu/GregTech) under LGPL-3.0 License
 <br>
