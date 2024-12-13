@@ -8,6 +8,8 @@
 **追加**<br>
 - MetaTileEntityIdを変更するConfigを追加.
 ---------
+
+
 ## v 1.2.6
 **_EN_** <br>
 **fix**<br>
