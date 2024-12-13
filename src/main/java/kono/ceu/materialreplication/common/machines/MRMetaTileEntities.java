@@ -12,7 +12,6 @@ import gregtech.api.GregTechAPI;
 import gregtech.api.metatileentity.SimpleMachineMetaTileEntity;
 import gregtech.api.util.GTUtility;
 
-import kono.ceu.materialreplication.MRConfig;
 import kono.ceu.materialreplication.api.recipes.MRRecipeMaps;
 import kono.ceu.materialreplication.client.MRTextures;
 import kono.ceu.materialreplication.common.machines.multi.MetaTileEntityLargeDeconstructor;
@@ -20,8 +19,6 @@ import kono.ceu.materialreplication.common.machines.multi.MetaTileEntityLargeScr
 import kono.ceu.materialreplication.common.machines.single.MetaTileEntityScrapMaker;
 
 public class MRMetaTileEntities {
-
-    public static int startId = MRConfig.id.startId;
 
     // Single Machine
     // Default: 20000 - 200044
@@ -42,7 +39,7 @@ public class MRMetaTileEntities {
     public static void registerSingleMachine() {
         // Material Deconstructor
         // Default: 20000 - 20014
-        int id = startId;
+        int id = baseID;
         for (int i = 1; i < DECONSTRUCTOR.length; i++) {
             String voltageName = GTValues.VN[i].toLowerCase();
             if (!GregTechAPI.isHighTier() && i > GTValues.UV)
@@ -87,7 +84,7 @@ public class MRMetaTileEntities {
     }
 
     public static void registerMultiMachine() {
-        int id = startId + 1000;
+        int id = baseID + 1000;
         // LargeDeconstructor
         // Default: 21000
         LARGE_DECONSTRUCTOR = registerMetaTileEntity(id,

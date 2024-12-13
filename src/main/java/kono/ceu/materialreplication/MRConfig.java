@@ -47,6 +47,7 @@ public class MRConfig {
                 "By Default, this add-on starts MetaTileEntityIDs of 20000.",
                 "Only change this if the crash is caused by a duplicate MTEIDs.",
                 "WARNING: If you change it, the one already created will disappear or be changed to another one." })
+        @Config.RangeInt(min = 11000, max = 32200)
         public int startId = 20000;
     }
 
