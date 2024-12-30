@@ -30,5 +30,21 @@ public class MRMaterial {
                 .liquid(new FluidBuilder().temperature(300))
                 .color(0xda70d6)
                 .build();
+
+        MRMaterials.AntiChargedMatter = new Material.Builder(31004, mrId("anti_charged_matter"))
+                .liquid(new FluidBuilder().temperature(1))
+                .color(0xc86400)
+                .build();
+
+        MRMaterials.AntiNeutralMatter = new Material.Builder(31005, mrId("anti_neutral_matter"))
+                .liquid(new FluidBuilder().temperature(1))
+                .color(0x0ac8be )
+                .build();
+
+        MRMaterials.AntiMatter = new Material.Builder(31006, mrId("anti_matter"))
+                .liquid(new FluidBuilder().temperature(300))
+                .color(0x04360e)
+                .build();
+
     }
 }

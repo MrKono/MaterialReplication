@@ -8,11 +8,14 @@ import kono.ceu.materialreplication.api.unification.materials.flags.MRMaterialFl
 
 public class MRMaterials {
 
-    // ID 31000 - 31003
+    // ID 31000 -
     public static Material PrimalMatter;
     public static Material ChargedMatter;
     public static Material NeutralMatter;
     public static Material MatterAmplifier;
+    public static Material AntiChargedMatter;
+    public static Material AntiNeutralMatter;
+    public static Material AntiMatter;
 
     public static void init() {
         MRMaterial.init();
