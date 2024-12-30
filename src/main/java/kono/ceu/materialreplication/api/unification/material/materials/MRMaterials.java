@@ -1,10 +1,10 @@
-package kono.ceu.materialreplication.api.unification.materials;
+package kono.ceu.materialreplication.api.unification.material.materials;
 
 import static gregtech.api.unification.ore.OrePrefix.dustSmall;
 
 import gregtech.api.unification.material.Material;
 
-import kono.ceu.materialreplication.api.unification.materials.flags.MRMaterialFlagAddition;
+import kono.ceu.materialreplication.api.unification.material.flags.MRMaterialFlagAddition;
 
 public class MRMaterials {
 

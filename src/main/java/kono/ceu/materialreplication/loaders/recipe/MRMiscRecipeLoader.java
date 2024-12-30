@@ -5,8 +5,8 @@ import static gregtech.api.recipes.RecipeMaps.*;
 import static gregtech.api.unification.material.Materials.*;
 import static gregtech.api.unification.ore.OrePrefix.*;
 import static gregtech.common.items.MetaItems.*;
-import static kono.ceu.materialreplication.api.unification.materials.MRMaterials.MatterAmplifier;
-import static kono.ceu.materialreplication.api.unification.materials.MRMaterials.PrimalMatter;
+import static kono.ceu.materialreplication.api.unification.material.materials.MRMaterials.MatterAmplifier;
+import static kono.ceu.materialreplication.api.unification.material.materials.MRMaterials.PrimalMatter;
 import static kono.ceu.materialreplication.api.util.MRValues.*;
 import static kono.ceu.materialreplication.common.items.MRMetaItems.USB_STICK;
 
@@ -25,7 +25,7 @@ import gregtech.api.unification.material.Materials;
 import gregtech.api.unification.ore.OrePrefix;
 
 import kono.ceu.materialreplication.MRConfig;
-import kono.ceu.materialreplication.api.unification.materials.MRMaterials;
+import kono.ceu.materialreplication.api.unification.material.materials.MRMaterials;
 import kono.ceu.materialreplication.api.util.Mods;
 
 public class MRMiscRecipeLoader {

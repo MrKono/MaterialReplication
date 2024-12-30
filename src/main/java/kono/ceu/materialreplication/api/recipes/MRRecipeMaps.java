@@ -28,7 +28,7 @@ import kono.ceu.materialreplication.api.recipes.builders.ReplicatorRecipeBuilder
 import kono.ceu.materialreplication.api.recipes.machines.IReplicatorRecipeMap;
 import kono.ceu.materialreplication.api.recipes.machines.RecipeMapReplicator;
 import kono.ceu.materialreplication.api.recipes.machines.RecipeMapScrapMaker;
-import kono.ceu.materialreplication.api.unification.materials.flags.MRMaterialFlags;
+import kono.ceu.materialreplication.api.unification.material.flags.MRMaterialFlags;
 import kono.ceu.materialreplication.common.items.MRMetaItems;
 
 public class MRRecipeMaps {

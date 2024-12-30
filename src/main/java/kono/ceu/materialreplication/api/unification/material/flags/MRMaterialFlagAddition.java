@@ -1,7 +1,7 @@
-package kono.ceu.materialreplication.api.unification.materials.flags;
+package kono.ceu.materialreplication.api.unification.material.flags;
 
-import static kono.ceu.materialreplication.api.unification.materials.flags.MRMaterialFlags.DISABLE_DECONSTRUCTION;
-import static kono.ceu.materialreplication.api.unification.materials.flags.MRMaterialFlags.DISABLE_REPLICATION;
+import static kono.ceu.materialreplication.api.unification.material.flags.MRMaterialFlags.DISABLE_DECONSTRUCTION;
+import static kono.ceu.materialreplication.api.unification.material.flags.MRMaterialFlags.DISABLE_REPLICATION;
 
 import gregtech.api.GregTechAPI;
 import gregtech.api.unification.material.Material;

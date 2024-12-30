@@ -1,4 +1,4 @@
-package kono.ceu.materialreplication.api.unification.materials;
+package kono.ceu.materialreplication.api.unification.material.materials;
 
 import static kono.ceu.materialreplication.api.util.MRValues.mrId;
 

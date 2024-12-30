@@ -1,4 +1,4 @@
-package kono.ceu.materialreplication.api.unification.materials.flags;
+package kono.ceu.materialreplication.api.unification.material.flags;
 
 import gregtech.api.unification.material.info.MaterialFlag;
 

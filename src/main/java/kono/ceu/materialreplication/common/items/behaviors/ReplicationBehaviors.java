@@ -1,7 +1,7 @@
 package kono.ceu.materialreplication.common.items.behaviors;
 
-import static kono.ceu.materialreplication.api.unification.materials.MRMaterials.ChargedMatter;
-import static kono.ceu.materialreplication.api.unification.materials.MRMaterials.NeutralMatter;
+import static kono.ceu.materialreplication.api.unification.material.materials.MRMaterials.ChargedMatter;
+import static kono.ceu.materialreplication.api.unification.material.materials.MRMaterials.NeutralMatter;
 import static net.minecraft.util.text.TextFormatting.*;
 
 import java.util.List;
