@@ -34,12 +34,18 @@ public class MRMaterial {
 
         MRMaterials.AntiChargedMatter = new Material.Builder(31004, mrId("anti_charged_matter"))
                 .iconSet(MRMaterialIconSet.ANTIMATTER)
+                .plasma(new FluidBuilder()
+                        .temperature(100000)
+                        .translation("materialreplication.fluid.high_energy"))
                 .liquid(new FluidBuilder().temperature(1))
                 .color(0xc86400)
                 .build();
 
         MRMaterials.AntiNeutralMatter = new Material.Builder(31005, mrId("anti_neutral_matter"))
                 .iconSet(MRMaterialIconSet.ANTIMATTER)
+                .plasma(new FluidBuilder()
+                        .temperature(100000)
+                        .translation("materialreplication.fluid.high_energy"))
                 .liquid(new FluidBuilder().temperature(1))
                 .color(0x0ac8be )
                 .build();

@@ -14,6 +14,8 @@ behaviour.usb.replicate_data3=§4%s§7 : %s L
 behaviour.usb.replicate_data4=§3%s§7 : %s L
 
 ## Material
+materialreplication.fluid.high_energy=高エネルギー%s
+
 materialreplication.material.primal_matter=プライマルマター
 materialreplication.material.charged_matter=荷電マター
 materialreplication.material.neutral_matter=中性マター
