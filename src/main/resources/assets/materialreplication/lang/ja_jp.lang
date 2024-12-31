@@ -18,6 +18,9 @@ materialreplication.material.primal_matter=プライマルマター
 materialreplication.material.charged_matter=荷電マター
 materialreplication.material.neutral_matter=中性マター
 materialreplication.material.matter_amplifier=マター増幅剤
+materialreplication.material.anti_charged_matter=反荷電マター
+materialreplication.material.anti_neutral_matter=反中性マター
+materialreplication.material.anti_matter=反物質
 
 ## Machine
 # Material Deconstructor

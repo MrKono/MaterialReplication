@@ -5,6 +5,7 @@ import static kono.ceu.materialreplication.api.util.MRValues.mrId;
 import gregtech.api.fluids.FluidBuilder;
 import gregtech.api.unification.material.Material;
 import gregtech.api.unification.material.info.MaterialIconSet;
+import kono.ceu.materialreplication.api.unification.material.info.MRMaterialIconSet;
 
 public class MRMaterial {
 
@@ -32,16 +33,19 @@ public class MRMaterial {
                 .build();
 
         MRMaterials.AntiChargedMatter = new Material.Builder(31004, mrId("anti_charged_matter"))
+                .iconSet(MRMaterialIconSet.ANTIMATTER)
                 .liquid(new FluidBuilder().temperature(1))
                 .color(0xc86400)
                 .build();
 
         MRMaterials.AntiNeutralMatter = new Material.Builder(31005, mrId("anti_neutral_matter"))
+                .iconSet(MRMaterialIconSet.ANTIMATTER)
                 .liquid(new FluidBuilder().temperature(1))
                 .color(0x0ac8be )
                 .build();
 
         MRMaterials.AntiMatter = new Material.Builder(31006, mrId("anti_matter"))
+                .iconSet(MRMaterialIconSet.ANTIMATTER)
                 .liquid(new FluidBuilder().temperature(300))
                 .color(0x04360e)
                 .build();

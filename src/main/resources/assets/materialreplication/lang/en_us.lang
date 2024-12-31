@@ -18,6 +18,9 @@ materialreplication.material.primal_matter=Primal Matter
 materialreplication.material.charged_matter=Charged Matter
 materialreplication.material.neutral_matter=Neutral Matter
 materialreplication.material.matter_amplifier=Matter Amplifier
+materialreplication.material.anti_charged_matter=Anti Charged Matter
+materialreplication.material.anti_neutral_matter=Anti Neutral Matter
+materialreplication.material.anti_matter=Antimatter
 
 ## Machine
 # Material Deconstructor
