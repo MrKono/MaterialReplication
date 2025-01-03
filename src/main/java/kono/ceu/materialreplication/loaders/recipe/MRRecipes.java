@@ -7,6 +7,7 @@ public class MRRecipes {
         MRMiscRecipeLoader.addMaterialRecipe();
         MRMiscRecipeLoader.miscRecipe();
         MRMTECraftingRecipeLoader.register();
+        MRAntimatterLoader.init();
     }
 
     public static void removeRecipe() {
