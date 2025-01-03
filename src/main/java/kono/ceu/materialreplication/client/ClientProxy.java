@@ -1,5 +1,6 @@
 package kono.ceu.materialreplication.client;
 
+import kono.ceu.materialreplication.common.blocks.MRBlocks;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
@@ -18,5 +19,7 @@ public class ClientProxy extends CommonProxy {
     }
 
     @SubscribeEvent
-    public static void registerModels(ModelRegistryEvent event) {}
+    public static void registerModels(ModelRegistryEvent event) {
+        MRBlocks.registerItemModels();
+    }
 }

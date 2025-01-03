@@ -2,6 +2,7 @@ package kono.ceu.materialreplication.client;
 
 import static kono.ceu.materialreplication.api.util.MRValues.MODID;
 
+import gregtech.client.renderer.texture.cube.SimpleOverlayRenderer;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.relauncher.Side;
 
@@ -26,5 +27,17 @@ public class MRTextures {
     public static final OrientedOverlayRenderer LARGE_SCRAPPER_OVERLAY = new OrientedOverlayRenderer(
             "machines/multi/scrapper");
 
-    public static void preInit() {}
+    // Casings
+    public static SimpleOverlayRenderer ANTIMATTER_REACTOR_CASING;
+    public static SimpleOverlayRenderer HELIUM_COOLANT;
+    public static SimpleOverlayRenderer REACTOR_CORE;
+
+    public static void preInit() {
+        ANTIMATTER_REACTOR_CASING = new SimpleOverlayRenderer(
+                "casings/antimatter/antimatter_reactor_casing");
+        HELIUM_COOLANT = new SimpleOverlayRenderer(
+                "casings/antimatter/helium_coolant");
+        REACTOR_CORE = new SimpleOverlayRenderer(
+                "casings/antimatter/antimatter_reactor_core");
+    }
 }
