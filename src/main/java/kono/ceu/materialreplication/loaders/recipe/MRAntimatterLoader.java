@@ -1,13 +1,13 @@
 package kono.ceu.materialreplication.loaders.recipe;
 
+import static gregtech.api.GTValues.*;
 
 import gregtech.api.fluids.store.FluidStorageKeys;
 import gregtech.api.recipes.RecipeMaps;
 import gregtech.api.unification.material.Materials;
+
 import kono.ceu.materialreplication.api.recipes.MRRecipeMaps;
 import kono.ceu.materialreplication.api.unification.material.materials.MRMaterials;
-
-import static gregtech.api.GTValues.*;
 
 public class MRAntimatterLoader {
 

@@ -5,8 +5,6 @@ import static kono.ceu.materialreplication.loaders.recipe.MRMachineRecipeLoader.
 import java.util.ArrayList;
 import java.util.List;
 
-import gregtech.api.recipes.builders.FuelRecipeBuilder;
-import net.minecraft.client.gui.Gui;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fluids.FluidStack;
@@ -16,6 +14,7 @@ import gregtech.api.gui.widgets.ProgressWidget;
 import gregtech.api.recipes.RecipeBuilder;
 import gregtech.api.recipes.RecipeMap;
 import gregtech.api.recipes.RecipeMaps;
+import gregtech.api.recipes.builders.FuelRecipeBuilder;
 import gregtech.api.recipes.builders.SimpleRecipeBuilder;
 import gregtech.api.unification.material.Material;
 import gregtech.api.unification.material.properties.PropertyKey;
@@ -129,23 +128,23 @@ public class MRRecipeMaps {
                     .setProgressBar(GuiTextures.PROGRESS_BAR_RECYCLER, ProgressWidget.MoveType.HORIZONTAL);
 
     // Antimatter Processor
-    public static final RecipeMap<SimpleRecipeBuilder>  ANTIMATTER_PROCESSOR = new RecipeMap<>("antimatter_processor",
-             1, 1, 2, 2, new SimpleRecipeBuilder(), false)
-            .setSlotOverlay(false, false, GuiTextures.ATOMIC_OVERLAY_1)
-            .setSlotOverlay(true, false, GuiTextures.ATOMIC_OVERLAY_1)
-            .setSlotOverlay(false, true, GuiTextures.ATOMIC_OVERLAY_2)
-            .setSlotOverlay(true, true, GuiTextures.ATOMIC_OVERLAY_2)
-            .setProgressBar(GuiTextures.PROGRESS_BAR_FUSION, ProgressWidget.MoveType.HORIZONTAL)
-            .setSound(GTSoundEvents.ARC);
+    public static final RecipeMap<SimpleRecipeBuilder> ANTIMATTER_PROCESSOR = new RecipeMap<>("antimatter_processor",
+            1, 1, 2, 2, new SimpleRecipeBuilder(), false)
+                    .setSlotOverlay(false, false, GuiTextures.ATOMIC_OVERLAY_1)
+                    .setSlotOverlay(true, false, GuiTextures.ATOMIC_OVERLAY_1)
+                    .setSlotOverlay(false, true, GuiTextures.ATOMIC_OVERLAY_2)
+                    .setSlotOverlay(true, true, GuiTextures.ATOMIC_OVERLAY_2)
+                    .setProgressBar(GuiTextures.PROGRESS_BAR_FUSION, ProgressWidget.MoveType.HORIZONTAL)
+                    .setSound(GTSoundEvents.ARC);
 
     // Antimatter Processor
-    public static final RecipeMap<FuelRecipeBuilder>  PAIR_ANNIHILATION_FUELS = new RecipeMap<>("pair_annihilation",
+    public static final RecipeMap<FuelRecipeBuilder> PAIR_ANNIHILATION_FUELS = new RecipeMap<>("pair_annihilation",
             1, 1, 2, 2, new FuelRecipeBuilder(), false)
-            .setSlotOverlay(false, false, GuiTextures.ATOMIC_OVERLAY_1)
-            .setSlotOverlay(true, false, GuiTextures.ATOMIC_OVERLAY_1)
-            .setSlotOverlay(false, true, GuiTextures.ATOMIC_OVERLAY_2)
-            .setSlotOverlay(true, true, GuiTextures.ATOMIC_OVERLAY_2)
-            .setProgressBar(GuiTextures.PROGRESS_BAR_FUSION, ProgressWidget.MoveType.HORIZONTAL)
-            .setSound(GTSoundEvents.ARC)
-            .allowEmptyOutput();
+                    .setSlotOverlay(false, false, GuiTextures.ATOMIC_OVERLAY_1)
+                    .setSlotOverlay(true, false, GuiTextures.ATOMIC_OVERLAY_1)
+                    .setSlotOverlay(false, true, GuiTextures.ATOMIC_OVERLAY_2)
+                    .setSlotOverlay(true, true, GuiTextures.ATOMIC_OVERLAY_2)
+                    .setProgressBar(GuiTextures.PROGRESS_BAR_FUSION, ProgressWidget.MoveType.HORIZONTAL)
+                    .setSound(GTSoundEvents.ARC)
+                    .allowEmptyOutput();
 }

@@ -33,8 +33,8 @@ import kono.ceu.materialreplication.MRConfig;
 import kono.ceu.materialreplication.api.recipes.MRRecipeMaps;
 import kono.ceu.materialreplication.api.recipes.builders.ReplicatorRecipeBuilder;
 import kono.ceu.materialreplication.api.recipes.machines.IReplicatorRecipeMap;
-import kono.ceu.materialreplication.api.unification.material.materials.MRMaterials;
 import kono.ceu.materialreplication.api.unification.material.flags.MRMaterialFlags;
+import kono.ceu.materialreplication.api.unification.material.materials.MRMaterials;
 import kono.ceu.materialreplication.common.items.MRMetaItems;
 
 public class MRMachineRecipeLoader {

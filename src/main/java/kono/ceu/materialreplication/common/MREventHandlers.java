@@ -7,8 +7,8 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import gregtech.api.unification.material.event.MaterialEvent;
 import gregtech.api.unification.material.event.PostMaterialEvent;
 
-import kono.ceu.materialreplication.api.unification.material.materials.MRMaterials;
 import kono.ceu.materialreplication.api.unification.material.flags.MRMaterialFlagAddition;
+import kono.ceu.materialreplication.api.unification.material.materials.MRMaterials;
 import kono.ceu.materialreplication.api.util.MRValues;
 
 @Mod.EventBusSubscriber(modid = MRValues.MODID)
