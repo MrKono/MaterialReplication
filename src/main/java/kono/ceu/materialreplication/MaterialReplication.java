@@ -34,8 +34,8 @@ public class MaterialReplication {
     public static MaterialReplication instance;
 
     @Mod.EventHandler
-    public void preInit(FMLPreInitializationEvent event) {
-        proxy.preInit(event);
+    public void preInit(FMLPreInitializationEvent e) {
+        proxy.preInit(e);
     }
 
     @Mod.EventHandler
