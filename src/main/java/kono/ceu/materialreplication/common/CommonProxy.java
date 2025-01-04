@@ -48,6 +48,7 @@ public class CommonProxy {
         registry.register(ANTIMATTER_CASING);
     }
 
+    @SubscribeEvent
     public static void registerItem(RegistryEvent.Register<Item> event) {
         IForgeRegistry<Item> registry = event.getRegistry();
 
