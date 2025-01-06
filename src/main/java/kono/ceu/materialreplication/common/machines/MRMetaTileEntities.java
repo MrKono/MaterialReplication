@@ -17,6 +17,7 @@ import kono.ceu.materialreplication.client.MRTextures;
 import kono.ceu.materialreplication.common.machines.multi.MetaTileEntityLargeDeconstructor;
 import kono.ceu.materialreplication.common.machines.multi.MetaTileEntityLargeScrapper;
 import kono.ceu.materialreplication.common.machines.multi.antimatterreactor.MetaTileEntityPairAnnihilationModule;
+import kono.ceu.materialreplication.common.machines.multi.antimatterreactor.MetaTileEntityProcessorModule;
 import kono.ceu.materialreplication.common.machines.single.MetaTileEntityScrapMaker;
 
 public class MRMetaTileEntities {
@@ -31,6 +32,7 @@ public class MRMetaTileEntities {
     // Default: 21000-
     public static MetaTileEntityLargeDeconstructor LARGE_DECONSTRUCTOR;
     public static MetaTileEntityLargeScrapper LARGE_SCRAPPER;
+    public static MetaTileEntityProcessorModule MODULE_ANTIMATTER_PROCESSOR;
     public static MetaTileEntityPairAnnihilationModule MODULE_PAIR_ANNIHILATION;
 
     public static void init() {
@@ -97,11 +99,13 @@ public class MRMetaTileEntities {
         LARGE_SCRAPPER = registerMetaTileEntity(id + 1,
                 new MetaTileEntityLargeScrapper(mrId("large_scrapper")));
 
-        //
-        //
+        // Antimatter Processor Module
+        // Default: 21002
+        MODULE_ANTIMATTER_PROCESSOR = registerMetaTileEntity(id + 2,
+                new MetaTileEntityProcessorModule(mrId("antimatter_processor")));
 
         // Pair Annihilation Generator module
-        // Default: 21001
+        // Default: 21003
         MODULE_PAIR_ANNIHILATION = registerMetaTileEntity(id + 3,
                 new MetaTileEntityPairAnnihilationModule(mrId("pair_annihilation_generator")));
     }
