@@ -38,22 +38,27 @@ public class MetaTileEntityPairAnnihilationModule extends FuelMultiblockControll
     @Override
     protected @NotNull BlockPattern createStructurePattern() {
         return FactoryBlockPattern.start()
-                .aisle("###############", "######ICI######", "####CC###CC####", "###C#######C###", "##C#########C##", "##C#########C##", "#C###########C#", "#C###########C#", "#C###########C#", "##C#########C##", "##C#########C##", "###C#######C###", "####CC###CC####", "######ICI######", "###############")
-                .aisle("######GGG######", "####GGAAAGG####", "###EAAGGGAAE###", "##EHGG#F#GGHE##", "#GAG###F###GAG#", "#GAG###F###GAG#", "GBG####F####GBG", "GAGFFFFRFFFFGAG", "GBG####F####GBG", "#GAG###F###GAG#", "#GAG###F###GAG#", "##EHGG#F#GGHE##", "###EAAGGGAAE###", "####GGAAAGG####", "######GSG######")
-                .aisle("###############", "######ICI######", "####CC###CC####", "###C#######C###", "##C#########C##", "##C#########C##", "#C###########C#", "#C###########C#", "#C###########C#", "##C#########C##", "##C#########C##", "###C#######C###", "####CC###CC####", "######ICI######", "###############")
+                .aisle("###############", "######CCC######", "####CC###CC####", "###C#######C###", "##C#########C##",
+                        "##C#########C##", "#C###########C#", "#C###########C#", "#C###########C#", "##C#########C##",
+                        "##C#########C##", "###C#######C###", "####CC###CC####", "######CCC######", "###############")
+                .aisle("######PGP######", "####GGAAAGG####", "###PAAPGPAAP###", "##PHPG#F#GPHP##", "#GAP###F###PAG#",
+                        "#GAG###F###GAG#", "GBG####P####GBG", "GAGFFFPRPFFFGAG", "GBG####P####GBG", "#GAG###F###GAG#",
+                        "#GAP###F###PAG#", "##PHPG#F#GPHP##", "###PAAPGPAAP###", "####GGAAAGG####", "######PSP######")
+                .aisle("###############", "######CCC######", "####CC###CC####", "###C#######C###", "##C#########C##",
+                        "##C#########C##", "#C###########C#", "#C###########C#", "#C###########C#", "##C#########C##",
+                        "##C#########C##", "###C#######C###", "####CC###CC####", "######CCC######", "###############")
                 .where('S', selfPredicate())
                 .where('G', states(getGlassState()).or(states(getCasingState())))
-                .where('E',
-                        states(getGlassState()).or(states(getCasingState()))
-                                .or(abilities(MultiblockAbility.OUTPUT_ENERGY).setMinGlobalLimited(1)
-                                        .setMaxGlobalLimited(2)))
                 .where('C', states(getCasingState()))
                 .where('H',
                         states(MRBlocks.ANTIMATTER_CASING
                                 .getState(BlockAntimatterCasing.AntimatterCasingType.HELIUM_COOLANT)))
                 .where('A', air())
-                .where('I',
-                        states(getCasingState()).or(abilities(MultiblockAbility.IMPORT_FLUIDS).setMinGlobalLimited(2)))
+                .where('P',
+                        states(getGlassState()).or(states(getCasingState()))
+                                .or(autoAbilities(false, false, true, true, true, true, false))
+                                .or(abilities(MultiblockAbility.OUTPUT_ENERGY).setMinGlobalLimited(1)
+                                        .setMaxGlobalLimited(2)))
                 .where('R', states(getCoreState()))
                 .where('F', states(MetaBlocks.FRAMES.get(Materials.NaquadahAlloy).getBlock(Materials.NaquadahAlloy)))
                 .where('B', air().or(states(getCasingState())))
