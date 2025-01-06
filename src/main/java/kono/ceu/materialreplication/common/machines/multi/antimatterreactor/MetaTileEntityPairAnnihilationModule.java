@@ -38,41 +38,15 @@ public class MetaTileEntityPairAnnihilationModule extends FuelMultiblockControll
     @Override
     protected @NotNull BlockPattern createStructurePattern() {
         return FactoryBlockPattern.start()
-                .aisle("###", "###", "###", "###", "###", "###", "#G#", "#P#", "#G#", "###", "###", "###", "###", "###",
-                        "###")
-                .aisle("###", "###", "###", "###", "#G#", "#G#", "IAI", "CAC", "IAI", "#G#", "#G#", "###", "###", "###",
-                        "###")
-                .aisle("###", "###", "###", "#E#", "CAC", "CAC", "#G#", "#G#", "#G#", "CAC", "CAC", "#E#", "###", "###",
-                        "###")
-                .aisle("###", "###", "#E#", "CHC", "#G#", "#G#", "###", "#F#", "###", "#G#", "#G#", "CHC", "#E#", "###",
-                        "###")
-                .aisle("###", "#G#", "CAC", "#G#", "###", "###", "###", "#F#", "###", "###", "###", "#G#", "CAC", "#G#",
-                        "###")
-                .aisle("###", "#G#", "CAC", "#G#", "###", "###", "###", "#F#", "###", "###", "###", "#G#", "CAC", "#G#",
-                        "###")
-                .aisle("#G#", "IAI", "#G#", "###", "###", "###", "###", "#F#", "###", "###", "###", "###", "#G#", "IAI",
-                        "#G#")
-                .aisle("#G#", "CAC", "#G#", "#F#", "#F#", "#F#", "#F#", "#R#", "#F#", "#F#", "#F#", "#F#", "#G#", "CAC",
-                        "#G#")
-                .aisle("#G#", "IAI", "#G#", "###", "###", "###", "###", "#F#", "###", "###", "###", "###", "#G#", "IAI",
-                        "#G#")
-                .aisle("###", "#G#", "CAC", "#G#", "###", "###", "###", "#F#", "###", "###", "###", "#G#", "CAC", "#G#",
-                        "###")
-                .aisle("###", "#G#", "CAC", "#G#", "###", "###", "###", "#F#", "###", "###", "###", "#G#", "CAC", "#G#",
-                        "###")
-                .aisle("###", "###", "#E#", "CHC", "#G#", "#G#", "###", "#F#", "###", "#G#", "#G#", "CHC", "#E#", "###",
-                        "###")
-                .aisle("###", "###", "###", "#E#", "CAC", "CAC", "#G#", "#G#", "#G#", "CAC", "CAC", "#E#", "###", "###",
-                        "###")
-                .aisle("###", "###", "###", "###", "#G#", "#G#", "IAI", "CAC", "IAI", "#G#", "#G#", "###", "###", "###",
-                        "###")
-                .aisle("###", "###", "###", "###", "###", "###", "#G#", "#S#", "#G#", "###", "###", "###", "###", "###",
-                        "###")
+                .aisle("###############", "######ICI######", "####CC###CC####", "###C#######C###", "##C#########C##", "##C#########C##", "#C###########C#", "#C###########C#", "#C###########C#", "##C#########C##", "##C#########C##", "###C#######C###", "####CC###CC####", "######ICI######", "###############")
+                .aisle("######GGG######", "####GGAAAGG####", "###EAAGGGAAE###", "##EHGG#F#GGHE##", "#GAG###F###GAG#", "#GAG###F###GAG#", "GBG####F####GBG", "GAGFFFFRFFFFGAG", "GBG####F####GBG", "#GAG###F###GAG#", "#GAG###F###GAG#", "##EHGG#F#GGHE##", "###EAAGGGAAE###", "####GGAAAGG####", "######GSG######")
+                .aisle("###############", "######ICI######", "####CC###CC####", "###C#######C###", "##C#########C##", "##C#########C##", "#C###########C#", "#C###########C#", "#C###########C#", "##C#########C##", "##C#########C##", "###C#######C###", "####CC###CC####", "######ICI######", "###############")
                 .where('S', selfPredicate())
                 .where('G', states(getGlassState()).or(states(getCasingState())))
                 .where('E',
-                        states(getCasingState()).or(abilities(MultiblockAbility.OUTPUT_ENERGY).setMinGlobalLimited(1)
-                                .setMaxGlobalLimited(2)))
+                        states(getGlassState()).or(states(getCasingState()))
+                                .or(abilities(MultiblockAbility.OUTPUT_ENERGY).setMinGlobalLimited(1)
+                                        .setMaxGlobalLimited(2)))
                 .where('C', states(getCasingState()))
                 .where('H',
                         states(MRBlocks.ANTIMATTER_CASING
@@ -80,9 +54,9 @@ public class MetaTileEntityPairAnnihilationModule extends FuelMultiblockControll
                 .where('A', air())
                 .where('I',
                         states(getCasingState()).or(abilities(MultiblockAbility.IMPORT_FLUIDS).setMinGlobalLimited(2)))
-                .where('P', states(getGlassState()))
                 .where('R', states(getCoreState()))
                 .where('F', states(MetaBlocks.FRAMES.get(Materials.NaquadahAlloy).getBlock(Materials.NaquadahAlloy)))
+                .where('B', air().or(states(getCasingState())))
                 .where('#', any())
                 .build();
     }

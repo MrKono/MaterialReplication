@@ -84,6 +84,7 @@ materialreplication.machine.scrapmaker.warning3.2= %s%% +%s%%/tier
 # Controllers
 materialreplication.machine.large_deconstructor.name=Large Material Deconstructor
 materialreplication.machine.large_scrapper.name=Large Scrapper
+materialreplication.machine.antimatter_processor.name=Antimatter Processor Module
 materialreplication.machine.pair_annihilation_generator.name=Pair Annihilation Generator Module
 
 # descriptions
