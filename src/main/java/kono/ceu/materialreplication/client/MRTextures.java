@@ -27,6 +27,8 @@ public class MRTextures {
     public static final OrientedOverlayRenderer LARGE_SCRAPPER_OVERLAY = new OrientedOverlayRenderer(
             "machines/multi/scrapper");
 
+    public static SimpleOverlayRenderer ANTIMATTER_REACTOR;
+
     // Casings
     public static SimpleOverlayRenderer ANTIMATTER_REACTOR_CASING;
     public static SimpleOverlayRenderer HELIUM_COOLANT;
@@ -39,5 +41,7 @@ public class MRTextures {
                 "casings/antimatter/helium_coolant");
         REACTOR_CORE = new SimpleOverlayRenderer(
                 "casings/antimatter/antimatter_reactor_core");
+        ANTIMATTER_REACTOR = new SimpleOverlayRenderer(
+                "machines/multi/antimatter_reactor/antimatter_reactor_side");
     }
 }
