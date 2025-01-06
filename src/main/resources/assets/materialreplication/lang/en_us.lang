@@ -24,6 +24,11 @@ materialreplication.material.anti_charged_matter=Anti Charged Matter
 materialreplication.material.anti_neutral_matter=Anti Neutral Matter
 materialreplication.material.anti_matter=Antimatter
 
+## Block
+tile.mr_antimatter_casing.antimatter_reactor_casing.name=Antimatter Reactor Casing
+tile.mr_antimatter_casing.antimatter_reactor_core.name=Antimatter Reactor Core
+tile.mr_antimatter_casing.helium_coolant.name=Helium Coolant
+
 ## Machine
 # Material Deconstructor
 materialreplication.machine.deconstructor.lv.name=Basic Material Deconstructor
@@ -79,6 +84,7 @@ materialreplication.machine.scrapmaker.warning3.2= %s%% +%s%%/tier
 # Controllers
 materialreplication.machine.large_deconstructor.name=Large Material Deconstructor
 materialreplication.machine.large_scrapper.name=Large Scrapper
+materialreplication.machine.pair_annihilation_generator.name=Pair Annihilation Generator Module
 
 # descriptions
 materialreplication.multiblock.large_deconstructor.description=
@@ -89,3 +95,5 @@ recipemap.deconstruction.name=Material Deconstruction
 recipemap.replication.name=Material Replication
 recipemap.replication.property1=Required a USB Stick with
 recipemap.replication.property2= a scan of the material
+recipemap.antimatter_processor.name=Antimatter Processor
+recipemap.pair_annihilation.name=Pair Annihilation Reaction
