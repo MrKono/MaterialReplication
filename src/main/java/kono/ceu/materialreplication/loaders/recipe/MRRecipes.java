@@ -1,5 +1,7 @@
 package kono.ceu.materialreplication.loaders.recipe;
 
+import static kono.ceu.materialreplication.api.util.MRValues.isAntimatter;
+
 public class MRRecipes {
 
     public static void addRecipe() {
@@ -7,7 +9,9 @@ public class MRRecipes {
         MRMiscRecipeLoader.addMaterialRecipe();
         MRMiscRecipeLoader.miscRecipe();
         MRMTECraftingRecipeLoader.register();
-        MRAntimatterLoader.init();
+        if (isAntimatter) {
+            MRAntimatterLoader.init();
+        }
     }
 
     public static void removeRecipe() {

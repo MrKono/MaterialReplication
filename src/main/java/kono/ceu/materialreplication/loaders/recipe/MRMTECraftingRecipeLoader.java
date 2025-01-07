@@ -2,6 +2,7 @@ package kono.ceu.materialreplication.loaders.recipe;
 
 import static gregtech.loaders.recipe.CraftingComponent.*;
 import static gregtech.loaders.recipe.MetaTileEntityLoader.registerMachineRecipe;
+import static kono.ceu.materialreplication.api.util.MRValues.isAntimatter;
 import static kono.ceu.materialreplication.api.util.MRValues.tierLargeDeconstruct;
 
 import gregtech.api.GTValues;
@@ -70,5 +71,8 @@ public class MRMTECraftingRecipeLoader {
                 'S', MRMetaTileEntities.SCRAPPER[GTValues.IV].getStackForm(),
                 'M', MetaItems.ELECTRIC_MOTOR_IV,
                 'W', new UnificationEntry(OrePrefix.cableGtDouble, Materials.Platinum));
+        if (isAntimatter) {
+
+        }
     }
 }
