@@ -137,7 +137,7 @@ public class MRRecipeMaps {
                     .setProgressBar(GuiTextures.PROGRESS_BAR_FUSION, ProgressWidget.MoveType.HORIZONTAL)
                     .setSound(GTSoundEvents.ARC);
 
-    // Antimatter Processor
+    // Pair Annihilation
     public static final RecipeMap<FuelRecipeBuilder> PAIR_ANNIHILATION_FUELS = new RecipeMap<>("pair_annihilation",
             1, 1, 2, 2, new FuelRecipeBuilder(), false)
                     .setSlotOverlay(false, false, GuiTextures.ATOMIC_OVERLAY_1)
