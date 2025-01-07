@@ -3,8 +3,11 @@ package kono.ceu.materialreplication.api.unification.material.materials;
 import static kono.ceu.materialreplication.api.util.MRValues.mrId;
 
 import gregtech.api.fluids.FluidBuilder;
+import gregtech.api.fluids.store.FluidStorageKeys;
 import gregtech.api.unification.material.Material;
 import gregtech.api.unification.material.info.MaterialIconSet;
+import gregtech.api.unification.material.properties.FluidProperty;
+import gregtech.api.unification.material.properties.PropertyKey;
 
 import kono.ceu.materialreplication.api.unification.material.info.MRMaterialIconSet;
 
@@ -32,7 +35,9 @@ public class MRMaterial {
                 .liquid(new FluidBuilder().temperature(300))
                 .color(0xda70d6)
                 .build();
+    }
 
+    public static void antimatter() {
         MRMaterials.AntiChargedMatter = new Material.Builder(31004, mrId("anti_charged_matter"))
                 .iconSet(MRMaterialIconSet.ANTIMATTER)
                 .plasma(new FluidBuilder()
@@ -56,5 +61,11 @@ public class MRMaterial {
                 .liquid(new FluidBuilder().temperature(300))
                 .color(0x04360e)
                 .build();
+
+        MRMaterials.NeutralMatter.getProperty(PropertyKey.FLUID).enqueueRegistration(FluidStorageKeys.PLASMA,
+                new FluidBuilder().temperature(10000).translation("materialreplication.fluid.high_energy"));
+
+        MRMaterials.ChargedMatter.getProperty(PropertyKey.FLUID).enqueueRegistration(FluidStorageKeys.PLASMA,
+                new FluidBuilder().temperature(10000).translation("materialreplication.fluid.high_energy"));
     }
 }

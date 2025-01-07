@@ -1,6 +1,7 @@
 package kono.ceu.materialreplication.api.unification.material.materials;
 
 import static gregtech.api.unification.ore.OrePrefix.dustSmall;
+import static kono.ceu.materialreplication.api.util.MRValues.isAntimatter;
 
 import gregtech.api.unification.material.Material;
 
@@ -20,6 +21,9 @@ public class MRMaterials {
     public static void init() {
         MRMaterial.init();
         MRMaterialFlagAddition.init();
+        if (isAntimatter) {
+            MRMaterial.antimatter();
+        }
     }
 
     public static void orePrefix() {

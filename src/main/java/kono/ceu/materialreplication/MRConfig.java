@@ -156,6 +156,9 @@ public class MRConfig {
         @Config.Comment({ "Ratio of UUMatter created from two maters", "ChargedMatter, NeutralMatter, UUMatter",
                 "Default: 50, 50, 50" })
         public int[] matterRatio = { 50, 50, 50 };
+
+        @Config.Comment({ "Whether to enable Antimatter Module", "Default: false" })
+        public boolean antimatter = false;
     }
 
     public static class StartTier {

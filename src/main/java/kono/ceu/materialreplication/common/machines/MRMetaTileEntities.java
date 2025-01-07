@@ -99,15 +99,17 @@ public class MRMetaTileEntities {
         LARGE_SCRAPPER = registerMetaTileEntity(id + 1,
                 new MetaTileEntityLargeScrapper(mrId("large_scrapper")));
 
-        // Antimatter Processor Module
-        // Default: 21002
-        MODULE_ANTIMATTER_PROCESSOR = registerMetaTileEntity(id + 2,
-                new MetaTileEntityProcessorModule(mrId("antimatter_processor")));
+        if (isAntimatter) {
+            // Antimatter Processor Module
+            // Default: 21002
+            MODULE_ANTIMATTER_PROCESSOR = registerMetaTileEntity(id + 2,
+                    new MetaTileEntityProcessorModule(mrId("antimatter_processor")));
 
-        // Pair Annihilation Generator module
-        // Default: 21003
-        MODULE_PAIR_ANNIHILATION = registerMetaTileEntity(id + 3,
-                new MetaTileEntityPairAnnihilationModule(mrId("pair_annihilation_generator")));
+            // Pair Annihilation Generator module
+            // Default: 21003
+            MODULE_PAIR_ANNIHILATION = registerMetaTileEntity(id + 3,
+                    new MetaTileEntityPairAnnihilationModule(mrId("pair_annihilation_generator")));
+        }
     }
 
     private static @NotNull ResourceLocation mrId(String name) {

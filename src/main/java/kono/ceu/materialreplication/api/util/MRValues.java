@@ -42,6 +42,8 @@ public class MRValues {
             NeutralMatterAmount = MRConfig.recipe.matterRatio[1],
             UUMatterAmount = MRConfig.recipe.matterRatio[2] > 0 ? MRConfig.recipe.matterRatio[2] : 1;
 
+    public static boolean isAntimatter = MRConfig.recipe.antimatter;
+
     public static @NotNull ResourceLocation mrId(@NotNull String path) {
         return new ResourceLocation(MODID, path);
     }
