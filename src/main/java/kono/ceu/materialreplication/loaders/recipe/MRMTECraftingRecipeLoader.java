@@ -19,7 +19,7 @@ public class MRMTECraftingRecipeLoader {
 
     public static void register() {
         // Deconstructor
-        registerMachineRecipe(MRMetaTileEntities.DECONSTRUCTOR,
+        registerMachineRecipe(true, MRMetaTileEntities.DECONSTRUCTOR,
                 "CSC", "FHF", "CQC",
                 'C', BETTER_CIRCUIT,
                 'S', SENSOR,
@@ -28,7 +28,7 @@ public class MRMTECraftingRecipeLoader {
                 'Q', CABLE_QUAD);
 
         // Replicator
-        registerMachineRecipe(MRMetaTileEntities.REPLICATOR,
+        registerMachineRecipe(true, MRMetaTileEntities.REPLICATOR,
                 "EFE", "CHC", "SQS",
                 'E', EMITTER,
                 'F', FIELD_GENERATOR,
@@ -38,7 +38,7 @@ public class MRMTECraftingRecipeLoader {
                 'Q', CABLE_QUAD);
 
         // ScrapMaker
-        registerMachineRecipe(MRMetaTileEntities.SCRAPPER,
+        registerMachineRecipe(true, MRMetaTileEntities.SCRAPPER,
                 "GCG", "PHP", "WCW",
                 'G', new UnificationEntry(OrePrefix.dust, Materials.Glowstone),
                 'C', CIRCUIT,
