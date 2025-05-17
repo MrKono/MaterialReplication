@@ -1,6 +1,6 @@
 package kono.ceu.materialreplication.common.machines;
 
-import static gregtech.common.metatileentities.MetaTileEntities.registerMetaTileEntity;
+import static gregtech.common.metatileentities.MetaTileEntities.*;
 import static kono.ceu.materialreplication.api.util.MRValues.*;
 
 import net.minecraft.util.ResourceLocation;
@@ -47,7 +47,7 @@ public class MRMetaTileEntities {
             if (tierDeconstruct <= i)
                 DECONSTRUCTOR[i] = registerMetaTileEntity(id + (i - 1),
                         new SimpleMachineMetaTileEntity(
-                                new ResourceLocation(MODID, (String.format("%s.%s", "deconstructor", voltageName))),
+                                mrId(String.format("%s.%s", "deconstructor", voltageName)),
                                 MRRecipeMaps.DECONSTRUCTION_RECIPES, MRTextures.DECONSTRUCTOR_OVERLAY, i, true,
                                 GTUtility.hvCappedTankSizeFunction));
         }
@@ -62,7 +62,7 @@ public class MRMetaTileEntities {
             if (tierReplicate <= i)
                 REPLICATOR[i] = registerMetaTileEntity(id + (i - 1),
                         new SimpleMachineMetaTileEntity(
-                                new ResourceLocation(MODID, (String.format("%s.%s", "replicator", voltageName))),
+                                mrId(String.format("%s.%s", "replicator", voltageName)),
                                 MRRecipeMaps.REPLICATION_RECIPES, MRTextures.REPLICATOR_OVERLAY, i, true,
                                 GTUtility.hvCappedTankSizeFunction));
         }
@@ -70,14 +70,14 @@ public class MRMetaTileEntities {
         // Scrapper
         // Default: 20030 - 20044
         id = id + 15;
-        for (int i = 0; i < SCRAPPER.length - 1; i++) {
-            String voltageName = GTValues.VN[i + 1].toLowerCase();
+        for (int i = 1; i < SCRAPPER.length; i++) {
+            String voltageName = GTValues.VN[i].toLowerCase();
             if (!GregTechAPI.isHighTier() && i > GTValues.UV)
                 break;
-            SCRAPPER[i] = registerMetaTileEntity(id + i,
+            SCRAPPER[i] = registerMetaTileEntity(id + (i - 1),
                     new MetaTileEntityScrapMaker(
-                            new ResourceLocation(MODID, (String.format("%s.%s", "scrapmaker", voltageName))),
-                            MRRecipeMaps.SCRAPMAKER_RECIPES, MRTextures.SCRAPPER_OVERLAY, i + 1,
+                            mrId(String.format("%s.%s", "scrapmaker", voltageName)),
+                            MRRecipeMaps.SCRAPMAKER_RECIPES, MRTextures.SCRAPPER_OVERLAY, i,
                             GTUtility.hvCappedTankSizeFunction));
 
         }
