@@ -44,6 +44,12 @@ public class ReplicationBehaviors implements IItemBehaviour {
                     lines.add(I18n.format("behaviour.usb.replicate_data4", Charged, materialStack.getProtons()));
                 }
             }
+            String str = replicateMaterialNBT.getString("Material");
+            for (Material mat : GregTechAPI.materialManager.getRegisteredMaterials()) {
+                if (str.equals(mat.toString())) {
+                    lines.add(RED + I18n.format("behaviour.usb.old"));
+                }
+            }
         } else {
             lines.add(I18n.format("behaviour.usb.no_data"));
         }

@@ -74,7 +74,7 @@ public class ReplicatorRecipeBuilder extends RecipeBuilder<ReplicatorRecipeBuild
     }
 
     public ReplicatorRecipeBuilder replicate(@Nonnull Material replicationMaterial, int time, int EUt) {
-        return replicate(replicationMaterial, replicationMaterial.toString(), time, EUt);
+        return replicate(replicationMaterial, replicationMaterial.getRegistryName(), time, EUt);
     }
 
     public ReplicatorRecipeBuilder replicate(@Nonnull Material replicationMaterial, @Nonnull String replicateID,

@@ -5,12 +5,13 @@ import static gregtech.api.recipes.RecipeMaps.*;
 import static gregtech.api.unification.ore.OrePrefix.dust;
 import static gregtech.api.unification.ore.OrePrefix.dustTiny;
 import static kono.ceu.materialreplication.api.util.MRValues.*;
-import static kono.ceu.materialreplication.common.items.MRMetaItems.SCRAP;
-import static kono.ceu.materialreplication.common.items.MRMetaItems.SCRAP_BOX;
+import static kono.ceu.materialreplication.common.items.MRMetaItems.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 
@@ -176,12 +177,28 @@ public class MRMachineRecipeLoader {
                                 NBTCondition.create(NBTTagType.COMPOUND, IReplicatorRecipeMap.REPLICATE_NBT_TAG,
                                         NBTCondition.create(NBTTagType.STRING,
                                                 IReplicatorRecipeMap.REPLICATE_MATERIAL,
-                                                material.toString())))
+                                                material.getRegistryName())))
                         .setNonConsumable())
                 .replicate(material)
                 .EUt(Voltage_R)
                 .output(dust, material)
                 .buildAndRegister();
+
+        // REMOVED in 1.3.1
+        ItemStack stack = USB_STICK.getStackForm();
+        NBTTagCompound compound = new NBTTagCompound();
+        compound.setTag(IReplicatorRecipeMap.REPLICATE_NBT_TAG,
+                ReplicatorRecipeBuilder.generateReplicateNBT(material.getRegistryName()));
+        stack.setTagCompound(compound);
+        SCANNER_RECIPES.recipeBuilder()
+                .input(GTRecipeItemInput.getOrCreate(MRMetaItems.USB_STICK.getStackForm())
+                        .setNBTMatchingCondition(NBTMatcher.RECURSIVE_EQUAL_TO,
+                                NBTCondition.create(NBTTagType.COMPOUND, IReplicatorRecipeMap.REPLICATE_NBT_TAG,
+                                        NBTCondition.create(NBTTagType.STRING,
+                                                IReplicatorRecipeMap.REPLICATE_MATERIAL,
+                                                material.toString()))))
+                .outputs(stack)
+                .duration(1).EUt(1).buildAndRegister();
     }
 
     public static void registerReplicatorFluidRecipe(@NotNull Material material) {
@@ -201,7 +218,7 @@ public class MRMachineRecipeLoader {
                 .setNBTMatchingCondition(NBTMatcher.RECURSIVE_EQUAL_TO,
                         NBTCondition.create(NBTTagType.COMPOUND, IReplicatorRecipeMap.REPLICATE_NBT_TAG,
                                 NBTCondition.create(NBTTagType.STRING, IReplicatorRecipeMap.REPLICATE_MATERIAL,
-                                        material.toString())))
+                                        material.getRegistryName())))
                 .setNonConsumable())
                 .replicate(material)
                 .duration(BaseTime_R * (int) material.getMass())

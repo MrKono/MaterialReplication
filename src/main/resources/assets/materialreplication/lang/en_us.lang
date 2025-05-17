@@ -12,6 +12,7 @@ behaviour.usb.replicate_data1=Replication Material: §a%s
 behaviour.usb.replicate_data2=Amount of Matter required when replication
 behaviour.usb.replicate_data3=§4%s§7 : %s L
 behaviour.usb.replicate_data4=§3%s§7 : %s L
+behaviour.usb.old=Old data is saved. Can be used again by scanning.
 
 ## Material
 materialreplication.material.primal_matter=Primal Matter
