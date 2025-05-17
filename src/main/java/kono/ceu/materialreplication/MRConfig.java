@@ -7,6 +7,10 @@ import kono.ceu.materialreplication.api.util.MRValues;
 @Config(modid = MRValues.MODID)
 public class MRConfig {
 
+    @Config.Name("MetaTileEntityID Option")
+    @Config.RequiresMcRestart
+    public static IdOption id = new IdOption();
+
     @Config.Comment("Config option of materials for Deconstruction/Replication")
     @Config.Name("Material Options")
     @Config.RequiresMcRestart
@@ -36,6 +40,16 @@ public class MRConfig {
     @Config.Name("Tier Options")
     @Config.RequiresMcRestart
     public static StartTier tier = new StartTier();
+
+    public static class IdOption {
+
+        @Config.Comment({ "Change the starting ID of the MetaTileEntityID used by this add-on.",
+                "By Default, this add-on starts MetaTileEntityIDs of 20000.",
+                "Only change this if the crash is caused by a duplicate MTEIDs.",
+                "WARNING: If you change it, the one already created will disappear or be changed to another one." })
+        @Config.RangeInt(min = 11000, max = 32200)
+        public int startId = 20000;
+    }
 
     public static class MaterialOption {
 
@@ -131,8 +145,17 @@ public class MRConfig {
 
     public static class RecipeOptions {
 
-        @Config.Comment({ "Whether to add the UUMatter recipe.", "Default : false" })
+        @Config.Comment({ "Whether to add the UUMatter recipe.", "If Forestry is loaded, this option is ignored",
+                "Default : false" })
         public boolean addUUMatterRecipe = false;
+
+        @Config.Comment({ "Whether to requiered Cleanroom  when create UU-Matter", "Default: NONE",
+                "valid: [NONE, CLEANROOM, STERILE]" })
+        public String CleanroomType = "NONE";
+
+        @Config.Comment({ "Ratio of UUMatter created from two maters", "ChargedMatter, NeutralMatter, UUMatter",
+                "Default: 50, 50, 50" })
+        public int[] matterRatio = { 50, 50, 50 };
     }
 
     public static class StartTier {
