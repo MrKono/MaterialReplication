@@ -1,5 +1,6 @@
 package kono.ceu.materialreplication;
 
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Config;
 import net.minecraftforge.common.config.ConfigManager;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;
@@ -15,13 +16,14 @@ import gregtech.GTInternalTags;
 import kono.ceu.materialreplication.api.util.MRValues;
 import kono.ceu.materialreplication.api.util.Mods;
 import kono.ceu.materialreplication.common.CommonProxy;
+import kono.ceu.materialreplication.common.machines.MRMetaTileEntities;
 
 @Mod(modid = MRValues.MODID,
      name = MRValues.MODNAME,
      version = Tags.VERSION,
      acceptedMinecraftVersions = "[1.12, 1.12.2]",
-     dependencies = GTInternalTags.DEP_VERSION_STRING + "required-after:" + Mods.Names.GREGICALITY_MULTIBLOCKS + ";" +
-             "after:" + Mods.Names.FORESTRY + ";")
+     dependencies = GTInternalTags.DEP_VERSION_STRING + "required-after:" + Mods.Names.MODULRAUI + ";" +
+             "required-after:" + Mods.Names.GREGICALITY_MULTIBLOCKS + ";" + "after:" + Mods.Names.FORESTRY)
 
 public class MaterialReplication {
 
@@ -35,7 +37,9 @@ public class MaterialReplication {
 
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event) {
+        MinecraftForge.EVENT_BUS.register(this);
         proxy.preInit(event);
+        MRMetaTileEntities.init();
     }
 
     @Mod.EventHandler

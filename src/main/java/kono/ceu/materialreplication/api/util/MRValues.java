@@ -10,10 +10,8 @@ public class MRValues {
 
     public static final String MODNAME = "Material Replication";
     public static final String MODID = "materialreplication";
-    public static int baseID = rangeUtil(MRConfig.id.startId, 11000, 32200, "MetaTileEntityID") ?
-            MRConfig.id.startId : 20000,
-            BaseTime_D = rangeTime(MRConfig.deconstruction.DeconstructionBaseTime) ?
-                    MRConfig.deconstruction.DeconstructionBaseTime : 600,
+    public static int BaseTime_D = rangeTime(MRConfig.deconstruction.DeconstructionBaseTime) ?
+            MRConfig.deconstruction.DeconstructionBaseTime : 600,
             BaseTime_R = rangeTime(MRConfig.replication.ReplicationBaseTime) ?
                     MRConfig.replication.ReplicationBaseTime : 1200,
             BaseTime_S = rangeTime(MRConfig.replication.ScanTime) ?

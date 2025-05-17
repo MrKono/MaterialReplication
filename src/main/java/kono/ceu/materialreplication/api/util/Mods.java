@@ -29,6 +29,7 @@ public enum Mods {
     GregTechFoodOption(Names.GREGTECH_FOOD_OPTION),
     MaterialReplication(Names.MATERIAL_REPLICATION),
     MixinBooter(Names.MIXINBOOTER),
+    ModularUI(Names.MODULRAUI),
     Vanilla(Names.VANILLA),
 
     // Special Optifine handler, but consolidated here for simplicity
@@ -58,6 +59,7 @@ public enum Mods {
         public static final String GREGTECH_FOOD_OPTION = "gregtechfoodoption";
         public static final String MATERIAL_REPLICATION = MRValues.MODID;
         public static final String MIXINBOOTER = "mixinbooter";
+        public static final String MODULRAUI = "modularui";
         public static final String VANILLA = "minecraft";
     }
 
