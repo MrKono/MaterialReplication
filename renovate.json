@@ -1,0 +1,39 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended"
+  ],
+  "timezone": "Asia/Tokyo",
+  "schedule": [
+    "every weekend"
+  ],
+  "automerge": false,
+  "packageRules": [
+    {
+      "matchDatasources": ["gradle-version"],
+      "registryUrls": [
+        "https://www.cursemaven.com",
+        "https://api.modrinth.com/maven",
+        "https://maven.cleanroommc.com",
+        "https://maven.blamejared.com",
+        "https://nexus.gtnewhorizons.com/repository/public/",
+        "https://maven.gtceu.com"
+      ]
+    },
+    {
+      "groupName": "monthly_maintenance",
+      "matchDepTypes":[ "dependencies" ],
+      "matchUpdateTypes": ["minor", "patch"]
+    },
+    {
+      "matchDepTypes": [ "dependencies"],
+      "matchUpdateTypes": ["major"],
+      "enabled": false
+    },
+    {
+      "groupName": "monthly_maintenance",
+      "matchDepTypes":[ "devDependencies" ],
+      "matchUpdateTypes": ["major", "minor", "patch"]
+    }
+  ]
+}

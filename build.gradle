@@ -1,4 +1,4 @@
-//version: 1707682661
+//version: 1762213476
 /*
  * DO NOT CHANGE THIS FILE!
  * Also, you may replace this file at any time if there is an update available.
@@ -23,13 +23,13 @@ plugins {
     id 'base'
     id 'eclipse'
     id 'maven-publish'
-    id 'org.jetbrains.gradle.plugin.idea-ext' version '1.1.7'
-    id 'com.gtnewhorizons.retrofuturagradle' version '1.3.33'
-    id 'net.darkhax.curseforgegradle' version '1.1.18' apply false
+    id 'org.jetbrains.gradle.plugin.idea-ext' version '1.1.9'
+    id 'com.gtnewhorizons.retrofuturagradle' version '2.0.2'
+    id 'net.darkhax.curseforgegradle' version '1.1.25' apply false
     id 'com.modrinth.minotaur' version '2.8.7' apply false
     id 'com.diffplug.spotless' version '6.13.0' apply false
     id 'com.palantir.git-version' version '3.0.0' apply false
-    id 'com.github.johnrengelman.shadow' version '8.1.1' apply false
+    id 'com.gradleup.shadow' version '8.3.5' apply false
     id 'org.jetbrains.kotlin.jvm' version '1.8.0' apply false
     id 'org.jetbrains.kotlin.kapt' version '1.8.0' apply false
     id 'com.google.devtools.ksp' version '1.8.0-1.0.9' apply false
@@ -39,6 +39,8 @@ def out = services.get(StyledTextOutputFactory).create('an-output')
 
 
 // Project properties
+loadProjectProperties()
+
 
 // Required properties: we don't know how to handle these being missing gracefully
 checkPropertyExists("modName")
@@ -58,6 +60,7 @@ propertyDefaultIfUnset("includeMCVersionJar", false)
 propertyDefaultIfUnset("autoUpdateBuildScript", false)
 propertyDefaultIfUnset("modArchivesBaseName", project.modId)
 propertyDefaultIfUnsetWithEnvVar("developmentEnvironmentUserName", "Developer", "DEV_USERNAME")
+propertyDefaultIfUnset("additionalJavaArguments", "")
 propertyDefaultIfUnset("generateGradleTokenClass", "")
 propertyDefaultIfUnset("gradleTokenModId", "")
 propertyDefaultIfUnset("gradleTokenModName", "")
@@ -65,8 +68,11 @@ propertyDefaultIfUnset("gradleTokenVersion", "")
 propertyDefaultIfUnset("useSrcApiPath", false)
 propertyDefaultIfUnset("includeWellKnownRepositories", true)
 propertyDefaultIfUnset("includeCommonDevEnvMods", true)
+propertyDefaultIfUnset("stripForgeRequirements", false)
 propertyDefaultIfUnset("noPublishedSources", false)
+propertyDefaultIfUnset("mixinProviderSpec", "zone.rong:mixinbooter:10.7")
 propertyDefaultIfUnset("forceEnableMixins", false)
+propertyDefaultIfUnset("mixinConfigRefmap", "mixins.${project.modId}.refmap.json")
 propertyDefaultIfUnsetWithEnvVar("enableCoreModDebug", false, "CORE_MOD_DEBUG")
 propertyDefaultIfUnset("generateMixinConfig", true)
 propertyDefaultIfUnset("usesShadowedDependencies", false)
@@ -85,6 +91,8 @@ propertyDefaultIfUnset("mavenArtifactGroup", getDefaultArtifactGroup())
 propertyDefaultIfUnset("enableModernJavaSyntax", false)
 propertyDefaultIfUnset("enableSpotless", false)
 propertyDefaultIfUnset("enableJUnit", false)
+propertyDefaultIfUnset("buildscriptRepositoryOwner", "GTModpackTeam")
+propertyDefaultIfUnset("buildscriptRepositoryName", "Buildscripts")
 propertyDefaultIfUnsetWithEnvVar("deploymentDebug", false, "DEPLOYMENT_DEBUG")
 
 
@@ -107,7 +115,7 @@ if (!getFile(targetPackageJava).exists() && !getFile(targetPackageScala).exists(
 
 if (apiPackage) {
     final String endApiPath = modGroupPath + '/' + apiPackagePath
-    if (useSrcApiPath) {
+    if (useSrcApiPath.toBoolean()) {
         targetPackageJava = 'src/api/java/' + endApiPath
         targetPackageScala = 'src/api/scala/' + endApiPath
         targetPackageKotlin = 'src/api/kotlin/' + endApiPath
@@ -256,7 +264,7 @@ if (project.file('.git/HEAD').isFile() || project.file('.git').isFile()) {
 
 // Shadowing
 if (usesShadowedDependencies.toBoolean()) {
-    apply plugin: 'com.github.johnrengelman.shadow'
+    apply plugin: 'com.gradleup.shadow'
 }
 
 
@@ -265,7 +273,7 @@ if (usesShadowedDependencies.toBoolean()) {
 java {
     toolchain {
         if (enableModernJavaSyntax.toBoolean()) {
-            languageVersion.set(JavaLanguageVersion.of(17))
+            languageVersion.set(JavaLanguageVersion.of(25))
         } else {
             languageVersion.set(JavaLanguageVersion.of(8))
         }
@@ -285,11 +293,15 @@ tasks.withType(JavaCompile).configureEach {
             return
         }
 
-        sourceCompatibility = 17
+        sourceCompatibility = 25
         options.release.set(8)
 
+        // Jabel relies on Byte Buddy, which does not officially support Java 25 yet.
+        // Enable its experimental mode so the javac plugin can load under a Java 25 toolchain.
+        options.forkOptions.jvmArgs.add('-Dnet.bytebuddy.experimental=true')
+
         javaCompiler.set(javaToolchains.compilerFor {
-            languageVersion.set(JavaLanguageVersion.of(17))
+            languageVersion.set(JavaLanguageVersion.of(25))
             vendor.set(JvmVendorSpec.AZUL)
         })
     }
@@ -297,14 +309,6 @@ tasks.withType(JavaCompile).configureEach {
 
 tasks.withType(ScalaCompile).configureEach {
     options.encoding = 'UTF-8'
-}
-
-
-// Allow others using this buildscript to have custom gradle code run
-if (getFile('addon.gradle').exists()) {
-    apply from: 'addon.gradle'
-} else if (getFile('addon.gradle.kts').exists()) {
-    apply from: 'addon.gradle.kts'
 }
 
 
@@ -354,11 +358,14 @@ minecraft {
 
     // JVM arguments
     extraRunJvmArguments.add("-ea:${modGroup}")
+
+    // enable JLine Terminal since idea_rt.jar is no longer added to the classpath
+    extraRunJvmArguments.add('-Dterminal.jline=true')
     if (usesMixins.toBoolean()) {
         extraRunJvmArguments.addAll([
-            '-Dmixin.hotSwap=true',
-            '-Dmixin.checks.interfaces=true',
-            '-Dmixin.debug.export=true'
+                '-Dmixin.hotSwap=true',
+                '-Dmixin.checks.interfaces=true',
+                '-Dmixin.debug.export=true'
         ])
     }
 
@@ -368,6 +375,10 @@ minecraft {
                 '-Dlegacy.debugClassLoadingFiner=true',
                 '-Dlegacy.debugClassLoadingSave=true'
         ])
+    }
+
+    if (additionalJavaArguments.size() != 0) {
+        extraRunJvmArguments.addAll(additionalJavaArguments.split(';'))
     }
 }
 
@@ -435,28 +446,32 @@ repositories {
             }
         }
         maven {
-            name 'Cleanroom Maven'
-            url 'https://maven.cleanroommc.com'
+            name = 'Cleanroom Maven'
+            url = 'https://maven.cleanroommc.com'
         }
         maven {
-            name 'BlameJared Maven'
-            url 'https://maven.blamejared.com'
+            name = 'BlameJared Maven'
+            url = 'https://maven.blamejared.com'
         }
         maven {
-            name 'GTNH Maven'
-            url 'https://nexus.gtnewhorizons.com/repository/public/'
+            name = 'GTNH Maven'
+            url = 'https://nexus.gtnewhorizons.com/repository/public/'
         }
         maven {
-            name 'GTCEu Maven'
-            url 'https://maven.gtceu.com'
+            name = 'GTCEu Maven'
+            url = 'https://maven.gtceu.com'
+        }
+        maven {
+            name = 'Mod Maven'
+            url = 'https://modmaven.dev'
         }
     }
     if (usesMixins.toBoolean() || forceEnableMixins.toBoolean()) {
         // need to add this here even if we did not above
         if (!includeWellKnownRepositories.toBoolean()) {
             maven {
-                name 'Cleanroom Maven'
-                url 'https://maven.cleanroommc.com'
+                name = 'Cleanroom Maven'
+                url = 'https://maven.cleanroommc.com'
             }
         }
     }
@@ -495,7 +510,6 @@ configurations {
     testRuntimeClasspath.extendsFrom(runtimeOnlyNonPublishable)
 }
 
-String mixinProviderSpec = 'zone.rong:mixinbooter:9.1'
 dependencies {
     if (usesMixins.toBoolean()) {
         annotationProcessor 'org.ow2.asm:asm-debug-all:5.2'
@@ -504,7 +518,7 @@ dependencies {
         // should use 2.8.6 but 2.8.9+ has a vulnerability fix
         annotationProcessor 'com.google.code.gson:gson:2.8.9'
 
-        mixinProviderSpec = modUtils.enableMixins(mixinProviderSpec, "mixins.${modId}.refmap.json")
+        mixinProviderSpec = modUtils.enableMixins(mixinProviderSpec, mixinConfigRefmap)
         api (mixinProviderSpec) {
             transitive = false
         }
@@ -518,7 +532,7 @@ dependencies {
 
     if (enableJUnit.toBoolean()) {
         testImplementation 'org.hamcrest:hamcrest:2.2'
-        testImplementation 'org.junit.jupiter:junit-jupiter:5.9.2'
+        testImplementation 'org.junit.jupiter:junit-jupiter:5.11.4'
         testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
     }
 
@@ -528,7 +542,7 @@ dependencies {
             transitive = false
         }
         // workaround for https://github.com/bsideup/jabel/issues/174
-        annotationProcessor 'net.java.dev.jna:jna-platform:5.13.0'
+        annotationProcessor 'net.java.dev.jna:jna-platform:5.16.0'
         // Allow jdk.unsupported classes like sun.misc.Unsafe, workaround for JDK-8206937 and fixes Forge crashes in tests.
         patchedMinecraft 'me.eigenraven.java8unsupported:java-8-unsupported-shim:1.0.0'
 
@@ -540,10 +554,14 @@ dependencies {
         testCompileOnly "me.eigenraven.java8unsupported:java-8-unsupported-shim:1.0.0"
     }
 
-    compileOnlyApi 'org.jetbrains:annotations:24.1.0'
-    annotationProcessor 'org.jetbrains:annotations:24.1.0'
-    patchedMinecraft('net.minecraft:launchwrapper:1.17.2') {
+    compileOnlyApi 'org.jetbrains:annotations:26.0.1'
+    annotationProcessor 'org.jetbrains:annotations:26.0.1'
+    patchedMinecraft('net.minecraft:launchwrapper:1.12') {
         transitive = false
+    }
+
+    if ((usesMixins.toBoolean() || forceEnableMixins.toBoolean()) && stripForgeRequirements.toBoolean()) {
+        runtimeOnlyNonPublishable 'com.cleanroommc:strip-latest-forge-requirements:1.0'
     }
 
     if (includeCommonDevEnvMods.toBoolean()) {
@@ -608,6 +626,8 @@ test {
     if (enableJUnit.toBoolean()) {
         useJUnitPlatform()
     }
+
+    failOnNoDiscoveredTests = false
 }
 
 
@@ -679,7 +699,6 @@ tasks.register('generateAssets') {
         if (usesMixins.toBoolean() && generateMixinConfig.toBoolean()) {
             def mixinConfigFile = getFile("src/main/resources/mixins.${modId}.json")
             if (!mixinConfigFile.exists()) {
-                def mixinConfigRefmap = "mixins.${modId}.refmap.json"
 
                 mixinConfigFile.text = """{
   "package": "${modGroup}.${mixinsPackage}",
@@ -818,6 +837,7 @@ def getManifestAttributes() {
     }
     return attributes
 }
+
 
 
 // IDE Configuration
@@ -983,6 +1003,30 @@ if (cfApiKey.isPresent() || deploymentDebug.toBoolean()) {
                 additionalFile.changelog = changelogRaw
             }
         }
+        doLast {
+            // No File IDs in Debug Mode
+            if (!deploymentDebug.toBoolean()) {
+                def list = []
+                for (def artifact : tasks.curseforge.getUploadArtifacts()) {
+                    list.add(artifact)
+                    for (def additionalArtifact : artifact.getAdditionalArtifacts()) {
+                        list.add(additionalArtifact)
+                    }
+                }
+                def summary = "## CurseForge Build Summary (Mod ${modName} | Project ID ${curseForgeProjectId})"
+                for (def artifact : list) {
+                    def fileId = artifact.getCurseFileId()
+                    def fileName = artifact.getArtifact().getSingleFile().name
+                    println("Uploaded File ${fileName}, With File ID: ${fileId}")
+                    summary = summary + "\n  - File: ${fileName} | File ID: ${fileId}"
+                }
+                println(summary)
+                def stepSummary = providers.environmentVariable("GITHUB_STEP_SUMMARY")
+                if (stepSummary.isPresent()) {
+                    file(stepSummary.get()).write(summary)
+                }
+            }
+        }
     }
     tasks.curseforge.dependsOn(build)
     tasks.curseforge.dependsOn('generateChangelog')
@@ -1113,7 +1157,7 @@ def getChangelog() {
 
 // Buildscript updating
 
-def buildscriptGradleVersion = '8.5'
+def buildscriptGradleVersion = '9.2.0'
 
 tasks.named('wrapper', Wrapper).configure {
     gradleVersion = buildscriptGradleVersion
@@ -1144,12 +1188,12 @@ if (!project.getGradle().startParameter.isOffline() && !Boolean.getBoolean('DISA
     }
 }
 
-static URL availableBuildScriptUrl() {
-    new URL("https://raw.githubusercontent.com/GregTechCEu/Buildscripts/master/build.gradle")
+URL availableBuildScriptUrl() {
+    new URL("https://raw.githubusercontent.com/${project.buildscriptRepositoryOwner}/${project.buildscriptRepositoryName}/master/build.gradle")
 }
 
-static URL availableSettingsGradleUrl() {
-    new URL("https://raw.githubusercontent.com/GregTechCEu/Buildscripts/master/settings.gradle")
+URL availableSettingsGradleUrl() {
+    new URL("https://raw.githubusercontent.com/${project.buildscriptRepositoryOwner}/${project.buildscriptRepositoryName}/master/settings.gradle")
 }
 
 boolean performBuildScriptUpdate() {
@@ -1197,14 +1241,28 @@ tasks.register('faq') {
                 "To add new dependencies to your project, place them in 'dependencies.gradle', NOT in 'build.gradle' as they would be replaced when the script updates.\n" +
                 "To add new repositories to your project, place them in 'repositories.gradle'.\n" +
                 "If you need additional gradle code to run, you can place it in a file named 'addon.gradle' (or either of the above, up to you for organization).\n\n" +
-                "If your build fails to recognize the syntax of newer Java versions, enable Jabel in your 'gradle.properties' under the option name 'enableModernJavaSyntax'.\n" +
-                "To see information on how to configure your IDE properly for Java 17, see https://github.com/GregTechCEu/Buildscripts/blob/master/docs/jabel.md\n\n" +
+                "If your build fails to recognize the syntax of newer Java versions, enable Jabel in your 'buildscript.properties' under the option name 'enableModernJavaSyntax'.\n" +
+                "To see information on how to configure your IDE properly for modern Java, see https://github.com/GregTechCEu/Buildscripts/blob/master/docs/jabel.md\n\n" +
                 "Report any issues or feature requests you have for this build script to https://github.com/GregTechCEu/Buildscripts/issues\n")
     }
 }
 
 
 // Helpers
+def loadProjectProperties() {
+    def configFile = file("buildscript.properties")
+    if (configFile.exists()) {
+        configFile.withReader {
+            def prop = new Properties()
+            prop.load(it)
+            new ConfigSlurper().parse(prop).forEach { String k, def v ->
+                project.ext.setProperty(k, v)
+            }
+        }
+    } else {
+        print("Failed to read from buildscript.properties, as it did not exist!")
+    }
+}
 
 def getDefaultArtifactGroup() {
     def lastIndex = project.modGroup.lastIndexOf('.')
@@ -1217,7 +1275,7 @@ def getFile(String relativePath) {
 
 def checkPropertyExists(String propertyName) {
     if (!project.hasProperty(propertyName)) {
-        throw new GradleException("This project requires a property \"" + propertyName + "\"! Please add it your \"gradle.properties\". You can find all properties and their description here: https://github.com/GregTechCEu/Buildscripts/blob/main/gradle.properties")
+        throw new GradleException("This project requires a property \"" + propertyName + "\"! Please add it your \"buildscript.properties\" or \"gradle.properties\". You can find all properties and their description here: https://github.com/GregTechCEu/Buildscripts/blob/main/buildscript.properties and https://github.com/GregTechCEu/Buildscripts/blob/main/gradle.properties")
     }
 }
 
@@ -1254,4 +1312,12 @@ def getLastTag() {
     def githubTag = providers.environmentVariable('GITHUB_TAG')
     return runShell('git describe --abbrev=0 --tags ' +
             (githubTag.isPresent() ? runShell('git rev-list --tags --skip=1 --max-count=1') : ''))
+}
+
+
+// Allow others using this buildscript to have custom gradle code run
+if (getFile('addon.gradle').exists()) {
+    apply from: 'addon.gradle'
+} else if (getFile('addon.gradle.kts').exists()) {
+    apply from: 'addon.gradle.kts'
 }
